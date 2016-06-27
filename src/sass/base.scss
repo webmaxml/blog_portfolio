@@ -1,0 +1,18 @@
+/**********************
+*        BASE         *
+***********************/
+
+@include establish-baseline;
+@include border-box-sizing(true);
+
+%wrapper {
+	@include container;
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+%clearfix:after {
+	display: block;
+	content: "";
+	clear: both;
+}
