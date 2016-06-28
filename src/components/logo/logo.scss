@@ -1,0 +1,36 @@
+/* logo */
+.logo {
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: center;
+	align-items: center;
+
+	align-self: center;
+	height: $base-lh * 5;
+
+	&__img {
+		margin-right: 10px;
+
+		font-size: 60px;
+		color: #39a7a3;
+	}
+
+	&__text {
+		display: flex;
+		flex-flow: column nowrap;
+		justify-content: center;
+	}
+
+	&__text-big {
+		font-size: 30px;
+		line-height: $base-lh * 2; 
+		color: #fff;
+		text-transform: uppercase;
+	}
+
+	&__text-small {
+		font-size: 18px;
+		line-height: $base-lh; 
+		color: grey;
+	}
+}

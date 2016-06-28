@@ -1,5 +1,8 @@
 // deps
 import React from 'react';
+// components
+import Header from '../header/header';
+import Home from '../home/home';
 
 class App extends React.Component {
 
@@ -9,8 +12,11 @@ class App extends React.Component {
 
     render() {
         return (
-            <div id="app">
-            	Hello ass!
+            <div className="app">
+                <div className="app__wrapper">
+                    <Header />
+                    <Home />
+                </div>
             </div>
         );
     }

@@ -1,0 +1,49 @@
+/* mainNav */
+.mainNav {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: flex-end;
+
+	padding: 0 15px;
+
+	background-color: lightgrey;
+
+	&__nav {
+		display: none;
+		flex-flow: row nowrap;
+		justify-content: space-between;
+
+		width: 360px;
+
+		font-size: 16px;
+		line-height: $base-lh * 2;
+
+		@media ( min-width: 770px ) {
+			display: flex;
+		}	
+	}
+
+	&__search {
+		display: none;
+		flex-flow: row nowrap;
+		justify-content: flex-end;
+
+		width: 33%;
+
+		font-size: 16px;
+		line-height: $base-lh * 2;	
+
+		@media ( min-width: 770px ) {
+			display: flex;
+		}	
+	}
+
+	&__toggle {
+		font-size: 16px;
+		line-height: $base-lh * 2;
+
+		@media ( min-width: 770px ) {
+			display: none;
+		}
+	}
+}
