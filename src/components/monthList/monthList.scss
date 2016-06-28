@@ -1,0 +1,22 @@
+/* monthList */
+.monthList {
+	display: flex;
+	flex-flow: column nowrap;
+	overflow: hidden;
+
+	// line
+
+	&__month-line {
+		display: flex;
+		flex-flow: row nowrap;
+		justify-content: center;
+	}
+
+	// content
+
+	&__link {
+		font-size: 18px;
+		line-height: $base-lh;
+		color: #5d557f;
+	}
+}

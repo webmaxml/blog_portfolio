@@ -1,0 +1,22 @@
+/* archive */
+.archive {
+	display: flex;
+	flex-flow: column nowrap;
+
+	// line
+
+	&__header-line {
+		display: flex;
+		flex-flow: row nowrap;
+		justify-content: flex-end;
+	}
+
+	// content
+
+	&__header {
+		font-size: 18px;
+		line-height: $base-lh;
+		color: grey;
+	}
+
+}

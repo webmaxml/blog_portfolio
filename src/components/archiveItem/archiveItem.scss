@@ -1,0 +1,35 @@
+/* archiveItem */
+.archiveItem {
+	display: flex;
+	flex-flow: column nowrap;
+
+	margin-top: $base-lh;
+
+	// line
+
+	&__year-line {
+		display: flex;
+		flex-flow: row nowrap;
+		justify-content: flex-start;
+	}
+
+	// wrap
+
+	&__link-wrap {
+		margin-right: 10px;
+	}
+
+	// content
+
+	&__link {
+		font-size: 18px;
+		line-height: $base-lh;
+		color: #5d557f;
+	}
+
+	&__toggle-icon {
+		font-size: 18px;
+		line-height: $base-lh;
+		color: #5d557f;
+	}
+}

@@ -2,6 +2,7 @@
 import React from 'react';
 // components
 import PostsTop from '../postsTop/postsTop';
+import Archive from '../archive/archive';
 
 class Sidebar extends React.Component {
 
@@ -13,6 +14,7 @@ class Sidebar extends React.Component {
         return (
         	<section className="sidebar">
         		<PostsTop />
+        		<Archive />
         	</section>
         );
     }

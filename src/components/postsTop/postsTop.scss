@@ -3,6 +3,8 @@
 	display: flex;
 	flex-flow: column nowrap;
 
+	margin-bottom: $base-lh * 5;
+
 	// line 
 
 	&__header-line {
