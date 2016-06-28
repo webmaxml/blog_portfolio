@@ -1,0 +1,85 @@
+/* post */
+.post {
+	display: flex;
+	flex-flow: column nowrap;
+
+	padding: $base-lh 0;
+	
+	// line
+
+	&__date-line {
+		display: flex;
+		flex-flow: row nowrap;
+		justify-content: flex-start;
+	}
+
+	&__header-line {
+		display: flex;
+		flex-flow: row wrap;
+		justify-content: flex-start;
+	}
+
+	&__categories-line {
+		display: flex;
+		flex-flow: row wrap;
+		justify-content: flex-start;
+	}
+
+	&__text-line {
+		display: flex;
+		flex-flow: row wrap;
+		justify-content: flex-start;
+	}
+
+	&__footer-line {
+		display: flex;
+		flex-flow: row nowrap;
+		justify-content: space-between;
+	}
+
+	// wrap
+
+	&__category-wrap {
+		&:not(:last-child) {
+			margin-right: 15px;
+		}
+	}
+
+	// content
+
+	&__date {
+		font-size: 14px;
+		line-height: $base-lh;
+		color: #b7b8b0;
+	}
+
+	&__header {
+		font-size: 30px;
+		line-height: $base-lh * 2;
+		color: black;
+	}
+
+	&__category-link {
+		font-size: 14px;
+		line-height: $base-lh * 2;
+		color: #513211;
+	}
+
+	&__text {
+		font-size: 18px;
+		line-height: $base-lh;
+		color: black;
+	}
+
+	&__read-link {
+		font-size: 14px;
+		line-height: $base-lh * 2;
+		color: #b00b1e;
+	}
+
+	&__comment-link {
+		font-size: 14px;
+		line-height: $base-lh * 2;
+		color: #113051;
+	}
+}
