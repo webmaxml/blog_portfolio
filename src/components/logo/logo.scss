@@ -8,17 +8,39 @@
 	align-self: center;
 	height: $base-lh * 5;
 
-	&__img {
-		margin-right: 10px;
+	// line
 
-		font-size: 60px;
-		color: #39a7a3;
+	&__text-big-line {
+		display: flex;
+		flex-flow: row nowrap;
+		justify-content: flex-start;
 	}
 
-	&__text {
+	&__text-big-line {
+		display: flex;
+		flex-flow: row nowrap;
+		justify-content: flex-start;
+	}
+
+	// wrap 
+
+	&__img-wrap {
+		display: flex;
+		flex-flow: row nowrap;
+
+		margin-right: 15px;
+	}
+
+	&__text-wrap {
 		display: flex;
 		flex-flow: column nowrap;
-		justify-content: center;
+	}
+
+	// content
+
+	&__img {
+		font-size: 60px;
+		color: #39a7a3;
 	}
 
 	&__text-big {

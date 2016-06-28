@@ -1,0 +1,34 @@
+/* postsTop */
+.postsTop {
+	display: flex;
+	flex-flow: column nowrap;
+
+	// line 
+
+	&__header-line {
+		display: flex;
+		flex-flow: row nowrap;
+		justify-content: flex-end;
+	}
+
+	&__item-line {
+		display: flex;
+		flex-flow: row wrap;
+
+		margin-top: $base-lh;
+	}
+
+	// content
+
+	&__header {
+		font-size: 18px;
+		line-height: $base-lh;
+		color: grey;
+	}
+
+	&__link {
+		font-size: 18px;
+		line-height: $base-lh;
+		color: #5d557f;
+	}
+}

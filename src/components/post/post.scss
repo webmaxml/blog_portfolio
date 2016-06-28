@@ -1,11 +1,12 @@
 /* post */
 .post {
+
+	// line
+	
 	display: flex;
 	flex-flow: column nowrap;
 
 	padding: $base-lh 0;
-	
-	// line
 
 	&__date-line {
 		display: flex;

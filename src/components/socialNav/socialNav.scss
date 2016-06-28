@@ -9,7 +9,9 @@
 	width: 200px;
 	height: $base-lh * 3;
 
-	&__link {
+	// wrap
+
+	&__icon-wrap {
 		display: flex;
 		flex-flow: row nowrap;
 		justify-content: center;
@@ -21,6 +23,8 @@
 
 		background-color: #b00b1e;
 	}
+
+	// content
 
 	&__icon {
 		font-size: 18px;
