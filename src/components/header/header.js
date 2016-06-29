@@ -14,7 +14,9 @@ class Header extends React.Component {
         return (
         	<header className="header">
         		<MainNav />
-        		<TopInfo />
+                <div className="header__wrapper">
+        	        <TopInfo />
+                </div>
         	</header>
         );
     }

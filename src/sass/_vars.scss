@@ -4,7 +4,10 @@ $base-lh: $base-line-height;
 
 // font-family
 
-$ff_caption_1: "CodaRegular", "Arial", sans-serif;
-$ff_caption_2: "CodaHeavy", "Arial", sans-serif;
-$ff_text: "Arial", sans-serif;
-$ff_logo: "ImpactRegular", "Arial", sans-serif;
+$ff_caption_1: 'Lobster', cursive;
+
+// color
+
+$navBg: #222;
+$navText: #ddd;
+$topBg: rgba( 41, 47, 64, .85 );

@@ -2,14 +2,18 @@
 .socialNav {
 	display: flex;
 	flex-flow: row wrap;
-	justify-content: space-between;
 	align-items: center;
 
 	align-self: center;
-	width: 200px;
 	height: $base-lh * 3;
 
 	// wrap
+
+	&__item {
+		&:not( :last-child ) {
+			margin-right: 30px
+		}
+	}
 
 	&__icon-wrap {
 		display: flex;

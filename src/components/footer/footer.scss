@@ -1,0 +1,43 @@
+/* footer */
+.footer {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-between;
+	align-items: center;
+
+	padding: 0 15px;
+
+	background-color: #999999;
+
+	// wrap
+
+	&__rights-wrap {
+		display: flex;
+		flex-flow: row nowrap;
+	}
+
+	&__nav-wrap {
+		display: flex;
+		flex-flow: row nowrap;
+	}
+
+	&__nav-item {
+		&:not( :last-child ) {
+			margin-right: 15px;
+		}
+	}
+
+	// content
+
+	&__rights {
+		font-size: 18px;
+		line-height: $base-lh;
+		color: #000;
+	}
+
+	&__nav-link {
+		font-size: 18px;
+		line-height: $base-lh;
+		color: #000;
+	}
+}

@@ -19,6 +19,10 @@ class PostColumn extends React.Component {
                     <Post />
                     <Post />
         		</ul>
+                <div className="postSection__nav-line">
+                    <a className="postSection__nav-link" href="#">Следующие</a>
+                    <a className="postSection__nav-link" href="#">Предыдущие</a>
+                </div>
         	</section>
         );
     }

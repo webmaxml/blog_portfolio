@@ -6,7 +6,7 @@
 
 	padding: 0 15px;
 
-	background-color: lightgrey;
+	background-color: $navBg;
 
 	&__nav {
 		display: none;
@@ -17,6 +17,7 @@
 
 		font-size: 16px;
 		line-height: $base-lh * 2;
+		color: $navText;
 
 		@media ( min-width: 770px ) {
 			display: flex;
@@ -31,7 +32,8 @@
 		width: 33%;
 
 		font-size: 16px;
-		line-height: $base-lh * 2;	
+		line-height: $base-lh * 2;
+		color: $navText;	
 
 		@media ( min-width: 770px ) {
 			display: flex;
@@ -41,6 +43,7 @@
 	&__toggle {
 		font-size: 16px;
 		line-height: $base-lh * 2;
+		color: $navText;
 
 		@media ( min-width: 770px ) {
 			display: none;

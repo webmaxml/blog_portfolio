@@ -8,4 +8,21 @@
 	padding: 15px;
 
 	background-color: #c2e1fd;
+
+	// line
+
+	&__nav-line {
+		display: flex;
+		flex-flow: row nowrap;
+		justify-content: space-between;
+
+		margin: $base-lh * 2 0;
+	}
+
+	// content
+
+	&__nav-link {
+		font-size: 18px;
+		color: #8a96ff;
+	}
 }
