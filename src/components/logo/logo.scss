@@ -40,17 +40,19 @@
 
 	&__img {
 		font-size: 60px;
-		color: #39a7a3;
+		color: $c_accent;
 	}
 
 	&__text-big {
+		font-family: $ff_logo;
 		font-size: 30px;
 		line-height: $base-lh * 2; 
-		color: #fff;
+		color: $c_logoText;
 		text-transform: uppercase;
 	}
 
 	&__text-small {
+		font-family: $ff_logo;
 		font-size: 18px;
 		line-height: $base-lh; 
 		color: grey;

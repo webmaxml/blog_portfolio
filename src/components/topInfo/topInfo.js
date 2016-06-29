@@ -13,8 +13,10 @@ class TopInfo extends React.Component {
     render() {
         return (
         	<section className="topInfo">
- 				<Logo />
- 				<SocialNav />
+        		<div className="topInfo__wrap">
+	 				<Logo />
+	 				<SocialNav />
+ 				</div>
         	</section>
         );
     }

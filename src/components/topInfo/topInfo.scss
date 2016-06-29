@@ -1,14 +1,16 @@
 /* topInfo */
 .topInfo {
-	display: flex;
-	flex-flow: column nowrap;
-	justify-content: space-between;
+	background-color: $c_topBg;
+	
+	&__wrap {
+		display: flex;
+		flex-flow: column nowrap;
+		justify-content: space-between;
 
-	padding: 0 15px;
+		@extend %wrapper;
 
-	background-color: $topBg;
-
-	@media ( min-width: 770px ) {
-		flex-flow: row nowrap;
+		@media ( min-width: 770px ) {
+			flex-flow: row nowrap;
+		}
 	}
 }

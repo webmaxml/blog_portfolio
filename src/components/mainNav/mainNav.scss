@@ -6,7 +6,7 @@
 
 	padding: 0 15px;
 
-	background-color: $navBg;
+	background-color: $c_navBg;
 
 	&__nav {
 		display: none;
@@ -15,9 +15,10 @@
 
 		width: 360px;
 
+		font-family: $ff_header;
 		font-size: 16px;
 		line-height: $base-lh * 2;
-		color: $navText;
+		color: $c_navText;
 
 		@media ( min-width: 770px ) {
 			display: flex;
@@ -30,10 +31,10 @@
 		justify-content: flex-end;
 
 		width: 33%;
-
+		
 		font-size: 16px;
 		line-height: $base-lh * 2;
-		color: $navText;	
+		color: $c_navText;	
 
 		@media ( min-width: 770px ) {
 			display: flex;
@@ -43,7 +44,7 @@
 	&__toggle {
 		font-size: 16px;
 		line-height: $base-lh * 2;
-		color: $navText;
+		color: $c_navText;
 
 		@media ( min-width: 770px ) {
 			display: none;

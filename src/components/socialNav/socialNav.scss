@@ -21,17 +21,17 @@
 		justify-content: center;
 		align-items: center;
 		
-		width: 30px;
-		height: 30px;
+		width: 35px;
+		height: 35px;
 		border-radius: 100%;
 
-		background-color: #b00b1e;
+		background-color: $c_accent;
 	}
 
 	// content
 
 	&__icon {
-		font-size: 18px;
+		font-size: 20px;
 		color: #fff;
 	}
 }
