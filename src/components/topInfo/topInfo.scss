@@ -1,5 +1,7 @@
 /* topInfo */
 .topInfo {
+	margin-top: $base-lh * 2;
+
 	background-color: $c_topBg;
 	
 	&__wrap {

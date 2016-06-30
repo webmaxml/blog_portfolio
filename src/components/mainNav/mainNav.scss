@@ -1,48 +1,126 @@
 /* mainNav */
 .mainNav {
-	display: flex;
-	flex-flow: row wrap;
-	justify-content: flex-end;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 10;
 
-	padding: 0 15px;
+	width: 100%;
+	height: $base-lh * 2;
 
 	background-color: $c_navBg;
+	box-shadow: 0 0 5px rgba(0,0,0,0.5);
 
-	&__nav {
+	// line
+
+	&__nav-line {
 		display: none;
 		flex-flow: row nowrap;
-		justify-content: space-between;
-
-		width: 360px;
-
-		font-family: $ff_header;
-		font-size: 16px;
-		line-height: $base-lh * 2;
-		color: $c_navText;
 
 		@media ( min-width: 770px ) {
 			display: flex;
 		}	
 	}
 
-	&__search {
+	&__search-line {
 		display: none;
 		flex-flow: row nowrap;
 		justify-content: flex-end;
 
 		width: 33%;
-		
-		font-size: 16px;
-		line-height: $base-lh * 2;
-		color: $c_navText;	
 
 		@media ( min-width: 770px ) {
 			display: flex;
 		}	
 	}
 
-	&__toggle {
+	// wrap
+
+	&__wrap {
+		display: flex;
+		flex-flow: row nowrap;
+		justify-content: flex-end;
+		overflow: visible;
+
+		@extend %wrapper;
+	}
+
+	&__nav-wrap {
+		display: flex;
+		flex-flow: row nowrap;
+		align-items: flex-start; 
+
+		&:not( :last-child ) {
+			margin-right: 50px;
+		}
+	}
+
+	&__input-wrap {
+		align-self: center;
+
+		padding: 3px;
+		margin-right: 10px;
+		border-radius: 3px;
+
+		background-color: lighten( $c_navBg, 6.5% );
+	}
+
+	// content
+
+	&__nav-link {
+		padding: 0 10px;
+
+		font-family: $ff_header;
+		font-weight: bold;
 		font-size: 16px;
+		line-height: $base-lh * 2;
+		color: $c_navText;
+
+		&:hover {
+			color: lighten( $c_navText, 20% );
+		}
+
+		&.mainNav__nav-link--active {
+			border-bottom: 2px solid $c_accent;
+
+			color: lighten( $c_navText, 20% );
+
+			background-color: lighten( $c_navBg, 6.5% );
+		}
+	}
+
+	&__search-input {
+		width: 20px;
+
+		font-size: 16px;
+		line-height: $base-lh;
+		color: $c_navText;
+
+		opacity: 0;
+
+		transition: .4s;
+
+		&::placeholder {
+			font-size: 16px;
+			line-height: $base-lh;
+			color: darken( $c_navText, 20% );
+		}
+
+		&:focus {
+			width: 160px;
+
+			opacity: 1;
+		}
+	}
+
+	&__search-icon {
+		font-size: 16px;
+		line-height: $base-lh * 2;
+		color: $c_navText;	
+	}
+
+	&__toggle {
+		font-size: 20px;
 		line-height: $base-lh * 2;
 		color: $c_navText;
 
