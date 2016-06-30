@@ -1,0 +1,14 @@
+/* mobileMenu */
+.mobileMenu {
+	display: flex;
+	flex-flow: column nowrap;
+
+	width: 100%;
+
+	background-color: $c_navBg;
+	box-shadow: 0 0 5px rgba(0,0,0,0.5);
+
+	@media ( min-width: 770px ) {
+		display: none;
+	}	
+}

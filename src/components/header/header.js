@@ -1,7 +1,7 @@
 // deps
 import React from 'react';
 // components
-import MainNav from '../mainNav/mainNav';
+import TopLine from '../topLine/topLine';
 import TopInfo from '../topInfo/topInfo';
 
 class Header extends React.Component {
@@ -13,7 +13,7 @@ class Header extends React.Component {
     render() {
         return (
         	<header className="header">
-        		<MainNav />
+        		<TopLine />
                 <div className="header__wrapper">
         	        <TopInfo />
                 </div>

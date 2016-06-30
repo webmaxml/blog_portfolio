@@ -3,14 +3,14 @@
 
 	// wrap
 
-	.socialNav__icon-wrap {
+	& .socialNav__icon-wrap {
 		width: 25px;
 		height: 25px;
 	}
 
 	// content
 
-	.socialNav__icon {
+	& .socialNav__icon {
 		font-size: 16px;
 		color: #fff;
 	}

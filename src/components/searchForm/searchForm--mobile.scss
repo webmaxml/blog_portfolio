@@ -1,0 +1,19 @@
+.searchForm.searchForm--mobile {
+	display: flex;
+	justify-content: center;
+
+	width: 100%;
+
+	// content
+
+	& .searchForm__search-input {
+		width: 160px;
+
+		opacity: 1;
+	}
+
+	& .searchForm__search-icon {
+		line-height: $base-lh * 3;
+	}
+
+}

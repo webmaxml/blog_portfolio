@@ -9,7 +9,9 @@
 	&__month-line {
 		display: flex;
 		flex-flow: row nowrap;
-		justify-content: center;
+		justify-content: flex-start;
+
+		padding-left: 35px;
 	}
 
 	// content

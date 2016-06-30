@@ -1,0 +1,59 @@
+/* searchForm */
+.searchForm {
+	display: none;
+	flex-flow: row nowrap;
+	justify-content: flex-end;
+
+	width: 33%;
+
+	@media ( min-width: 770px ) {
+		display: flex;
+	}	
+
+	// wrap
+
+	&__wrap {
+		align-self: center;
+
+		padding: 3px;
+		margin-right: 10px;
+		border-radius: 3px;
+
+		background-color: lighten( $c_navBg, 6.5% );
+	}
+
+	// content
+
+	&__search-input {
+		width: 20px;
+
+		font-size: 16px;
+		line-height: $base-lh;
+		color: $c_navText;
+
+		opacity: 0;
+
+		transition: .4s;
+
+		&::placeholder {
+			font-size: 16px;
+			line-height: $base-lh;
+			color: darken( $c_navText, 20% );
+		}
+
+		&:focus {
+			width: 160px;
+
+			opacity: 1;
+		}
+	}
+
+	&__search-icon {
+		font-size: 16px;
+		line-height: $base-lh * 2;
+		color: $c_navText;	
+	}
+}
+
+// modificators
+@import 'searchForm--mobile';

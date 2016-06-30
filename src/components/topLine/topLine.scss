@@ -1,0 +1,44 @@
+/* topLine */
+.topLine{
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 10;
+
+	width: 100%;
+	height: $base-lh * 2;
+
+	background-color: $c_navBg;
+	box-shadow: 0 0 5px rgba(0,0,0,0.5);
+
+	// wrap
+
+	&__wrap {
+		display: flex;
+		flex-flow: row wrap;
+		justify-content: flex-end;
+		overflow: visible;
+
+		@extend %wrapper;
+	}
+
+	&__mobileMenu-wrap {
+		display: flex;
+		flex-flow: row wrap;
+		justify-content: flex-end;
+
+		width: 100%;
+	}
+
+	// content
+
+	&__toggle {
+		font-size: 20px;
+		line-height: $base-lh * 2;
+		color: $c_navText;
+
+		@media ( min-width: 770px ) {
+			display: none;
+		}
+	}
+}

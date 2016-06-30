@@ -1,0 +1,32 @@
+.mainNav.mainNav--mobile {
+	display: flex;
+	flex-flow: column nowrap;
+
+	// wrap
+
+	& .mainNav__wrap {
+		margin-right: 0;
+	}
+
+	// content
+
+	& .mainNav__link {
+		width: 100%;
+		padding: 0;
+
+		line-height: $base-lh * 3;
+		text-align: center;
+
+		&:hover {
+			background-color: lighten( $c_navBg, 6.5% );
+		}
+
+		&.mainNav__link--active {
+			border-bottom: none;
+
+			color: lighten( $c_navText, 20% );
+
+			background-color: lighten( $c_navBg, 6.5% );
+		}
+	}
+}
