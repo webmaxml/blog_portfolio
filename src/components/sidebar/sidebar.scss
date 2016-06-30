@@ -3,7 +3,10 @@
 	display: flex;
 	flex-flow: column nowrap;
 
-	width: 30%;
-
-	padding-left: 30px;
+	width: 100%;
+	
+	@media( min-width: 770px ) {
+		width: 30%;
+		padding-left: 30px;
+	}
 }

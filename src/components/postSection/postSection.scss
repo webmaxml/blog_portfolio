@@ -4,8 +4,12 @@
 	flex-flow: column nowrap;
 	align-items: stretch;
 
-	width: 70%;
-	padding-right: 15px;
+	width: 100%;
+	
+	@media( min-width: 770px ) {
+		width: 70%;
+		padding-right: 15px;
+	}
 
 	// line
 

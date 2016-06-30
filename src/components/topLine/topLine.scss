@@ -15,24 +15,34 @@
 
 	&__wrap {
 		display: flex;
-		flex-flow: row wrap;
+		flex-flow: column wrap;
 		justify-content: flex-end;
-		overflow: visible;
 
 		@extend %wrapper;
+
+		@media ( min-width: 770px ) {
+			flex-flow: row wrap;
+		}
 	}
 
 	&__mobileMenu-wrap {
 		display: flex;
 		flex-flow: row wrap;
 		justify-content: flex-end;
+	
+		margin-right: -15px;
+		margin-left: -15px;
 
-		width: 100%;
+		@media ( min-width: 770px ) {
+			margin: 0;
+		}
 	}
 
 	// content
 
 	&__toggle {
+		align-self: flex-end;
+
 		font-size: 20px;
 		line-height: $base-lh * 2;
 		color: $c_navText;

@@ -12,12 +12,13 @@ class TopLine extends React.Component {
         super(props);
         this.state = {
             mobileShow: false
-        }
+        };
 
         this.clickHandle = this.clickHandle.bind( this );
     }
 
-    clickHandle() {
+    clickHandle( event ) {
+        event.preventDefault();
         this.setState({ mobileShow: !this.state.mobileShow });
     }
 
@@ -27,7 +28,7 @@ class TopLine extends React.Component {
                 <div className="topLine__wrap">
                     <MainNav mode="default" />
                     <SearchForm mode="default" />
-                    <button className="topLine__toggle" onClick={ this.clickHandle }>
+                    <button className="topLine__toggle" onClick={ this.clickHandle } onTouchStart={ this.clickHandle }>
                         { this.state.mobileShow ? <i className="fa fa-times topLine__toggle-icon"></i> :
                                                   <i className="fa fa-bars topLine__toggle-icon"></i> }        
                     </button>

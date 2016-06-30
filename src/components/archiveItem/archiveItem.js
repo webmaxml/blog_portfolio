@@ -16,7 +16,8 @@ class ArchiveItem extends React.Component {
         this.clickHandle = this.clickHandle.bind( this );
     }
 
-    clickHandle() {
+    clickHandle( event ) {
+        event.preventDefault();
     	this.setState({ monthShow: !this.state.monthShow });
     }
 
@@ -28,7 +29,7 @@ class ArchiveItem extends React.Component {
         				<a className="archiveItem__link" href="#">2015</a>
         			</div>
         			<div className="archiveItem__toggle-wrap">
-	        			<button type="button" className="archiveItem__toggle" onClick={ this.clickHandle }>
+	        			<button type="button" className="archiveItem__toggle" onClick={ this.clickHandle } onTouchStart={ this.clickHandle }>
 	        				<i className="fa fa-caret-down archiveItem__toggle-icon"></i>
 	        			</button>
         			</div>

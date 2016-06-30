@@ -4,21 +4,34 @@
 	flex-flow: column nowrap;
 
 	margin-top: $base-lh;
-	margin-bottom: $base-lh * 5;
+	margin-bottom: $base-lh * 4;
 
 	// line 
 
 	&__header-line {
 		display: flex;
 		flex-flow: row nowrap;
-		justify-content: flex-end;
+		justify-content: center;
+
+		@media( min-width: 770px ) {
+			justify-content: flex-end;
+		}
 	}
 
 	&__item-line {
 		display: flex;
 		flex-flow: row wrap;
+		justify-content: flex-start;
 
 		margin-top: $base-lh;
+
+		@media( min-width: 500px ) {
+			justify-content: center;
+		}
+
+		@media( min-width: 770px ) {
+			justify-content: flex-start;
+		}
 	}
 
 	// content

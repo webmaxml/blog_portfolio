@@ -6,11 +6,21 @@
 
 	&__wrap {
 		display: flex;
-		flex-flow: row wrap;
+		flex-flow: column wrap;
 		justify-content: space-between;
 		align-items: center;
 
+		padding-top: $base-lh;
+		padding-bottom: $base-lh;
+
 		@extend %wrapper;
+
+		@media( min-width: 500px ) {
+			flex-flow: row wrap;
+
+			padding-top: 0;
+			padding-bottom: 0;
+		}
 	}
 
 	&__rights-wrap {
