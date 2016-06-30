@@ -76,6 +76,8 @@
 		line-height: $base-lh * 2;
 		color: $c_navText;
 
+		transition: .2s;
+
 		&:hover {
 			color: lighten( $c_navText, 20% );
 		}

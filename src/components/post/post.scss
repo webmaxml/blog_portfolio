@@ -112,5 +112,11 @@
 		font-size: 14px;
 		line-height: $base-lh * 2;
 		color: darken( $c_accent, 40% );
+
+		transition: .2s;
+
+		&:hover {
+			color: darken( $c_accent, 80% );
+		}
 	}
 }

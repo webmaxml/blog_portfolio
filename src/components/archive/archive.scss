@@ -14,9 +14,11 @@
 	// content
 
 	&__header {
+		font-family: $ff_header;
+		font-weight: bold;
 		font-size: 18px;
 		line-height: $base-lh;
-		color: grey;
+		color: $c_additional;
 	}
 
 }

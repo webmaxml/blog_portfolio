@@ -10,11 +10,11 @@ class MonthList extends React.Component {
 
     componentWillEnter( callback ) {
     	TweenLite.set( this.monthList, { height:"auto" } );
-    	TweenMax.from( this.monthList, 1, { height: 0, opacity: 0, onComplete: callback } );
+    	TweenMax.from( this.monthList, .3, { height: 0, opacity: 0, onComplete: callback } );
     }
 
     componentWillLeave( callback ) {
-    	TweenMax.fromTo( this.monthList, 1, { height: 'auto', opacity: 1 }, { height: 0, opacity: 0, onComplete: callback } );
+    	TweenMax.fromTo( this.monthList, .3, { height: 'auto', opacity: 1 }, { height: 0, opacity: 0, onComplete: callback } );
     }
 
 

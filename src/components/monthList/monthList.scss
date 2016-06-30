@@ -15,8 +15,16 @@
 	// content
 
 	&__link {
+		font-family: $ff_header;
+		font-weight: bold;
 		font-size: 18px;
 		line-height: $base-lh;
-		color: #5d557f;
+		color: darken( $c_accent, 40% );
+
+		transition: .2s;
+
+		&:hover {
+			color: darken( $c_accent, 80% );
+		}
 	}
 }

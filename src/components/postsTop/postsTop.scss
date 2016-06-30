@@ -3,6 +3,7 @@
 	display: flex;
 	flex-flow: column nowrap;
 
+	margin-top: $base-lh;
 	margin-bottom: $base-lh * 5;
 
 	// line 
@@ -23,14 +24,24 @@
 	// content
 
 	&__header {
+		font-family: $ff_header;
+		font-weight: bold;
 		font-size: 18px;
 		line-height: $base-lh;
-		color: grey;
+		color: $c_additional;
 	}
 
 	&__link {
-		font-size: 18px;
+		font-family: $ff_header;
+		font-weight: bold;
+		font-size: 20px;
 		line-height: $base-lh;
-		color: #5d557f;
+		color: darken( $c_accent, 40% );
+
+		transition: .2s;
+
+		&:hover {
+			color: darken( $c_accent, 80% );
+		}
 	}
 }
