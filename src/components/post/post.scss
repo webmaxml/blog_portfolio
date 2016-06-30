@@ -65,9 +65,16 @@
 
 	&__header {
 		font-family: $ff_header;
+		font-weight: bold;
 		font-size: 30px;
 		line-height: $base-lh * 2;
 		color: $c_header;
+
+		transition: .2s;
+
+		&:hover {
+			color: darken( $c_header, 50% );
+		}
 	}
 
 	&__category-link {
@@ -76,7 +83,13 @@
 		font-style: italic; 
 		font-size: 14px;
 		line-height: $base-lh * 2;
-		color: darken( $c_accent, 40% );
+		color: $c_header;
+
+		transition: .2s;
+
+		&:hover {
+			color: darken( $c_header, 50% );
+		}
 	}
 
 	&__text {
@@ -111,12 +124,12 @@
 		font-family: $ff_text;
 		font-size: 14px;
 		line-height: $base-lh * 2;
-		color: darken( $c_accent, 40% );
+		color: $c_header;
 
 		transition: .2s;
 
 		&:hover {
-			color: darken( $c_accent, 80% );
+			color: darken( $c_header, 50% );
 		}
 	}
 }

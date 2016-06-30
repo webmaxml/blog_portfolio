@@ -14,7 +14,7 @@ class Post extends React.Component {
         			<span className="post__date">13 мая 2016</span>
         		</div>
         		<h1 className="post__header-line">
-        			<b className="post__header">Почему люди изменяют друг другу</b>
+        			<a className="post__header" href="#">Почему люди изменяют друг другу</a>
         		</h1>
         		<ul className="post__categories-line">
         			<li className="post__category-wrap">

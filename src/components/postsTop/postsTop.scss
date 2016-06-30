@@ -36,12 +36,12 @@
 		font-weight: bold;
 		font-size: 20px;
 		line-height: $base-lh;
-		color: darken( $c_accent, 40% );
+		color: $c_header;
 
 		transition: .2s;
 
 		&:hover {
-			color: darken( $c_accent, 80% );
+			color: darken( $c_header, 50% );
 		}
 	}
 }

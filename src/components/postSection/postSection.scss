@@ -14,13 +14,20 @@
 		flex-flow: row nowrap;
 		justify-content: space-between;
 
-		margin: $base-lh * 2 0;
+		margin: $base-lh * 3 0;
 	}
 
 	// content
 
 	&__nav-link {
+		font-family: $ff_header;
 		font-size: 18px;
-		color: #8a96ff;
+		color: $c_header;
+
+		transition: .2s;
+
+		&:hover {
+			color: darken( $c_header, 50% );
+		}
 	}
 }

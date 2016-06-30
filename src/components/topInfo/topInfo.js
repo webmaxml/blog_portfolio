@@ -15,7 +15,7 @@ class TopInfo extends React.Component {
         	<section className="topInfo">
         		<div className="topInfo__wrap">
 	 				<Logo />
-	 				<SocialNav />
+	 				<SocialNav mode="default" />
  				</div>
         	</section>
         );

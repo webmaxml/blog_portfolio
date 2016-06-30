@@ -1,15 +1,17 @@
 /* footer */
 .footer {
-	display: flex;
-	flex-flow: row wrap;
-	justify-content: space-between;
-	align-items: center;
-
-	padding: 0 15px;
-
-	background-color: #999999;
+	background-color: $c_topBg;
 
 	// wrap
+
+	&__wrap {
+		display: flex;
+		flex-flow: row wrap;
+		justify-content: space-between;
+		align-items: center;
+
+		@extend %wrapper;
+	}
 
 	&__rights-wrap {
 		display: flex;
@@ -30,14 +32,17 @@
 	// content
 
 	&__rights {
-		font-size: 18px;
+		font-family: $ff_header;
+		font-size: 16px;
 		line-height: $base-lh;
-		color: #000;
+		color: $c_navText;
 	}
 
-	&__nav-link {
-		font-size: 18px;
-		line-height: $base-lh;
-		color: #000;
-	}
+	// &__nav-link {
+	// 	font-family: $ff_header;
+	// 	font-weight: bold;
+	// 	font-size: 18px;
+	// 	line-height: $base-lh;
+	// 	color: #000;
+	// }
 }

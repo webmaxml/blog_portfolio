@@ -5,16 +5,17 @@ $base-lh: $base-line-height;
 // font-family
 
 $ff_logo: 'Pattaya', sans-serif;
-$ff_header: 'Poiret One', cursive;
+$ff_header: 'Roboto Condensed', sans-serif;
 $ff_text: 'PT Sans', sans-serif;
 
 // color
 
+$c_accent: #40ccff;
 $c_navBg: #222;
 $c_navText: #ddd;
 $c_logoText: #fff;
 $c_topBg: rgba( 41, 47, 64, .9 );
-$c_header: #000;
+$c_header: darken( $c_accent, 40% );
 $c_text: #000;
-$c_accent: #40ccff;
 $c_additional: #bec0b0;
+$c_sub_accent: rgba(255,64,129,0.87);
