@@ -13,8 +13,10 @@ class Home extends React.Component {
     render() {
         return (
         	<main className="home">
-        		<PostSection />
-        		<Sidebar />
+                <div className="home__wrap">
+            		<PostSection />
+            		<Sidebar />
+                </div>
         	</main>
         );
     }

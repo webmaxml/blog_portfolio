@@ -36,6 +36,8 @@
 		display: flex;
 		flex-flow: row nowrap;
 		justify-content: space-between;
+
+		margin-top: $base-lh;
 	}
 
 	// wrap
@@ -46,47 +48,69 @@
 		}
 	}
 
+	&__read-wrap {
+		display: flex;
+		flex-flow: row nowrap;
+	}
+
 	// content
 
 	&__date {
-		font-family: $ff_header;
-		font-size: 14px;
+		font-family: $ff_text;
+		font-weight: bold;
+		font-size: 12px;
 		line-height: $base-lh;
-		color: #b7b8b0;
+		color: $c_additional;
 	}
 
 	&__header {
 		font-family: $ff_header;
 		font-size: 30px;
 		line-height: $base-lh * 2;
-		color: black;
+		color: $c_header;
 	}
 
 	&__category-link {
 		font-family: $ff_text;
 		font-weight: 300;
-		font-size: italic; 
+		font-style: italic; 
 		font-size: 14px;
 		line-height: $base-lh * 2;
-		color: #513211;
+		color: darken( $c_accent, 40% );
 	}
 
 	&__text {
 		font-family: $ff_text;
 		font-size: 18px;
 		line-height: $base-lh;
-		color: black;
+		color: $c_text;
 	}
 
 	&__read-link {
+		padding: 0 20px;
+		border-radius: 3px;
+
+		font-family: $ff_header;
+		font-weight: bold;
 		font-size: 14px;
 		line-height: $base-lh * 2;
-		color: #b00b1e;
+		color: #fff;
+
+		background-color: $c_accent;
+
+		&:hover {
+			background-color: darken( $c_accent, 10% );
+		}
+
+		&:active {
+			background-color: darken( $c_accent, 20% );
+		}
 	}
 
 	&__comment-link {
+		font-family: $ff_text;
 		font-size: 14px;
 		line-height: $base-lh * 2;
-		color: #113051;
+		color: darken( $c_accent, 40% );
 	}
 }
