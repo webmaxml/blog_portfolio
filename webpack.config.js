@@ -14,7 +14,7 @@ let cssExtract = new ExtractTextPlugin( 'style.min.css', { allChunks: true } );
 
 // css loader sourcemaps crushes file loader relative paths, we dont need that
 let cssLoader = NODE_ENV === 'development' ? 'style!css!postcss!resolve-url!sass?sourceMap' : 
-                                             cssExtract.extract( 'css?sourceMap!postcss!resolve-url!sass' );
+                                             cssExtract.extract( 'css?postcss!sass' );
 
 module.exports = {
 

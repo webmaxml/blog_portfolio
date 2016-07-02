@@ -13,22 +13,24 @@ import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import rootReducer from './reducers/index';
 // components
 import App from './components/app/app';
+import Home from './components/home/home';
+import PostSection from './components/postSection/postSection';
 
-// Rest api core
-const api = 'http://api.webmaxml.ru/wp-json/wp/v2';
-
-// let store = createStore( 
-// 	rootReducer,
-// 	applyMiddleware( thunk.withExtraArgument( api ) )
-// );
+let store = createStore( 
+	rootReducer,
+	applyMiddleware( thunk )
+);
 
 render( 
-	// <Provider store={ store }>
+	<Provider store={ store }>
 		<Router history={ browserHistory }>
-			<Route path="/" component={ App }>
+			<Route component={ App }>
+				<Route path="/" component={ Home }>
+					<IndexRoute component={ PostSection } />
+				</Route>
 			</Route>
-		</Router>,
-	// </Provider>, 
+		</Router>
+	</Provider>, 
 	document.getElementById( 'appRoot' )
 );
 

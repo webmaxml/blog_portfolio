@@ -11,10 +11,10 @@ class Post extends React.Component {
         return (
         	<li className="post">
         		<div className="post__date-line">
-        			<span className="post__date">13 мая 2016</span>
+        			<span className="post__date">{ this.props.date }</span>
         		</div>
         		<h1 className="post__header-line">
-        			<a className="post__header" href="#">Почему люди изменяют друг другу</a>
+        			<a className="post__header" href="#">{ this.props.title }</a>
         		</h1>
         		<ul className="post__categories-line">
         			<li className="post__category-wrap">

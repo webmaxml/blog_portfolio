@@ -1,7 +1,6 @@
 // deps
 import React from 'react';
 // components
-import PostSection from '../postSection/postSection';
 import Sidebar from '../sidebar/sidebar';
 
 class Home extends React.Component {
@@ -14,7 +13,7 @@ class Home extends React.Component {
         return (
         	<main className="home">
                 <div className="home__wrap">
-            		<PostSection />
+            		{ this.props.children }
             		<Sidebar />
                 </div>
         	</main>
