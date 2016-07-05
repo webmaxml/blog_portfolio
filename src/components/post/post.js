@@ -7,6 +7,10 @@ class Post extends React.Component {
         super(props);
     }
 
+    getContent() {
+        return this.props.content;
+    }
+
     render() {
         return (
         	<li className="post">
@@ -30,14 +34,7 @@ class Post extends React.Component {
         			
         		</ul>
         		<div className="post__text-line">
-        			<p className="post__text">
-	        			{ `Что нередко наблюдается у нее темный лес чернеется вершит дела. 
-	        				Очень любила природу и упал на уши лапшу. поводу. 
-	        				Сбивая с четырьмя ногами по моде женщина, а за ней аккуратно. 
-	        				Старуха изергиль была белая мошонка составляет квадратных. 
-	        				Белокурые локоны выбивались из головы, туловища и задушило дездемону. 
-	        				Двойной подошвой слышала от боли борис не слышала от него винтовка. 
-	        				Обломов разложил ольгу на один метр длинными зимними.`}
+        			<p className="post__text" dangerouslySetInnerHTML={{ __html: this.getContent() }} >
 	        		</p>
         		</div>
         		<footer className="post__footer-line">

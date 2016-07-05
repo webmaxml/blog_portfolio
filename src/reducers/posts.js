@@ -20,7 +20,7 @@ function posts( state, action ) {
 					items: jsonPosts.map( item => {	
 						return {
 			                id: item.id,
-			                date: new Date( item.modified ).toLocaleDateString( 'ru', { day: 'numeric', month: 'long', year: 'numeric' } ),
+			                date: new Date( item.date ).toLocaleDateString( 'ru', { day: 'numeric', month: 'long', year: 'numeric' } ),
 			                title: item.title.rendered,
 			                cats: item.categories.map( cat => {
 
@@ -31,7 +31,8 @@ function posts( state, action ) {
 			                		id: catObj.id,
 			                		title: catObj.name
 			                	}
-			                } )
+			                } ),
+			                content: item.content.rendered
 			            };
 					})
 				}
