@@ -1,45 +1,41 @@
 // actions
 import { REQUEST_POSTS, 
-		 RECEIVE_POSTS } from '../actions';
+		 FORM_POST_INDEX } from '../actions';
 
-const initialState = {
-	isFetching: false,
-	items: []
-};
-
-function posts( state = initialState, action ) {
+function posts( state, action ) {
 	switch ( action.type ) {
 		case REQUEST_POSTS:
 			return _.extend( {}, state, {
 				isFetching: true
 			} );
-		case RECEIVE_POSTS:
-			// // consider not to give any object by link
-			// let items = _.extend( {}, state.items );
-			// let newState = _.extend( {}, state, { isFetching: false, items } );
+		case FORM_POST_INDEX:
+			const jsonPosts = action.result[0];
+			const jsonCats = action.result[1];
+			
+			return _.extend( {}, state, { 
+				isFetching: false,
+				needToFetch: false,
+				data: {
+					render: true,
+					items: jsonPosts.map( item => {	
+						return {
+			                id: item.id,
+			                date: new Date( item.modified ).toLocaleDateString( 'ru', { day: 'numeric', month: 'long', year: 'numeric' } ),
+			                title: item.title.rendered,
+			                cats: item.categories.map( cat => {
 
-			// if ( _.isArray( action.json ) ) {
-			// 	// json - [ {...}, {...}, ... ]
-			// 	// we need - { 'id':{...}, 'id':{...}, ... }
-			// 	action.json.map( item => {
-			// 		let obj = {};
-			// 		obj[item.id] = item;
-			// 		_.extend( newState.items, obj );
-			// 	} )
-			// } else {
-			// 	// json - {...}
-			// 	// we need - { 'id':{...} }
-			// 	let obj = {};
-			// 	obj[ action.json.id ] = action.json;
-			// 	_.extend( newState.items, obj );
-			// };
-
-			// return newState;
-
-			return _.extend( {}, state, {
-				isFetching: true,
-				items: action.json
-			} );
+			                	// item.category contains array of id's
+			                	// find the cat object in the jsonCats
+			                	const catObj = _.find( jsonCats, obj => obj.id === cat );
+			                	return {
+			                		id: catObj.id,
+			                		title: catObj.name
+			                	}
+			                } )
+			            };
+					})
+				}
+			});
 		default:
 			return state;
 	}

@@ -17,16 +17,17 @@ class Post extends React.Component {
         			<a className="post__header" href="#">{ this.props.title }</a>
         		</h1>
         		<ul className="post__categories-line">
-        			<li className="post__category-wrap">
-        				<a className="post__category-link" href="#">
-        					Просто жизнь
-        				</a>
-        			</li>
-        			<li className="post__category-wrap">
-        				<a className="post__category-link" href="#">
-        					Размышления у камина
-        				</a>
-        			</li>
+
+                    { this.props.cats.map( cat => {
+                        return (
+                            <li className="post__category-wrap" key={ cat.id }>
+                                <a className="post__category-link" href="#">
+                                    { cat.title }
+                                </a>
+                            </li>
+                        );
+                    } ) }
+        			
         		</ul>
         		<div className="post__text-line">
         			<p className="post__text">

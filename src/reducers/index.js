@@ -1,10 +1,12 @@
 // deps
 import { combineReducers } from 'redux';
+import { routerReducer } from 'react-router-redux';
 // reducers
-import posts from './posts';
+import components from './components';
 
 const rootReducer = combineReducers({
-	posts
+	components,
+	routing: routerReducer
 });
 
 export default rootReducer;

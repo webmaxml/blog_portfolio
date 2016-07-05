@@ -4,52 +4,25 @@ import { connect } from 'react-redux';
 // components
 import Post from '../post/post';
 // actions
-import { fetchPosts } from '../../actions';
+import { fetchPosts, fetchCats } from '../../actions';
 
 class PostSection extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            posts: {
-                render: false,
-                items: []
-            }
-        }
-    }
-
-    componentDidMount() {
-        this.props.dispatch( fetchPosts() );
-    }
-
-    componentWillReceiveProps( nextProps ) {
-        let items = nextProps.items.map( item => {
-            return {
-                id: item.id,
-                date: new Date( item.modified ).toLocaleDateString( 'ru', { day: 'numeric', month: 'long', year: 'numeric' } ),
-                title: item.title.rendered
-            }
-        } );
-
-        this.setState({ posts: { render: true, items } });
-    }
-
-    shouldComponentUpdate( nextProps, nextState ) {
-        // update only on state change
-        return nextState !== this.state;
     }
 
     render() {
         return (
         	<section className="postSection">
-                { this.state.posts.render ? 
+                { this.props.data.render ? 
             		<ul className="postSection__list">
-                        { this.state.posts.items.map( item => {
+                        { this.props.data.items.map( item => {
                             return(
                                 <Post key={ item.id } { ...item }/>
                             );
                         } ) }
-            		</ul>
+                    </ul>
                     : false 
                 }
                 <div className="postSection__nav-line">
@@ -64,7 +37,7 @@ class PostSection extends React.Component {
 
 function mapStateToProps( state ) {
     return {
-        items: state.posts.items
+        data: state.components.postIndex.data
     };
 };
 
