@@ -66,7 +66,6 @@
 	&__header {
 		font-family: $ff_header;
 		font-weight: bold;
-		font-size: 30px;
 		line-height: $base-lh * 2;
 		color: $c_header;
 
@@ -100,12 +99,22 @@
 		line-height: $base-lh;
 		color: $c_text;
 
-		& h1 { font-size: 2.441em; font-weight: bold; line-height: $base-lh * 3; }
-		& h2 { font-size: 1.953em; font-weight: bold; line-height: $base-lh * 2; }
-		& h3 { font-size: 1.563em; font-weight: bold; line-height: $base-lh * 2; }
-		& h4 { font-size: 1.25em; font-weight: bold; line-height: $base-lh * 2; }
-		& h5 { font-size: 1em; font-weight: bold; line-height: $base-lh; }
-		& h6 { font-size: 0.8em; font-weight: bold; line-height: $base-lh; }
+		& a {
+			color: $c_accent;
+
+			transition: .2s;
+
+			&:hover {
+				color: darken( $c_header, 50% );
+			}
+		}
+
+		& h1 { font-weight: bold; line-height: $base-lh * 3; }
+		& h2 { font-weight: bold; line-height: $base-lh * 2; }
+		& h3 { font-weight: bold; line-height: $base-lh * 2; }
+		& h4 { font-weight: bold; line-height: $base-lh * 2; }
+		& h5 { font-weight: bold; line-height: $base-lh; }
+		& h6 { font-weight: bold; line-height: $base-lh; }
 
 		& strong { font-weight: bold; }
 		& em { font-style: italic; }
@@ -119,15 +128,51 @@
 		}
 		& blockquote {
 			padding: 0 30px;
-			border-left: 2px solid lighten( $c_accent, 20% );
+			border-left: 2px solid $c_additional;
 		}
 		& hr {
-			height: 2px;
-			margin-top: ( $base-lh - 2 ) / 2;
-			margin-bottom: ( $base-lh - 2 ) / 2;
+			height: 1px;
+			margin-top: ( $base-lh - 1 ) / 2;
+			margin-bottom: ( $base-lh - 1 ) / 2;
 
-			background-color: lighten( $c_accent, 20% );
+			background-color: $c_additional;
 		}
+
+		& table {
+			width: 100% !important;
+			height: auto !important;
+		}
+
+		& caption { line-height: $base-lh * 2 }
+		& th, td { border: 1px solid $c_additional; }
+		& th { font-weight: bold; border-bottom-width: 2px; }
+
+		& img { box-shadow: 0 0 10px 0 rgba(50,50,50,.3); }
+
+		& img.fit { 
+			width: 100%;
+			height: auto; 
+			border-radius: 3px;
+		}
+
+		& img.aligncenter { 
+			display: block; 
+			margin: 0 auto; 
+		}
+		& img.alignleft, & img.alignnone { 
+			display: block; 
+			margin-right: auto; 
+		}
+		& img.alignright { 
+			display: block; 
+			margin-left: auto; 
+		}
+
+		& ul li { list-style: disc !important; }
+		& ol li { list-style: decimal !important; }
+
+		& iframe { border-radius: 3px; }
+
 	}
 
 	&__read-link {

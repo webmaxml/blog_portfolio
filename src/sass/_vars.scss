@@ -1,6 +1,8 @@
 @import 'utilities';
 
-$base-lh: $base-line-height;
+$base-fz: 16px;
+$base-lh: 22px;
+
 
 // font-family
 
@@ -10,12 +12,13 @@ $ff_text: 'PT Sans', sans-serif;
 
 // color
 
-$c_accent: #40ccff;
+$c_accent: #40ccff;  // light blue
+$c_additional: #bec0b0; // light brown
+$c_sub_accent: #b76e5f; // brown for tables
 $c_navBg: #222;
 $c_navText: #ddd;
 $c_logoText: #fff;
 $c_topBg: rgba( 41, 47, 64, .5 );
 $c_header: darken( $c_accent, 40% );
 $c_text: #000;
-$c_additional: #bec0b0;
-$c_sub_accent: rgba(255,64,129,0.87);
+

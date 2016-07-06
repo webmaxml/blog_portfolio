@@ -32,7 +32,8 @@ function posts( state, action ) {
 			                		title: catObj.name
 			                	}
 			                } ),
-			                content: item.content.rendered
+			                content: item.content.rendered,
+			                excerpt: item.excerpt.rendered
 			            };
 					})
 				}

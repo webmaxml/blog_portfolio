@@ -7,8 +7,8 @@ class Post extends React.Component {
         super(props);
     }
 
-    getContent() {
-        return this.props.content;
+    getExcerpt() {
+        return this.props.excerpt;
     }
 
     render() {
@@ -34,8 +34,7 @@ class Post extends React.Component {
         			
         		</ul>
         		<div className="post__text-line">
-        			<p className="post__text" dangerouslySetInnerHTML={{ __html: this.getContent() }} >
-	        		</p>
+        			<p className="post__text" dangerouslySetInnerHTML={{ __html: this.getExcerpt() }} ></p>
         		</div>
         		<footer className="post__footer-line">
         			<div className="post__read-wrap">
