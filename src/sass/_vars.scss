@@ -3,12 +3,23 @@
 $base-fz: 16px;
 $base-lh: 22px;
 
-
 // font-family
 
 $ff_logo: 'Pattaya', sans-serif;
-$ff_header: 'Roboto Condensed', sans-serif;
+$ff_header: 'Tinos', serif;
 $ff_text: 'PT Sans', sans-serif;
+
+// font-size
+
+$fz1: $base-fz * 2.074;
+$fz2: $base-fz * 1.728;
+$fz3: $base-fz * 1.44;
+$fz4: $base-fz * 1.2;
+$fz5: $base-fz;
+$fz6: $base-fz * 0.833;
+$fz7: $base-fz * 0.694;
+$fz7: $base-fz * 0.579;
+
 
 // color
 

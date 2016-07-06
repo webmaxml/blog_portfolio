@@ -8,7 +8,7 @@ class Post extends React.Component {
     }
 
     getExcerpt() {
-        return this.props.excerpt;
+        return this.props.content;
     }
 
     render() {

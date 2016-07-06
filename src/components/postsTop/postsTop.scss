@@ -39,7 +39,7 @@
 	&__header {
 		font-family: $ff_header;
 		font-weight: bold;
-		font-size: 18px;
+		font-size: $fz4;
 		line-height: $base-lh;
 		color: $c_additional;
 	}
@@ -47,7 +47,7 @@
 	&__link {
 		font-family: $ff_header;
 		font-weight: bold;
-		font-size: 20px;
+		font-size: $fz4;
 		line-height: $base-lh;
 		color: $c_header;
 
