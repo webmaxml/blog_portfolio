@@ -1,0 +1,14 @@
+/* postHeader */
+.postHeader {
+	font-family: $ff_header;
+	font-weight: bold;
+	font-size: $fz1;
+	line-height: $base-lh * 2;
+	color: $c_header;
+
+	transition: .2s;
+
+	&:hover {
+		color: darken( $c_header, 50% );
+	}
+}

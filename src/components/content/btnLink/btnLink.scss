@@ -1,0 +1,21 @@
+/* btnLink */
+.btnLink {
+	padding: 0 20px;
+	border-radius: 3px;
+
+	font-family: $ff_header;
+	font-weight: bold;
+	font-size: $fz5;
+	line-height: $base-lh * 2;
+	color: #fff;
+
+	background-color: $c_accent;
+
+	&:hover {
+		background-color: darken( $c_accent, 10% );
+	}
+
+	&:active {
+		background-color: darken( $c_accent, 20% );
+	}
+}

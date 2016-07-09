@@ -1,0 +1,81 @@
+/* postContent */
+.postContent {
+	font-family: $ff_text;
+	font-size: $fz5;
+	line-height: $base-lh;
+	color: $c_text;
+
+	& a {
+		color: $c_accent;
+
+		transition: .2s;
+
+		&:hover {
+			color: darken( $c_header, 50% );
+		}
+	}
+
+	& h1 { font-size: $fz1;	font-weight: bold; line-height: $base-lh * 3; }
+	& h2 { font-size: $fz2;	font-weight: bold; line-height: $base-lh * 2; }
+	& h3 { font-size: $fz3;	font-weight: bold; line-height: $base-lh * 2; }
+	& h4 { font-size: $fz4;	font-weight: bold; line-height: $base-lh * 2; }
+	& h5 { font-size: $fz5;	font-weight: bold; line-height: $base-lh; }
+	& h6 { font-size: $fz6;	font-weight: bold; line-height: $base-lh; }
+
+	& strong { font-weight: bold; }
+	& em { font-style: italic; }
+	& del { text-decoration: line-through; }
+	& code { 
+		padding: 0 4px;
+		border-radius: 3px;
+
+		color: #fff;
+		background-color: $c_navBg;
+	}
+	& blockquote {
+		padding: 0 30px;
+		border-left: 2px solid $c_additional;
+	}
+	& hr {
+		height: 1px;
+		margin-top: ( $base-lh - 1 ) / 2;
+		margin-bottom: ( $base-lh - 1 ) / 2;
+
+		background-color: $c_additional;
+	}
+
+	& table {
+		width: 100% !important;
+		height: auto !important;
+	}
+
+	& caption { line-height: $base-lh * 2 }
+	& th, td { border: 1px solid $c_additional; }
+	& th { font-weight: bold; border-bottom-width: 2px; }
+
+	& img { box-shadow: 0 0 10px 0 rgba(50,50,50,.3); }
+
+	& img.fit { 
+		width: 100%;
+		height: auto; 
+		border-radius: 3px;
+	}
+
+	& img.aligncenter { 
+		display: block; 
+		margin: 0 auto; 
+	}
+	& img.alignleft, & img.alignnone { 
+		display: block; 
+		margin-right: auto; 
+	}
+	& img.alignright { 
+		display: block; 
+		margin-left: auto; 
+	}
+
+	& ul li { list-style: disc !important; }
+	& ol li { list-style: decimal !important; }
+
+	& iframe { border-radius: 3px; }
+}
