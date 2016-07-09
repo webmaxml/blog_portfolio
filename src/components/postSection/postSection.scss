@@ -1,41 +1,12 @@
 /* postSection */
 .postSection {
-	display: flex;
-	flex-flow: column nowrap;
-	align-items: stretch;
+	@extend %cnss;
 
 	width: 100%;
 
-	opacity: 0;
-
-	transition: opacity .5s;
-	
 	@media( min-width: 770px ) {
 		width: 70%;
 		padding-right: 15px;
 	}
-
-	// line
-
-	&__nav-line {
-		display: flex;
-		flex-flow: row nowrap;
-		justify-content: space-between;
-
-		margin: $base-lh * 3 0;
-	}
-
-	// content
-
-	&__nav-link {
-		font-family: $ff_header;
-		font-size: $fz4;
-		color: $c_header;
-
-		transition: .2s;
-
-		&:hover {
-			color: darken( $c_header, 50% );
-		}
-	}
+	
 }

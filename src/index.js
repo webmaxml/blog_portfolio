@@ -15,13 +15,15 @@ import './controller';
 import App from './components/app/app';
 import Home from './components/home/home';
 import PostSection from './components/postSection/postSection';
+import PostIndex from './components/postIndex/postIndex';
 
 render( 
 	<Provider store={ store }>
 		<Router history={ history }>
 			<Route component={ App }>
-				<Route  component={ Home }>
+				<Route component={ Home }>
 					<Route path="/" component={ PostSection }>
+						<IndexRoute component={ PostIndex } />
 					</Route>
 				</Route>
 			</Route>

@@ -1,0 +1,16 @@
+/* postIndex */
+.postIndex {
+	@extend %cnss;
+
+	opacity: 0;
+
+	transition: opacity .5s;
+
+	// line
+
+	&__nav-line {
+		@extend %rnbs;
+
+		margin: $base-lh * 3 0;
+	}
+}

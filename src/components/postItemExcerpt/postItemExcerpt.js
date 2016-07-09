@@ -7,10 +7,8 @@ import PostCatLink from '../content/postCatLink/postCatLink';
 import PostContent from '../content/postContent/postContent';
 import PostCommentsLink from '../content/postCommentsLink/postCommentsLink';
 import BtnLink from '../content/btnLink/btnLink';
-// components
-import ExcerptFooter from '../excerptFooter/excerptFooter';
 
-class Post extends React.Component {
+class PostItemExcerpt extends React.Component {
 
     constructor(props) {
         super(props);
@@ -18,32 +16,32 @@ class Post extends React.Component {
 
     render() {
         return (
-        	<li className="post">
-        		<div className="post__date-line">
+        	<li className="postItemExcerpt">
+        		<div className="postItemExcerpt__date-line">
         			<PostDate>{ this.props.date }</PostDate>
         		</div>
-        		<h1 className="post__header-line">
+        		<h1 className="postItemExcerpt__header-line">
         			<PostHeaderLink href="#">{ this.props.title }</PostHeaderLink>
         		</h1>
-        		<ul className="post__categories-line">
+        		<ul className="postItemExcerpt__categories-line">
 
                     { this.props.cats.map( cat => {
                         return (
-                            <li className="post__category-wrap" key={ cat.id }>
+                            <li className="postItemExcerpt__category-wrap" key={ cat.id }>
                                 <PostCatLink href="#">{ cat.title }</PostCatLink>
                             </li>
                         );
                     } ) }
         			
         		</ul>
-        		<div className="post__text-line">
+        		<div className="postItemExcerpt__text-line">
         			<PostContent>{ this.props.excerpt }</PostContent>
         		</div>
-        		<footer className="post__footer-line">
-                    <div className="post__read-wrap">
+        		<footer className="postItemExcerpt__footer-line">
+                    <div className="postItemExcerpt__read-wrap">
                         <BtnLink href="#">Читать далее</BtnLink>
                     </div>
-                    <div className="post__comments-wrap">
+                    <div className="postItemExcerpt__comments-wrap">
                         <PostCommentsLink href="#">2 комментария</PostCommentsLink>
                     </div>
                 </footer>
@@ -53,4 +51,4 @@ class Post extends React.Component {
 
 }
 
-export default Post;
+export default PostItemExcerpt;

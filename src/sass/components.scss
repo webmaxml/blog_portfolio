@@ -12,8 +12,8 @@
 @import '../components/socialNav/socialNav';
 @import '../components/home/home';
 @import '../components/postSection/postSection';
-@import '../components/post/post';
-@import '../components/excerptFooter/excerptFooter';
+@import '../components/postIndex/postIndex';
+@import '../components/postItemExcerpt/postItemExcerpt';
 @import '../components/sidebar/sidebar';
 @import '../components/postsTop/postsTop';
 @import '../components/archive/archive';
@@ -30,3 +30,4 @@
 @import '../components/content/postContent/postContent';
 @import '../components/content/btnLink/btnLink';
 @import '../components/content/postCommentsLink/postCommentsLink';
+@import '../components/content/postPageLink/postPageLink';

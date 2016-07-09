@@ -1,0 +1,12 @@
+/* postPageLink */
+.postPageLink {
+	font-family: $ff_header;
+	font-size: $fz4;
+	color: $c_header;
+
+	transition: .2s;
+
+	&:hover {
+		color: darken( $c_header, 50% );
+	}
+}
