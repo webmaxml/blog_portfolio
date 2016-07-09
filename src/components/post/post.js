@@ -1,5 +1,7 @@
 // deps
 import React from 'react';
+// components
+import ExcerptFooter from '../excerptFooter/excerptFooter';
 
 class Post extends React.Component {
 
@@ -8,7 +10,7 @@ class Post extends React.Component {
     }
 
     getExcerpt() {
-        return this.props.content;
+        return this.props.excerpt;
     }
 
     render() {
@@ -36,18 +38,7 @@ class Post extends React.Component {
         		<div className="post__text-line">
         			<p className="post__text" dangerouslySetInnerHTML={{ __html: this.getExcerpt() }} ></p>
         		</div>
-        		<footer className="post__footer-line">
-        			<div className="post__read-wrap">
-        				<a className="post__read-link" href="#">
-        					Читать далее
-        				</a>
-        			</div>
-        			<div className="post__comments-wrap">
-        				<a className="post__comment-link" href="#">
-        					2 комментария
-        				</a>
-        			</div>
-        		</footer>
+        		<ExcerptFooter />
         	</li>
         );
     }

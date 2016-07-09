@@ -12,14 +12,21 @@ class PostSection extends React.Component {
         super(props);
     }
 
+    componentDidUpdate() {
+        // making css transition when all items are rendered
+        if ( this.props.data.render ) {
+            this.section.style.opacity = 1;
+        }
+    }
+
     render() {
         return (
-        	<section className="postSection">
+        	<section className="postSection" ref={ ref => this.section = ref }>
                 { this.props.data.render ? 
             		<ul className="postSection__list">
                         { this.props.data.items.map( item => {
                             return(
-                                <Post key={ item.id } { ...item }/>
+                                <Post key={ item.id } { ...item } mode="excerpt" />
                             );
                         } ) }
                     </ul>

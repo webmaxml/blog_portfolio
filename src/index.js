@@ -20,8 +20,9 @@ render(
 	<Provider store={ store }>
 		<Router history={ history }>
 			<Route component={ App }>
-				<Route path="/" component={ Home }>
-					<IndexRoute component={ PostSection } />
+				<Route  component={ Home }>
+					<Route path="/" component={ PostSection }>
+					</Route>
 				</Route>
 			</Route>
 		</Router>

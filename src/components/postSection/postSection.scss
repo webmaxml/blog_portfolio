@@ -5,6 +5,10 @@
 	align-items: stretch;
 
 	width: 100%;
+
+	opacity: 0;
+
+	transition: opacity .5s;
 	
 	@media( min-width: 770px ) {
 		width: 70%;
