@@ -16,6 +16,7 @@ import App from './components/app/app';
 import Home from './components/home/home';
 import PostSection from './components/postSection/postSection';
 import PostIndex from './components/postIndex/postIndex';
+import PostItem from './components/postItem/postItem';
 
 render( 
 	<Provider store={ store }>
@@ -24,6 +25,7 @@ render(
 				<Route component={ Home }>
 					<Route path="/" component={ PostSection }>
 						<IndexRoute component={ PostIndex } />
+						<Route path="post/:id" component={ PostItem } />
 					</Route>
 				</Route>
 			</Route>

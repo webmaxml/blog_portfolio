@@ -1,11 +1,12 @@
-/* postItemExcerpt */
-.postItemExcerpt {
-
-	// line
-
+/* postItem */
+.postItem {
 	@extend %cnss;
 
 	padding: $base-lh 0;
+
+	opacity: 0;
+
+	transition: .5s;
 
 	&__date-line {
 		@extend %rnss;
@@ -23,13 +24,6 @@
 		@extend %rwss;
 	}
 
-	&__footer-line {
-		@extend %rnbs;
-
-		margin-top: $base-lh;
-	}
-
-
 	// wrap
 
 	&__category-wrap {
@@ -38,13 +32,5 @@
 		&:not(:last-child) {
 			margin-right: 15px;
 		}
-	}
-
-	&__read-wrap {
-		@extend %rnss;
-	}
-
-	&__comments-wrap {
-		@extend %rnss;
 	}
 }

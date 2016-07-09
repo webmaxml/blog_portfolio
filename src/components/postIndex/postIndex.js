@@ -12,6 +12,13 @@ class PostIndex extends React.Component {
         super(props);
     }
 
+    componentDidMount() {
+        // making css transition when all items are rendered
+        if ( this.props.data.render ) {
+            this.section.style.opacity = 1;
+        }
+    }
+
     componentDidUpdate() {
         // making css transition when all items are rendered
         if ( this.props.data.render ) {

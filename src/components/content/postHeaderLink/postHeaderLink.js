@@ -1,5 +1,6 @@
 // deps
 import React from 'react';
+import { Link } from 'react-router';
 
 class PostHeaderLink extends React.Component {
 
@@ -9,9 +10,9 @@ class PostHeaderLink extends React.Component {
 
     render() {
         return (
-        	<a className="postHeader" href={ this.props.href }>
+        	<Link className="postHeader" to={ this.props.href }>
         		{ this.props.children }
-      		</a>
+      		</Link>
         );
     }
 }

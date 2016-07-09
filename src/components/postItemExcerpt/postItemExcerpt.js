@@ -21,7 +21,7 @@ class PostItemExcerpt extends React.Component {
         			<PostDate>{ this.props.date }</PostDate>
         		</div>
         		<h1 className="postItemExcerpt__header-line">
-        			<PostHeaderLink href="#">{ this.props.title }</PostHeaderLink>
+        			<PostHeaderLink href={ `post/${ this.props.id }` }>{ this.props.title }</PostHeaderLink>
         		</h1>
         		<ul className="postItemExcerpt__categories-line">
 
