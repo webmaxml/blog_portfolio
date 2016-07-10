@@ -9,13 +9,13 @@ import { FORM_POST_INDEX,
 		 FORM_POST,
 		 RENDER_POST,
 		 UNRENDER_POST,
-		 REQUEST_CATS, 
-		 RECEIVE_CATS } from '../actions';
+		 RENDER_CATS, 
+		 UNRENDER_CATS, 
+		 FORM_CATS } from '../actions';
 
 const initialState = {
 	'postIndex': {
 		needToFetch: true,
-		isFetching: false,
 		data: {
 			render: false,
 			items: []
@@ -23,7 +23,6 @@ const initialState = {
 	},
 	categories:{
 		needToFetch: true,
-		isFetching: false,
 		data: {
 			render: false,
 			items: []
@@ -31,7 +30,6 @@ const initialState = {
 	},
 	post:{
 		needToFetch: true,
-		isFetching: false,
 		data: {
 			render: false,
 			item: {}
@@ -41,8 +39,9 @@ const initialState = {
 
 function components( state = initialState, action ) {
 	switch ( action.type ) {
-		case REQUEST_CATS:
-		case RECEIVE_CATS:
+		case RENDER_CATS:
+		case UNRENDER_CATS:
+		case FORM_CATS:
 			return _.extend( {}, state, {
 				categories: categories( state.categories, action )
 			} );

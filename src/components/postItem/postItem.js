@@ -1,13 +1,14 @@
 // deps
 import React from 'react';
 import { connect } from 'react-redux';
+import TweenMax from 'gsap';
 // content components
 import PostDate from '../content/postDate/postDate';
 import PostHeaderLink from '../content/postHeaderLink/postHeaderLink';
 import PostCatLink from '../content/postCatLink/postCatLink';
 import PostContent from '../content/postContent/postContent';
 // helpers
-import smoothAppear from '../../smoothAppear';
+import transition from '../../transition';
 
 class PostItem extends React.Component {
 
@@ -15,9 +16,13 @@ class PostItem extends React.Component {
         super(props);
     }
 
+    componentWillEnter( callback ) {
+        TweenMax.from( this.section, .3, { opacity: 0, onComplete: callback } );
+    }
+
     render() {
        return (
-            <article className="postItem">
+            <article className="postItem" ref={ ref => this.section = ref }>
                 <div className="postItemt__date-line">
                     <PostDate>{ this.props.item.date }</PostDate>
                 </div>
@@ -50,6 +55,6 @@ function mapStateToProps( state ) {
     };
 };
 
-const PostItemContainer = connect( mapStateToProps )( smoothAppear( PostItem ) );
+const PostItemContainer = connect( mapStateToProps )( transition( PostItem ) );
 
 export default PostItemContainer;

@@ -33,6 +33,20 @@
 	align-items: stretch;
 }
 
+%rnsc {
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: flex-start;
+	align-items: center;
+}
+
+%rwsc {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: flex-start;
+	align-items: center;
+}
+
 %rnbs {
 	display: flex;
 	flex-flow: row nowrap;
@@ -42,13 +56,11 @@
 
 %cnss {
 	display: flex;
-	flex-flow: column wrap;
+	flex-flow: column nowrap;
 	justify-content: flex-start;
 	align-items: stretch;
 }
 
 .smoothAppear {
-	opacity: 0;
-
 	transition: .5s;
 }

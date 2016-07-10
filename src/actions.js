@@ -66,45 +66,78 @@ export function unrenderPost() {
 	};
 };
 
+/**
+ * Categories
+ ************************/
+
+// form cats state
+export const FORM_CATS = 'FORM_CATS';
+export function formCats( result ) {
+	return {
+		type: FORM_CATS,
+		result
+	};
+};
+
+// render cats 
+export const RENDER_CATS = 'RENDER_CATS';
+export function renderCats() {
+	return {
+		type: RENDER_CATS,
+	};
+};
+
+
+// unrender cats
+export const UNRENDER_CATS = 'UNRENDER_CATS';
+export function unrenderCats() {
+	return {
+		type: UNRENDER_CATS,
+	};
+};
+
 
 /**
  * Initial fetch
  ************************/
 
-export function fetchRoot() {
+export function initRoot() {
 	return function( dispatch, getState ) {
-		if ( getState().components.postIndex.needToFetch ) {
 
-			dispatch( unrenderPostIndex() );
+		dispatch( unrenderPostIndex() );
+		dispatch( unrenderCats() );
 
-			let postsFetch = fetch( postsApi ).then( response => response.json() );
-			let catsFetch = fetch( catsApi ).then( response => response.json() );
+		let postsFetch = fetch( postsApi ).then( response => response.json() );
+		let catsFetch = fetch( catsApi ).then( response => response.json() );
 
-			// post Index
-			Promise.all([ postsFetch, catsFetch ])
-				.then( result => dispatch( formPostIndex( result ) ) )
-				.then( () => dispatch( renderPostIndex() ) );
-		} 
+		// post Index
+		Promise.all([ postsFetch, catsFetch ])
+			.then( result => dispatch( formPostIndex( result ) ) )
+			.then( () => dispatch( renderPostIndex() ) );
 
-		
+		// categories
+		Promise.all([ catsFetch ])
+			.then( result => dispatch( formCats( result ) ) )
+
 	};
 };
 
-export function fetchPostPage( id ) {
+export function initPostPage( id ) {
 	return function( dispatch, getState ) {
-		if ( getState().components.post.needToFetch ) {
 
-			dispatch( unrenderPost() );
+		dispatch( unrenderPost() );
+		dispatch( unrenderCats() );
 
-			let postFetch = fetch( postApi + id ).then( response => response.json() );
-			let catsFetch = fetch( catsApi ).then( response => response.json() );
+		let postFetch = fetch( postApi + id ).then( response => response.json() );
+		let catsFetch = fetch( catsApi ).then( response => response.json() );
 
-			// post
-			Promise.all([ postFetch, catsFetch ])
-				.then( result => dispatch( formPost( result ) ) )
-				.then( () => dispatch( renderPost() ) )
-		} 
+		// post
+		Promise.all([ postFetch, catsFetch ])
+			.then( result => dispatch( formPost( result ) ) )
+			.then( () => dispatch( renderPost() ) )
 
-		
+		// categories
+		Promise.all([ catsFetch ])
+			.then( result => dispatch( formCats( result ) ) )
 	};
 };

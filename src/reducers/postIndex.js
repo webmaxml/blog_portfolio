@@ -24,7 +24,6 @@ function postIndex( state, action ) {
 			const jsonCats = action.result[1];
 			
 			return _.extend( {}, state, { 
-				isFetching: false,
 				needToFetch: true,
 				data: {
 					render: false,
@@ -43,7 +42,6 @@ function postIndex( state, action ) {
 			                		title: catObj.name
 			                	}
 			                } ),
-			                content: item.content.rendered,
 			                excerpt: item.excerpt.rendered
 			            };
 					})

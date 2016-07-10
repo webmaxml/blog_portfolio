@@ -24,7 +24,6 @@ function post( state, action ) {
 			const jsonCats = action.result[1];
 			
 			return _.extend( {}, state, { 
-				isFetching: false,
 				needToFetch: true,
 				data: {
 					render: false,
@@ -42,8 +41,7 @@ function post( state, action ) {
 		                		title: catObj.name
 		                	}
 		                } ),
-		                content: jsonPost.content.rendered,
-		                excerpt: jsonPost.excerpt.rendered
+		                content: jsonPost.content.rendered
 			        }
 				}
 			});

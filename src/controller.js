@@ -1,7 +1,7 @@
 // store
 import { store, history } from './store';
 // actions
-import { fetchRoot, fetchPostPage } from './actions';
+import { initRoot, initPostPage } from './actions';
 
 function handleChange() {
 	// console.log( store.getState() );
@@ -17,12 +17,11 @@ history.listen( location => {
 
 	switch ( true ) {
 		case rootReg.test( path ):
-			store.dispatch( fetchRoot() );
+			store.dispatch( initRoot() );
 			break;
 		case postReg.test( path ):
 			let postId = path.slice( path.search(/\d+$/) );
-			console.log( postId );
-			store.dispatch( fetchPostPage( postId ) );
+			store.dispatch( initPostPage( postId ) );
 			break;
 	}
 	

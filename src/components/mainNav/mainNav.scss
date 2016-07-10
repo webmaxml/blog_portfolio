@@ -10,6 +10,8 @@
 	// wrap
 
 	&__wrap {
+		position: relative;
+
 		display: flex;
 		flex-flow: row nowrap;
 		align-items: flex-start; 
@@ -22,7 +24,7 @@
 	// content
 
 	&__link {
-		padding: 0 10px;
+		padding: 0 $base-lh / 2;
 
 		font-family: $ff_header;
 		font-weight: bold;
@@ -30,7 +32,7 @@
 		line-height: $base-lh * 2;
 		color: $c_navText;
 
-		transition: .2s;
+		transition: color .2s;
 
 		&:hover {
 			color: lighten( $c_navText, 20% );

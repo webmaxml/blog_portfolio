@@ -1,0 +1,38 @@
+/* catNav */
+.catNav {
+	position: absolute;
+	top: $base-lh * 2 + 2;
+	left: 0;
+	z-index: 6;
+
+	@extend %cnss;
+
+	width: 160px;
+
+	background-color: $c_navBg;
+	box-shadow: 0 0 5px rgba(0,0,0,0.5);
+
+	// line
+
+	&__line {
+		@extend %rwss;
+	}
+
+	// content
+
+	&__link {
+		padding: $base-lh / 2;
+
+		font-family: $ff_header;
+		font-weight: bold;
+		font-size: $fz6;
+		line-height: $base-lh;
+		color: $c_navText;
+
+		transition: .2s;
+
+		&:hover {
+			color: lighten( $c_navText, 20% );
+		}
+	}
+}

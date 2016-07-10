@@ -1,12 +1,13 @@
 // deps
 import React from 'react';
 import { connect } from 'react-redux';
+import TweenMax from 'gsap';
 // content components
 import PostPageLink from '../content/postPageLink/postPageLink'
 // components
 import PostItemExcerpt from '../postItemExcerpt/postItemExcerpt';
 // helpers
-import smoothAppear from '../../smoothAppear';
+import transition from '../../transition';
 
 class PostIndex extends React.Component {
 
@@ -14,9 +15,12 @@ class PostIndex extends React.Component {
         super(props);
     }
 
+    componentWillEnter( callback ) {
+        TweenMax.from( this.section, .3, { opacity: 0, onComplete: callback } );
+    }
     render() {
         return (
-        	<article className="postIndex">
+        	<article className="postIndex" ref={ ref => this.section = ref }>
             	<ul className="postIndex__list">
                     { this.props.items.map( item => {
                         return(
@@ -40,6 +44,6 @@ function mapStateToProps( state ) {
     };
 };
 
-const PostIndexContainer = connect( mapStateToProps )( smoothAppear( PostIndex ) );
+const PostIndexContainer = connect( mapStateToProps )( transition( PostIndex ) );
 
 export default PostIndexContainer;
