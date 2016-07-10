@@ -10,12 +10,20 @@ function handleChange() {
 store.subscribe( handleChange );
 
 history.listen( location => {
-	if ( location.pathname === '/' ) {
-		store.dispatch( fetchRoot() );
-	}
+	let path = location.pathname;
 
-	if ( location.pathname === '/post/4' || location.pathname === 'post/4' ) {
-		store.dispatch( fetchPostPage( 4 ) );
+	const rootReg = /^\/#?$/;
+	const postReg = /^\/?post\/\d+\/?$/;
+
+	switch ( true ) {
+		case rootReg.test( path ):
+			store.dispatch( fetchRoot() );
+			break;
+		case postReg.test( path ):
+			let postId = path.slice( path.search(/\d+$/) );
+			console.log( postId );
+			store.dispatch( fetchPostPage( postId ) );
+			break;
 	}
 	
 } );
