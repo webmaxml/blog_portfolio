@@ -2,10 +2,6 @@
 .postIndex {
 	@extend %cnss;
 
-	opacity: 0;
-
-	transition: opacity .5s;
-
 	// line
 
 	&__nav-line {

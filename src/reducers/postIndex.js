@@ -1,12 +1,23 @@
 // actions
-import { REQUEST_POSTS, 
+import { RENDER_POST_INDEX, 
+		 UNRENDER_POST_INDEX, 
 		 FORM_POST_INDEX } from '../actions';
 
-function posts( state, action ) {
+function postIndex( state, action ) {
 	switch ( action.type ) {
-		case REQUEST_POSTS:
+		case RENDER_POST_INDEX:
 			return _.extend( {}, state, {
-				isFetching: true
+				data: { 
+					render: true,
+					items: [].concat( state.data.items )
+				} 
+			} );
+		case UNRENDER_POST_INDEX:
+			return _.extend( {}, state, {
+				data: { 
+					render: false,
+					items: [].concat( state.data.items )
+				} 
 			} );
 		case FORM_POST_INDEX:
 			const jsonPosts = action.result[0];
@@ -14,9 +25,9 @@ function posts( state, action ) {
 			
 			return _.extend( {}, state, { 
 				isFetching: false,
-				needToFetch: false,
+				needToFetch: true,
 				data: {
-					render: true,
+					render: false,
 					items: jsonPosts.map( item => {	
 						return {
 			                id: item.id,
@@ -43,4 +54,4 @@ function posts( state, action ) {
 	}
 };
 
-export default posts;
+export default postIndex;

@@ -1,14 +1,21 @@
 // store
 import { store, history } from './store';
 // actions
-import { fetchRoot } from './actions';
+import { fetchRoot, fetchPostPage } from './actions';
 
 function handleChange() {
-	console.log( store.getState() );
+	// console.log( store.getState() );
 }
 
 store.subscribe( handleChange );
 
 history.listen( location => {
-	store.dispatch( fetchRoot() );
+	if ( location.pathname === '/' ) {
+		store.dispatch( fetchRoot() );
+	}
+
+	if ( location.pathname === '/post/4' || location.pathname === 'post/4' ) {
+		store.dispatch( fetchPostPage( 4 ) );
+	}
+	
 } );

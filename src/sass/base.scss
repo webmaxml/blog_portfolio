@@ -46,3 +46,9 @@
 	justify-content: flex-start;
 	align-items: stretch;
 }
+
+.smoothAppear {
+	opacity: 0;
+
+	transition: .5s;
+}

@@ -4,10 +4,6 @@
 
 	padding: $base-lh 0;
 
-	opacity: 0;
-
-	transition: .5s;
-
 	&__date-line {
 		@extend %rnss;
 	}
