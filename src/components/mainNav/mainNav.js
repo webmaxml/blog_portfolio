@@ -64,6 +64,7 @@ class MainNav extends React.Component {
 }
 
 function mapStateToProps( state ) {
+    // transfer the submenu state to switch menu item class
     return {
         open: state.components.categories.data.render
     };

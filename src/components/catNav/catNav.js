@@ -22,21 +22,15 @@ class CatNav extends React.Component {
     render() {
         return (
         	<ul className="catNav" ref={ ref => this.section = ref }>
-        		<li className="catNav__line">
-        			<a className="catNav__link" href="#">Просто жизнь</a>
-        		</li>
-        		<li className="catNav__line">
-        			<a className="catNav__link" href="#">Размышления у камина</a>
-        		</li>
-        		<li className="catNav__line">
-        			<a className="catNav__link" href="#">Бизнес</a>
-        		</li>
-        		<li className="catNav__line">
-        			<a className="catNav__link" href="#">Семейные проблемы</a>
-        		</li>
-        		<li className="catNav__line">
-        			<a className="catNav__link" href="#">Путешествия</a>
-        		</li>
+
+        		{ this.props.items.map( item => {
+        			return (
+        				<li className="catNav__line" key={ item.id }>
+		        			<a className="catNav__link" href="#">{ item.name }</a>
+		        		</li>
+        			);
+        		} ) }
+
         	</ul>
         );
     }
