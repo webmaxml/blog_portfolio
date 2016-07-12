@@ -26,7 +26,6 @@ function post( state, action, helper ) {
 				needToFetch: false
 			} );
 		case FORM_POST:
-			console.log( 'forming' );
 			const jsonPost = action.result[0];
 			const jsonCats = action.result[1];
 			
@@ -52,7 +51,6 @@ function post( state, action, helper ) {
 				}
 			});
 		case FORM_POST_FROM_INDEX:
-			console.log( 'forming from index' );
 			// by helper we receive post index items array
 			return _.extend( {}, state, { 
 				data: {

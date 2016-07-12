@@ -5,6 +5,7 @@ import { postsApi,
 		 postApi,
 		 catsApi } from './entry'; 
 
+
 /**
  * Mobile Menu
  ************************/
@@ -142,6 +143,28 @@ export function dontFetchCats() {
 };
 
 
+/**
+ * Footer
+ ************************/
+
+
+// render footer 
+export const RENDER_FOOTER = 'RENDER_FOOTER';
+export function renderFooter() {
+	return {
+		type: RENDER_FOOTER,
+	};
+};
+
+
+// unrender footer
+export const UNRENDER_FOOTER = 'UNRENDER_FOOTER';
+export function unrenderFooter() {
+	return {
+		type: UNRENDER_FOOTER,
+	};
+};
+
 
 /**
  * Initial fetch
@@ -164,11 +187,13 @@ export function initRoot() {
 
 		// post Index
 		if ( getState().components.postIndex.needToFetch ) {
+			dispatch( unrenderFooter() );
 			dispatch( unrenderPostIndex() );
 
 			Promise.all([ postsFetch, catsFetch ])
 				.then( result => dispatch( formPostIndex( result ) ) )
 				.then( () => dispatch( renderPostIndex() ) )
+				.then( () => dispatch( renderFooter() ) )
 				.then( () => dispatch( dontFetchPost() ) );
 		}
 
@@ -191,16 +216,18 @@ export function initPostPage( id ) {
 		}
 
 		// post
-		if ( getState().components.post.needToFetch ) {
-			dispatch( unrenderPost() );
+		dispatch( unrenderFooter() );
+		dispatch( unrenderPost() );
 
+		if ( getState().components.post.needToFetch ) {
 			Promise.all([ postFetch, catsFetch ])
 				.then( result => dispatch( formPost( result ) ) )
 				.then( () => dispatch( renderPost() ) )
+				.then( () => dispatch( renderFooter() ) )
 		} else {
-			dispatch( unrenderPost() );
 			dispatch( formPostfromIndex( id ) );
 			dispatch( renderPost() );
+			dispatch( renderFooter() );
 		}
 
 	};

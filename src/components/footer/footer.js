@@ -1,7 +1,10 @@
 // deps
 import React from 'react';
+import { connect } from 'react-redux';
 // components
 import SocialNav from '../socialNav/socialNav';
+// helpers
+import transition from '../../transition';
 
 class Footer extends React.Component {
 
@@ -26,19 +29,12 @@ class Footer extends React.Component {
 
 }
 
-export default Footer;
+function mapStateToProps( state ) {
+    return {
+        data: state.components.footer.data
+    };
+};
 
-// `   <ul className="footer__nav-wrap">
-//                         <li className="footer__nav-item">
-//                             <a className="footer__nav-link" href="#">Рубрики</a>
-//                         </li>
-//                         <li className="footer__nav-item">
-//                             <a className="footer__nav-link" href="#">Цитаты</a>
-//                         </li>
-//                         <li className="footer__nav-item">
-//                             <a className="footer__nav-link" href="#">Связаться со мной</a>
-//                         </li>
-//                         <li className="footer__nav-item">
-//                             <a className="footer__nav-link" href="#">Поддержать</a>
-//                         </li>
-//                     </ul>`
+const FooterContainer = connect( mapStateToProps )( transition( Footer ) );
+
+export default FooterContainer;

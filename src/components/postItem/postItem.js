@@ -21,7 +21,6 @@ class PostItem extends React.Component {
     }
 
     render() {
-        console.log( 'render' );
        return (
             <article className="postItem" ref={ ref => this.section = ref }>
                 <div className="postItemt__date-line">

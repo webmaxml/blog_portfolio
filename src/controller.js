@@ -10,6 +10,9 @@ function handleChange() {
 store.subscribe( handleChange );
 
 history.listen( location => {
+
+	window.scrollTo( 0, 0 );
+
 	let path = location.pathname;
 
 	const rootReg = /^\/#?$/;

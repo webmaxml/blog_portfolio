@@ -3,6 +3,7 @@ import mobileMenu from './mobileMenu';
 import postIndex from './postIndex';
 import categories from './categories';
 import post from './post';
+import footer from './footer';
 // actions
 import { TOGGLE_MOBILE_MENU,
 		 FORM_POST_INDEX,
@@ -17,13 +18,13 @@ import { TOGGLE_MOBILE_MENU,
 		 UNRENDER_CATS,
 		 TOGGLE_CATS, 
 		 FORM_CATS,
-		 DONT_FETCH_CATS } from '../actions';
+		 DONT_FETCH_CATS,
+		 RENDER_FOOTER, 
+		 UNRENDER_FOOTER } from '../actions';
 
 const initialState = {
 	'mobileMenu':{
-		data: {
-			render: false
-		}
+		data: { render: false }
 	},
 	'postIndex': {
 		needToFetch: true,
@@ -45,6 +46,9 @@ const initialState = {
 			render: false,
 			item: {}
 		}
+	},
+	footer:{
+		data: { render: false }
 	}
 };
 
@@ -78,6 +82,11 @@ function components( state = initialState, action ) {
 		case DONT_FETCH_POST:
 			return _.extend( {}, state, {
 				post: post( state.post, action )
+			} );
+		case RENDER_FOOTER:
+		case UNRENDER_FOOTER:
+			return _.extend( {}, state, {
+				footer: footer( state.footer, action )
 			} );
 		default:
 			return state;
