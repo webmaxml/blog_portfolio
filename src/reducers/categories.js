@@ -2,7 +2,8 @@
 import { RENDER_CATS, 
 		 UNRENDER_CATS,
 		 TOGGLE_CATS,
-		 FORM_CATS } from '../actions';
+		 FORM_CATS,
+		 DONT_FETCH_CATS } from '../actions';
 
 function categories( state, action ) {
 	switch ( action.type ) {
@@ -27,12 +28,16 @@ function categories( state, action ) {
 					items: [].concat( state.data.items )
 				} 
 			} );
+		case DONT_FETCH_CATS:
+			return _.extend( {}, state, {
+				needToFetch: false
+			} );
 		case FORM_CATS:
 			const jsonCats = action.result[0];
 			
 			return _.extend( {}, state, { 
 				data: {
-					render: false,
+					render: state.data.render,
 					items: jsonCats.map( item => {	
 						return {
 			                id: item.id,

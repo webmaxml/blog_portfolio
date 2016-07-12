@@ -61,6 +61,15 @@ export function formPost( result ) {
 	};
 };
 
+// form post state from post index
+export const FORM_POST_FROM_INDEX = 'FORM_POST_FROM_INDEX';
+export function formPostfromIndex( id ) {
+	return {
+		type: FORM_POST_FROM_INDEX,
+		id
+	};
+};
+
 // render post 
 export const RENDER_POST = 'RENDER_POST';
 export function renderPost() {
@@ -75,6 +84,14 @@ export const UNRENDER_POST = 'UNRENDER_POST';
 export function unrenderPost() {
 	return {
 		type: UNRENDER_POST,
+	};
+};
+
+// dont fetch post
+export const DONT_FETCH_POST = 'DONT_FETCH_POST';
+export function dontFetchPost() {
+	return {
+		type: DONT_FETCH_POST,
 	};
 };
 
@@ -116,6 +133,15 @@ export function toggleCats() {
 	};
 };
 
+// dont fetch cats
+export const DONT_FETCH_CATS = 'DONT_FETCH_CATS';
+export function dontFetchCats() {
+	return {
+		type: DONT_FETCH_CATS,
+	};
+};
+
+
 
 /**
  * Initial fetch
@@ -124,20 +150,27 @@ export function toggleCats() {
 export function initRoot() {
 	return function( dispatch, getState ) {
 
-		dispatch( unrenderPostIndex() );
-		dispatch( unrenderCats() );
-
 		let postsFetch = fetch( postsApi ).then( response => response.json() );
 		let catsFetch = fetch( catsApi ).then( response => response.json() );
 
-		// post Index
-		Promise.all([ postsFetch, catsFetch ])
-			.then( result => dispatch( formPostIndex( result ) ) )
-			.then( () => dispatch( renderPostIndex() ) );
-
 		// categories
-		Promise.all([ catsFetch ])
-			.then( result => dispatch( formCats( result ) ) )
+		if ( getState().components.categories.needToFetch ) {
+			dispatch( unrenderCats() );
+
+			Promise.all([ catsFetch ])
+				.then( result => dispatch( formCats( result ) ) )
+				.then( () => dispatch( dontFetchCats() ) )
+		}
+
+		// post Index
+		if ( getState().components.postIndex.needToFetch ) {
+			dispatch( unrenderPostIndex() );
+
+			Promise.all([ postsFetch, catsFetch ])
+				.then( result => dispatch( formPostIndex( result ) ) )
+				.then( () => dispatch( renderPostIndex() ) )
+				.then( () => dispatch( dontFetchPost() ) );
+		}
 
 	};
 };
@@ -145,19 +178,30 @@ export function initRoot() {
 export function initPostPage( id ) {
 	return function( dispatch, getState ) {
 
-		dispatch( unrenderPost() );
-		dispatch( unrenderCats() );
-
 		let postFetch = fetch( postApi + id ).then( response => response.json() );
 		let catsFetch = fetch( catsApi ).then( response => response.json() );
 
-		// post
-		Promise.all([ postFetch, catsFetch ])
-			.then( result => dispatch( formPost( result ) ) )
-			.then( () => dispatch( renderPost() ) )
-
 		// categories
-		Promise.all([ catsFetch ])
-			.then( result => dispatch( formCats( result ) ) )
+		if ( getState().components.categories.needToFetch ) {
+			dispatch( unrenderCats() );
+
+			Promise.all([ catsFetch ])
+				.then( result => dispatch( formCats( result ) ) )
+				.then( () => dispatch( dontFetchCats() ) )
+		}
+
+		// post
+		if ( getState().components.post.needToFetch ) {
+			dispatch( unrenderPost() );
+
+			Promise.all([ postFetch, catsFetch ])
+				.then( result => dispatch( formPost( result ) ) )
+				.then( () => dispatch( renderPost() ) )
+		} else {
+			dispatch( unrenderPost() );
+			dispatch( formPostfromIndex( id ) );
+			dispatch( renderPost() );
+		}
+
 	};
 };

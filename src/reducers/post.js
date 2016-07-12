@@ -1,9 +1,11 @@
 // actions
 import { RENDER_POST, 
 		 UNRENDER_POST, 
-		 FORM_POST } from '../actions';
+		 FORM_POST,
+		 FORM_POST_FROM_INDEX,
+		 DONT_FETCH_POST } from '../actions';
 
-function post( state, action ) {
+function post( state, action, helper ) {
 	switch ( action.type ) {
 		case RENDER_POST:
 			return _.extend( {}, state, {
@@ -19,14 +21,18 @@ function post( state, action ) {
 					item: _.extend( {}, state.data.item )
 				} 
 			} );
+		case DONT_FETCH_POST:
+			return _.extend( {}, state, {
+				needToFetch: false
+			} );
 		case FORM_POST:
+			console.log( 'forming' );
 			const jsonPost = action.result[0];
 			const jsonCats = action.result[1];
 			
 			return _.extend( {}, state, { 
-				needToFetch: true,
 				data: {
-					render: false,
+					render: state.data.render,
 					item: {
 		                id: jsonPost.id,
 		                date: new Date( jsonPost.date ).toLocaleDateString( 'ru', { day: 'numeric', month: 'long', year: 'numeric' } ),
@@ -43,6 +49,15 @@ function post( state, action ) {
 		                } ),
 		                content: jsonPost.content.rendered
 			        }
+				}
+			});
+		case FORM_POST_FROM_INDEX:
+			console.log( 'forming from index' );
+			// by helper we receive post index items array
+			return _.extend( {}, state, { 
+				data: {
+					render: state.data.render,
+					item: _.find( helper, obj => obj.id == action.id )
 				}
 			});
 		default:
