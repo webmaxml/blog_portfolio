@@ -11,8 +11,7 @@ class MainNav extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            mode: props.mode,
-            catShow: false
+            mode: props.mode
         }
         this.hoverEnter = this.hoverEnter.bind( this );
         this.hoverLeave = this.hoverLeave.bind( this );

@@ -15,11 +15,12 @@ class CatNav extends React.Component {
     }
 
     componentWillEnter( callback ) {
-    	TweenMax.fromTo( this.section, .3, { opacity: 0 }, { opacity: 1, onComplete: callback } );
+        TweenLite.set( this.section, { height:"auto" } );
+        TweenMax.from( this.section, .3, { height: 0, opacity: 0, onComplete: callback } );
     }
 
     componentWillLeave( callback ) {
-    	TweenMax.fromTo( this.section, .3, { opacity: 1 }, { opacity: 0, onComplete: callback } );
+        TweenMax.fromTo( this.section, .3, { height: 'auto', opacity: 1 }, { height: 0, opacity: 0, onComplete: callback } );
     }
 
     render() {

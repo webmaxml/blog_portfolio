@@ -26,12 +26,10 @@ class TopLine extends React.Component {
             this.setState({ click: true });
             return;
         }
-        console.log( 'click' );
         this.props.dispatch( toggleMobileMenu() );
     }
 
     touchHandle( event ) {
-        console.log( 'touch' );
         this.setState({ click: false });
         this.props.dispatch( toggleMobileMenu() );
     }

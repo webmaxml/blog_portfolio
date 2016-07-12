@@ -1,3 +1,15 @@
 .catNav.catNav--mobile {
 	position: static;
+
+	width: 100%;
+
+	background-color: inherit;
+	box-shadow: none;
+
+	// line
+
+	.catNav__line {
+		@extend %rwcs;
+	}
+
 }

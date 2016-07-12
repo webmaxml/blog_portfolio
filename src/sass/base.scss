@@ -33,6 +33,14 @@
 	align-items: stretch;
 }
 
+%rwcs {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
+	align-items: stretch;
+}
+
+
 %rnsc {
 	display: flex;
 	flex-flow: row nowrap;
