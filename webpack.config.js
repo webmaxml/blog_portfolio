@@ -31,7 +31,10 @@ module.exports = {
 
     resolve: {
     	modulesDirectories: [ 'node_modules' ],
-    	extensions: [ '','.js' ]
+    	extensions: [ '','.js' ],
+        alias: {
+          'modernizr': '../../libs/modernizr.js' // only when require in components/
+        }
     },
 
     resolveLoader: {

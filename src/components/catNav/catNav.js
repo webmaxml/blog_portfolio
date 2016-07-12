@@ -9,6 +9,9 @@ class CatNav extends React.Component {
 
     constructor(props) {
         super(props);
+        this.state = {
+            mode: props.mode
+        }
     }
 
     componentWillEnter( callback ) {
@@ -20,10 +23,20 @@ class CatNav extends React.Component {
     }
 
     render() {
-        return (
-        	<ul className="catNav" ref={ ref => this.section = ref }>
+    	let classes;
+        switch( this.state.mode ) {
+            case 'mobile':
+                classes = 'catNav catNav--mobile';
+                break;
+            default:
+                classes = 'catNav';
+                break;
+        };
 
-        		{ this.props.items.map( item => {
+        return (
+        	<ul className={ classes } ref={ ref => this.section = ref }>
+
+        		{ this.props.data.items.map( item => {
         			return (
         				<li className="catNav__line" key={ item.id }>
 		        			<a className="catNav__link" href="#">{ item.name }</a>

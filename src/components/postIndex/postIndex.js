@@ -22,7 +22,7 @@ class PostIndex extends React.Component {
         return (
         	<article className="postIndex" ref={ ref => this.section = ref }>
             	<ul className="postIndex__list">
-                    { this.props.items.map( item => {
+                    { this.props.data.items.map( item => {
                         return(
                             <PostItemExcerpt key={ item.id } { ...item } />
                          );

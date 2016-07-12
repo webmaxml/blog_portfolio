@@ -24,14 +24,14 @@ class PostItem extends React.Component {
        return (
             <article className="postItem" ref={ ref => this.section = ref }>
                 <div className="postItemt__date-line">
-                    <PostDate>{ this.props.item.date }</PostDate>
+                    <PostDate>{ this.props.data.item.date }</PostDate>
                 </div>
                 <h1 className="postItem__header-line">
-                    <PostHeaderLink href="#">{ this.props.item.title }</PostHeaderLink>
+                    <PostHeaderLink href="#">{ this.props.data.item.title }</PostHeaderLink>
                 </h1>
                 <ul className="postItem__categories-line">
 
-                    { this.props.item.cats.map( cat => {
+                    { this.props.data.item.cats.map( cat => {
                         return (
                             <li className="postItem__category-wrap" key={ cat.id }>
                                 <PostCatLink href="#">{ cat.title }</PostCatLink>
@@ -41,7 +41,7 @@ class PostItem extends React.Component {
                     
                 </ul>
                 <div className="postItem__text-line">
-                    <PostContent>{ this.props.item.content }</PostContent>
+                    <PostContent>{ this.props.data.item.content }</PostContent>
                 </div>
             </article>
         ); 

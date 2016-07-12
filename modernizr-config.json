@@ -1,0 +1,7 @@
+{
+  "minify": false,
+  "options": [],
+  "feature-detects": [
+    "test/touchevents"
+  ]
+}

@@ -1,6 +1,7 @@
 // actions
 import { RENDER_CATS, 
-		 UNRENDER_CATS, 
+		 UNRENDER_CATS,
+		 TOGGLE_CATS,
 		 FORM_CATS } from '../actions';
 
 function categories( state, action ) {
@@ -16,6 +17,13 @@ function categories( state, action ) {
 			return _.extend( {}, state, {
 				data: { 
 					render: false,
+					items: [].concat( state.data.items )
+				} 
+			} );
+		case TOGGLE_CATS:
+			return _.extend( {}, state, {
+				data: { 
+					render: !state.data.render,
 					items: [].concat( state.data.items )
 				} 
 			} );

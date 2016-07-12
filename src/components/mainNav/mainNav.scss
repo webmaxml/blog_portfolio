@@ -12,9 +12,7 @@
 	&__wrap {
 		position: relative;
 
-		display: flex;
-		flex-flow: row nowrap;
-		align-items: flex-start; 
+		@extend %rwss;
 
 		&:not( :last-child ) {
 			margin-right: 50px;

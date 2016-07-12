@@ -26,7 +26,7 @@ function transition( Component ) {
 	       return (
 	            <ReactTransitionGroup component={ FirstChild }>
 	                { this.props.data.render ? 
-	                    <Component { ...this.props.data } /> : null
+	                    <Component { ...this.props } /> : null
 	                }
 	            </ReactTransitionGroup>
 	        );    

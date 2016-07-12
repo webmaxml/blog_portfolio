@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 // components
 import CatNav from '../catNav/catNav';
 // actions
-import { renderCats, unrenderCats } from '../../actions';
+import { renderCats, unrenderCats, toggleCats } from '../../actions';
 
 class MainNav extends React.Component {
 
@@ -16,6 +16,7 @@ class MainNav extends React.Component {
         }
         this.hoverEnter = this.hoverEnter.bind( this );
         this.hoverLeave = this.hoverLeave.bind( this );
+        this.touchHandle = this.touchHandle.bind( this );
     }
 
     hoverEnter( event ) {
@@ -24,6 +25,11 @@ class MainNav extends React.Component {
 
     hoverLeave( event ) {
         this.props.dispatch( unrenderCats() );
+    }
+
+    touchHandle( event ) {
+        event.preventDefault();
+        this.props.dispatch( toggleCats() );
     }
 
     render() {
@@ -47,9 +53,10 @@ class MainNav extends React.Component {
     			<li className="mainNav__wrap" 
                     onMouseEnter={ this.hoverEnter }
                     onMouseLeave={ this.hoverLeave }
+                    onTouchStart={ this.touchHandle }
                     >
         				<a href="#" className={ catsClasses }>Рубрики</a>
-                        <CatNav />      
+                        <CatNav mode={ this.state.mode } />      
     			</li>
     			<li className="mainNav__wrap">
     				<a href="#" className="mainNav__link">Цитаты</a>

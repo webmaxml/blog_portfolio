@@ -1,9 +1,12 @@
 // deps
 import React from 'react';
 import TweenMax from 'gsap';
+import { connect } from 'react-redux';
 // components
 import MainNav from '../mainNav/mainNav';
 import SearchForm from '../searchForm/searchForm';
+// helpers
+import transition from '../../transition';
 
 class MobileMenu extends React.Component {
 
@@ -31,4 +34,12 @@ class MobileMenu extends React.Component {
 
 }
 
-export default MobileMenu;
+function mapStateToProps( state ) {
+    return {
+        data: state.components.mobileMenu.data
+    };
+};
+
+const MobileMenuContainer = connect( mapStateToProps )( transition( MobileMenu ) );
+
+export default MobileMenuContainer;

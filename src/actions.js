@@ -6,6 +6,18 @@ import { postsApi,
 		 catsApi } from './entry'; 
 
 /**
+ * Mobile Menu
+ ************************/
+
+// toggle mobile menu
+export const TOGGLE_MOBILE_MENU = 'TOGGLE_MOBILE_MENU';
+export function toggleMobileMenu() {
+	return {
+		type: TOGGLE_MOBILE_MENU,
+	};
+};
+
+/**
  * Post Index
  ************************/
 
@@ -93,6 +105,14 @@ export const UNRENDER_CATS = 'UNRENDER_CATS';
 export function unrenderCats() {
 	return {
 		type: UNRENDER_CATS,
+	};
+};
+
+// toggle cats
+export const TOGGLE_CATS = 'TOGGLE_CATS';
+export function toggleCats() {
+	return {
+		type: TOGGLE_CATS,
 	};
 };
 

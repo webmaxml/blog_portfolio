@@ -1,44 +1,67 @@
 // deps
 import React from 'react';
 import ReactTransitionGroup from 'react-addons-transition-group';
+import { connect } from 'react-redux';
 // components
 import MainNav from '../mainNav/mainNav';
 import SearchForm from '../searchForm/searchForm';
 import MobileMenu from '../mobileMenu/mobileMenu';
+// actions
+import { toggleMobileMenu } from '../../actions';
 
 class TopLine extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            mobileShow: false
-        };
+            click: true
+        }
 
         this.clickHandle = this.clickHandle.bind( this );
+        this.touchHandle = this.touchHandle.bind( this );
     }
 
     clickHandle( event ) {
-        event.preventDefault();
-        this.setState({ mobileShow: !this.state.mobileShow });
+        if ( !this.state.click ) {
+            this.setState({ click: true });
+            return;
+        }
+        console.log( 'click' );
+        this.props.dispatch( toggleMobileMenu() );
+    }
+
+    touchHandle( event ) {
+        console.log( 'touch' );
+        this.setState({ click: false });
+        this.props.dispatch( toggleMobileMenu() );
     }
 
     render() {
         return (
         	<section className="topLine">
                 <div className="topLine__wrap">
-                    <MainNav mode="default" />
+                    { this.props.mobileShow ? null : <MainNav mode="default" /> }
                     <SearchForm mode="default" />
-                    <button className="topLine__toggle" onClick={ this.clickHandle } onTouchStart={ this.clickHandle }>
-                        { this.state.mobileShow ? <i className="fa fa-times topLine__toggle-icon"></i> :
+                    <button className="topLine__toggle" onClick={ this.clickHandle } onTouchStart={ this.touchHandle }>
+                        { this.props.mobileShow ? <i className="fa fa-times topLine__toggle-icon"></i> :
                                                   <i className="fa fa-bars topLine__toggle-icon"></i> }        
                     </button>
-                    <ReactTransitionGroup component="div" className="topLine__mobileMenu-wrap">
-                        { this.state.mobileShow ? <MobileMenu /> : false }
-                    </ReactTransitionGroup>
+                    <div className="topLine__mobileMenu-wrap">
+                        <MobileMenu />
+                    </div>
                 </div>
         	</section>
         );
     }
 }
 
-export default TopLine;
+function mapStateToProps( state ) {
+    return {
+        mobileShow: state.components.mobileMenu.data.render
+    };
+};
+
+
+const TopLineContainer = connect( mapStateToProps )( TopLine );
+
+export default TopLineContainer;
