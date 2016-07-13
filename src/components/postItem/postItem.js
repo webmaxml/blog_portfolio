@@ -11,6 +11,7 @@ import SectionHeader from '../content/sectionHeader/sectionHeader';
 import PostTagLink from '../content/postTagLink/postTagLink';
 // components
 import SimilarPosts from '../similarPosts/similarPosts';
+import Disqus from '../disqus/disqus';
 // helpers
 import transition from '../../transition';
 
@@ -62,6 +63,7 @@ class PostItem extends React.Component {
                     </li>
                 </ul>
                 <SimilarPosts />
+                <Disqus id = { this.props.data.item.id }/>
             </article>
         ); 
     }
