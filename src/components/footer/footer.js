@@ -1,6 +1,7 @@
 // deps
 import React from 'react';
 import { connect } from 'react-redux';
+import TweenMax from 'gsap';
 // components
 import SocialNav from '../socialNav/socialNav';
 // helpers
@@ -12,9 +13,13 @@ class Footer extends React.Component {
         super(props);
     }
 
+    componentWillEnter( callback ) {
+        TweenMax.from( this.section, .3, { opacity: 0, onComplete: callback } );
+    }
+
     render() {
         return (
-        	<footer className="footer">
+        	<footer className="footer" ref={ ref => this.section = ref }>
                 <div className="footer__wrap">
             		<div className="footer__rights-wrap">
             			<span className="footer__rights">

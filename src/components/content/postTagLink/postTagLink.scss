@@ -1,0 +1,14 @@
+/* postTagLink */
+.postTagLink {
+	font-family: $ff_text;
+	font-weight: bold;
+	font-size: $fz6;
+	line-height: $base-lh * 2;
+	color: $c_header;
+
+	transition: .2s;
+
+	&:hover {
+		color: darken( $c_header, 50% );
+	}
+}

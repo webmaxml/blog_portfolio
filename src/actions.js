@@ -225,9 +225,11 @@ export function initPostPage( id ) {
 				.then( () => dispatch( renderPost() ) )
 				.then( () => dispatch( renderFooter() ) )
 		} else {
-			dispatch( formPostfromIndex( id ) );
-			dispatch( renderPost() );
-			dispatch( renderFooter() );
+			new Promise( ( resolve ) => {
+				dispatch( formPostfromIndex( id ) );
+				resolve();
+			} ).then( () => dispatch( renderPost() ) )
+			   .then( () => dispatch( renderFooter() ) );
 		}
 
 	};

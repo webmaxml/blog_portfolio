@@ -4,6 +4,8 @@
 
 	padding: $base-lh 0;
 
+	// line
+
 	&__date-line {
 		@extend %rnss;
 	}
@@ -20,9 +22,29 @@
 		@extend %rwss;
 	}
 
+	&__tag-line {
+		@extend %rwss;
+
+		margin-bottom: $base-lh * 2;
+	}
+
+	&__tag-header-line {
+		@extend %rnss;
+
+		margin-top: $base-lh * 2;
+	}
+
 	// wrap
 
 	&__category-wrap {
+		@extend %rnss;
+
+		&:not(:last-child) {
+			margin-right: 15px;
+		}
+	}
+
+	&__tag-wrap {
 		@extend %rnss;
 
 		&:not(:last-child) {

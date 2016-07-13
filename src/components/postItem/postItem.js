@@ -7,6 +7,8 @@ import PostDate from '../content/postDate/postDate';
 import PostHeaderLink from '../content/postHeaderLink/postHeaderLink';
 import PostCatLink from '../content/postCatLink/postCatLink';
 import PostContent from '../content/postContent/postContent';
+import SectionHeader from '../content/sectionHeader/sectionHeader';
+import PostTagLink from '../content/postTagLink/postTagLink';
 // helpers
 import transition from '../../transition';
 
@@ -43,6 +45,20 @@ class PostItem extends React.Component {
                 <div className="postItem__text-line">
                     <PostContent>{ this.props.data.item.content }</PostContent>
                 </div>
+                <h2 className="postItem__tag-header-line">
+                    <SectionHeader>Теги</SectionHeader>
+                </h2>
+                <ul className="postItem__tag-line">
+                    <li className="postItem__tag-wrap">
+                        <PostTagLink href="#">Жизнь</PostTagLink>
+                    </li>
+                    <li className="postItem__tag-wrap">
+                        <PostTagLink href="#">Семья</PostTagLink>
+                    </li>
+                    <li className="postItem__tag-wrap">
+                        <PostTagLink href="#">Деньги</PostTagLink>
+                    </li>
+                </ul>
             </article>
         ); 
     }
