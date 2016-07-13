@@ -9,6 +9,8 @@ import PostCatLink from '../content/postCatLink/postCatLink';
 import PostContent from '../content/postContent/postContent';
 import SectionHeader from '../content/sectionHeader/sectionHeader';
 import PostTagLink from '../content/postTagLink/postTagLink';
+// components
+import SimilarPosts from '../similarPosts/similarPosts';
 // helpers
 import transition from '../../transition';
 
@@ -59,6 +61,7 @@ class PostItem extends React.Component {
                         <PostTagLink href="#">Деньги</PostTagLink>
                     </li>
                 </ul>
+                <SimilarPosts />
             </article>
         ); 
     }

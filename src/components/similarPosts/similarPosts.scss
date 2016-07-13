@@ -1,0 +1,24 @@
+/* similarPosts */
+.similarPosts {
+	@extend %cnss;
+
+	// line
+
+	&__header-line {
+		@extend %rnss;
+	}
+
+	&__list-line {
+		@extend %cnss;
+
+		margin-bottom: $base-lh * 2;
+	}
+
+	// wrap
+
+	&__item-wrap {
+		@extend %rwsc;
+
+		height: $base-lh * 2;
+	}
+}
