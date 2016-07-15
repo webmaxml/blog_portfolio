@@ -65,7 +65,9 @@ class PostItem extends React.Component {
                     </li>
                 </ul>
                 <SimilarPosts />
-                <Disqus id = { this.props.data.item.id }/>
+                <Disqus id = { this.props.data.item.id } 
+                        title = { this.props.data.item.title }
+                />
             </article>
         ); 
     }

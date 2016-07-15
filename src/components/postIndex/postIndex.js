@@ -16,6 +16,10 @@ class PostIndex extends React.Component {
         super(props);
     }
 
+    componentDidMount() {
+        DISQUSWIDGETS.getCount({reset: true});
+    }
+
     componentWillEnter( callback ) {
         TweenMax.from( this.section, .3, { opacity: 0, onComplete: callback } );
     }

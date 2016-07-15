@@ -15,7 +15,7 @@ class Disqus extends React.Component {
 			DISQUS.reset({
 				reload: true,
 				config: function () {
-					this.page.title = 'ТраляляУУУУУУ';
+					this.page.title = this.props.title;
 					this.page.url = `http://localhost:8080/post/${ this.props.id }`;
 		        	this.page.identifier = this.props.id;
 				}

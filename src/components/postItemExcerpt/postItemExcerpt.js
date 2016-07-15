@@ -42,7 +42,7 @@ class PostItemExcerpt extends React.Component {
                         <BtnLink href="#">Читать далее</BtnLink>
                     </div>
                     <div className="postItemExcerpt__comments-wrap">
-                        <PostCommentsLink href="#">2 комментария</PostCommentsLink>
+                        <PostCommentsLink href={ `post/${ this.props.id }` } id={ this.props.id }></PostCommentsLink>
                     </div>
                 </footer>
         	</li>

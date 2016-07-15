@@ -1,5 +1,6 @@
 // deps
 import React from 'react';
+import { Link } from 'react-router';
 
 class PostCommentsLink extends React.Component {
 
@@ -9,9 +10,9 @@ class PostCommentsLink extends React.Component {
 
     render() {
         return (
-        	<a className="postCommentsLink" href={ this.props.href }>
+        	<Link className="postCommentsLink" to={ `${this.props.href}#disqus_thread` }>
                 { this.props.children }
-            </a>
+            </Link>
         );
     }
 
