@@ -32,6 +32,8 @@ const initialState = {
 	'postIndex': {
 		needToFetch: true,
 		data: {
+			currPage: 1, 
+			nextPageExist: false, 
 			render: false,
 			items: []
 		}

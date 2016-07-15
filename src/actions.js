@@ -3,7 +3,8 @@ import fetch from 'isomorphic-fetch';
 // entry
 import { postsApi,
 		 postApi,
-		 catsApi } from './entry'; 
+		 catsApi,
+		 pageApi } from './entry'; 
 
 
 /**
@@ -197,6 +198,7 @@ export function initRoot() {
 
 		let postsFetch = fetch( postsApi ).then( response => response.json() );
 		let catsFetch = fetch( catsApi ).then( response => response.json() );
+		let nextPageFetch = fetch( pageApi( 2 ) ).then( response => response.json() );
 
 		// categories
 		if ( getState().components.categories.needToFetch ) {
@@ -208,16 +210,14 @@ export function initRoot() {
 		}
 
 		// post Index
-		if ( getState().components.postIndex.needToFetch ) {
-			dispatch( unrenderFooter() );
-			dispatch( unrenderPostIndex() );
+		dispatch( unrenderPostIndex() );
+		dispatch( unrenderFooter() );
 
-			Promise.all([ postsFetch, catsFetch ])
-				.then( result => dispatch( formPostIndex( result ) ) )
-				.then( () => dispatch( renderPostIndex() ) )
-				.then( () => dispatch( renderFooter() ) )
-				.then( () => dispatch( dontFetchPost() ) );
-		}
+		Promise.all([ postsFetch, catsFetch, nextPageFetch, 1 ])
+			.then( result => dispatch( formPostIndex( result ) ) )
+			.then( () => dispatch( renderPostIndex() ) )
+			.then( () => dispatch( renderFooter() ) )
+			.then( () => dispatch( dontFetchPost() ) );
 
 	};
 };
@@ -256,6 +256,35 @@ export function initPostPage( id ) {
 			   .then( () => dispatch( renderFooter() ) )
 			   .then( () => dispatch( renderDisqus() ) );
 		}
+
+	};
+};
+
+export function initPageNum( pageNum ) {
+	return function( dispatch, getState ) {
+
+		let postsFetch = fetch( pageApi( pageNum ) ).then( response => response.json() );
+		let catsFetch = fetch( catsApi ).then( response => response.json() );
+		let nextPageFetch = fetch( pageApi( +pageNum + 1 ) ).then( response => response.json() );
+
+		// categories
+		if ( getState().components.categories.needToFetch ) {
+			dispatch( unrenderCats() );
+
+			Promise.all([ catsFetch ])
+				.then( result => dispatch( formCats( result ) ) )
+				.then( () => dispatch( dontFetchCats() ) )
+		}
+
+		// post Index
+		dispatch( unrenderPostIndex() );
+		dispatch( unrenderFooter() );
+
+		Promise.all([ postsFetch, catsFetch, nextPageFetch, pageNum ])
+			.then( result => dispatch( formPostIndex( result ) ) )
+			.then( () => dispatch( renderPostIndex() ) )
+			.then( () => dispatch( renderFooter() ) )
+			.then( () => dispatch( dontFetchPost() ) );
 
 	};
 };

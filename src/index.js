@@ -26,6 +26,7 @@ render(
 					<Route path="/" component={ PostSection }>
 						<IndexRoute component={ PostIndex } />
 						<Route path="post/:id" component={ PostItem } />
+						<Route path="page/:count" component={ PostIndex } />
 					</Route>
 				</Route>
 			</Route>

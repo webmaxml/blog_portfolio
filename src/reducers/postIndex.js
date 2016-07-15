@@ -9,6 +9,8 @@ function postIndex( state, action ) {
 			return _.extend( {}, state, {
 				data: { 
 					render: true,
+					currPage: state.data.currPage,
+					nextPageExist: state.data.nextPageExist,
 					items: [].concat( state.data.items )
 				} 
 			} );
@@ -16,16 +18,22 @@ function postIndex( state, action ) {
 			return _.extend( {}, state, {
 				data: { 
 					render: false,
+					currPage: state.data.currPage,
+					nextPageExist: state.data.nextPageExist,
 					items: [].concat( state.data.items )
 				} 
 			} );
 		case FORM_POST_INDEX:
-			const jsonPosts = action.result[0];
-			const jsonCats = action.result[1];
+			let jsonPosts = action.result[0];
+			let jsonCats = action.result[1];
+			let nextPagePosts = action.result[2];
+			let currPage = +action.result[3];
 			
 			return _.extend( {}, state, { 
 				data: {
 					render: state.data.render,
+					currPage,
+					nextPageExist: nextPagePosts.length > 0,
 					items: jsonPosts.map( item => {	
 						return {
 			                id: item.id,

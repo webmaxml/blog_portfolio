@@ -21,7 +21,7 @@ class PostItemExcerpt extends React.Component {
         			<PostDate>{ this.props.date }</PostDate>
         		</div>
         		<h1 className="postItemExcerpt__header-line">
-        			<PostHeaderLink href={ `post/${ this.props.id }` }>{ this.props.title }</PostHeaderLink>
+        			<PostHeaderLink href={ `/post/${ this.props.id }` }>{ this.props.title }</PostHeaderLink>
         		</h1>
         		<ul className="postItemExcerpt__categories-line">
 
@@ -39,10 +39,10 @@ class PostItemExcerpt extends React.Component {
         		</div>
         		<footer className="postItemExcerpt__footer-line">
                     <div className="postItemExcerpt__read-wrap">
-                        <BtnLink href="#">Читать далее</BtnLink>
+                        <BtnLink href={ `/post/${ this.props.id }`}>Читать далее</BtnLink>
                     </div>
                     <div className="postItemExcerpt__comments-wrap">
-                        <PostCommentsLink href={ `post/${ this.props.id }` } id={ this.props.id }></PostCommentsLink>
+                        <PostCommentsLink href={ `/post/${ this.props.id }` }></PostCommentsLink>
                     </div>
                 </footer>
         	</li>

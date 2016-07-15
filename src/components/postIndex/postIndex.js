@@ -17,6 +17,7 @@ class PostIndex extends React.Component {
     }
 
     componentDidMount() {
+        // reseting comment count
         DISQUSWIDGETS.getCount({reset: true});
     }
 
@@ -24,6 +25,7 @@ class PostIndex extends React.Component {
         TweenMax.from( this.section, .3, { opacity: 0, onComplete: callback } );
     }
     render() {
+
         return (
         	<article className="postIndex" ref={ ref => this.section = ref }>
                 <Helmet title="Главная" />
@@ -35,8 +37,20 @@ class PostIndex extends React.Component {
                     } ) }
                 </ul>
                 <div className="postIndex__nav-line">
-                    <PostPageLink href="#">Следующие</PostPageLink>
-                    <PostPageLink href="#">Предыдущие</PostPageLink>
+                    <div className="postIndex__nav-wrap">
+                        { this.props.data.currPage > 1 ? 
+                            this.props.data.currPage === 2 ?
+                                <PostPageLink href="/">Следующие</PostPageLink> :
+                                <PostPageLink href={ `/page/${this.props.data.currPage - 1}` }>Следующие</PostPageLink> :
+                            null
+                        }
+                    </div>
+                    <div className="postIndex__nav-wrap">
+                        { this.props.data.nextPageExist ? 
+                            <PostPageLink href={ `/page/${this.props.data.currPage + 1}` }>Предыдущие</PostPageLink> : 
+                            null 
+                        }
+                    </div>
                 </div>
         	</article>
         );
