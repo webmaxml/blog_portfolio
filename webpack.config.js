@@ -18,7 +18,7 @@ let cssLoader = NODE_ENV === 'development' ? 'style!css!postcss!resolve-url!sass
 
 module.exports = {
 
-    debug: false,
+    debug: true,
 
     entry: {
         app: "./src/index.js",

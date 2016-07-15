@@ -2,6 +2,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import TweenMax from 'gsap';
+import Helmet from 'react-helmet';
 // content components
 import PostDate from '../content/postDate/postDate';
 import PostHeaderLink from '../content/postHeaderLink/postHeaderLink';
@@ -28,6 +29,7 @@ class PostItem extends React.Component {
     render() {
        return (
             <article className="postItem" ref={ ref => this.section = ref }>
+                <Helmet title={ this.props.data.item.title } />
                 <div className="postItemt__date-line">
                     <PostDate>{ this.props.data.item.date }</PostDate>
                 </div>

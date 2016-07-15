@@ -1,5 +1,8 @@
 // deps
 import React from 'react';
+import { connect } from 'react-redux';
+// helpers
+import transition from '../../transition';
 
 class Disqus extends React.Component {
 
@@ -12,14 +15,13 @@ class Disqus extends React.Component {
 			DISQUS.reset({
 				reload: true,
 				config: function () {
-					this.page.title = `Пост id = ${ this.props.id }`;
+					this.page.title = 'ТраляляУУУУУУ';
 					this.page.url = `http://localhost:8080/post/${ this.props.id }`;
 		        	this.page.identifier = this.props.id;
 				}
 			});
 	    } else {
 	    	window.disqus_config = function () {
-	    		this.page.title = `Пост id = ${ this.props.id }`;
 		        this.page.url = `http://localhost:8080/post/${ this.props.id }`;
 		        this.page.identifier = this.props.id;
 		    };
@@ -27,7 +29,7 @@ class Disqus extends React.Component {
 	        const script = document.createElement( "script" );
 
 	        script.id = 'disqusMain'
-	        script.src = 'http://ilyablog.disqus.com/embed.js';
+	        script.src = '//ilyablog.disqus.com/embed.js';
 	        script.setAttribute( 'data-timestamp', +new Date() );
 	        script.async = true;
 
@@ -40,4 +42,12 @@ class Disqus extends React.Component {
     }
 }
 
-export default Disqus;
+function mapStateToProps( state ) {
+    return {
+        data: state.components.disqus.data
+    };
+};
+
+const DisqusContainer = connect( mapStateToProps )( transition( Disqus ) );
+
+export default DisqusContainer;

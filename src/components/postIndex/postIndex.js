@@ -2,6 +2,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import TweenMax from 'gsap';
+import Helmet from 'react-helmet';
 // content components
 import PostPageLink from '../content/postPageLink/postPageLink'
 // components
@@ -21,6 +22,7 @@ class PostIndex extends React.Component {
     render() {
         return (
         	<article className="postIndex" ref={ ref => this.section = ref }>
+                <Helmet title="Главная" />
             	<ul className="postIndex__list">
                     { this.props.data.items.map( item => {
                         return(

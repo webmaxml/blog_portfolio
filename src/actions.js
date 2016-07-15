@@ -97,6 +97,28 @@ export function dontFetchPost() {
 };
 
 /**
+ * Disqus
+ ************************/
+
+// render disqus 
+export const RENDER_DISQUS = 'RENDER_DISQUS';
+export function renderDisqus() {
+	return {
+		type: RENDER_DISQUS,
+	};
+};
+
+
+// unrender disqus
+export const UNRENDER_DISQUS = 'UNRENDER_DISQUS';
+export function unrenderDisqus() {
+	return {
+		type: UNRENDER_DISQUS,
+	};
+};
+
+
+/**
  * Categories
  ************************/
 
@@ -218,18 +240,21 @@ export function initPostPage( id ) {
 		// post
 		dispatch( unrenderFooter() );
 		dispatch( unrenderPost() );
+		dispatch( unrenderDisqus() );
 
 		if ( getState().components.post.needToFetch ) {
 			Promise.all([ postFetch, catsFetch ])
 				.then( result => dispatch( formPost( result ) ) )
 				.then( () => dispatch( renderPost() ) )
 				.then( () => dispatch( renderFooter() ) )
+				.then( () => dispatch( renderDisqus() ) );
 		} else {
 			new Promise( ( resolve ) => {
 				dispatch( formPostfromIndex( id ) );
 				resolve();
 			} ).then( () => dispatch( renderPost() ) )
-			   .then( () => dispatch( renderFooter() ) );
+			   .then( () => dispatch( renderFooter() ) )
+			   .then( () => dispatch( renderDisqus() ) );
 		}
 
 	};

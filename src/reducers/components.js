@@ -4,6 +4,7 @@ import postIndex from './postIndex';
 import categories from './categories';
 import post from './post';
 import footer from './footer';
+import disqus from './disqus';
 // actions
 import { TOGGLE_MOBILE_MENU,
 		 FORM_POST_INDEX,
@@ -20,7 +21,9 @@ import { TOGGLE_MOBILE_MENU,
 		 FORM_CATS,
 		 DONT_FETCH_CATS,
 		 RENDER_FOOTER, 
-		 UNRENDER_FOOTER } from '../actions';
+		 UNRENDER_FOOTER,
+		 RENDER_DISQUS, 
+		 UNRENDER_DISQUS } from '../actions';
 
 const initialState = {
 	'mobileMenu':{
@@ -48,6 +51,9 @@ const initialState = {
 		}
 	},
 	footer:{
+		data: { render: false }
+	},
+	disqus:{
 		data: { render: false }
 	}
 };
@@ -87,6 +93,11 @@ function components( state = initialState, action ) {
 		case UNRENDER_FOOTER:
 			return _.extend( {}, state, {
 				footer: footer( state.footer, action )
+			} );
+		case RENDER_DISQUS:
+		case UNRENDER_DISQUS:
+			return _.extend( {}, state, {
+				disqus: disqus( state.disqus, action )
 			} );
 		default:
 			return state;
