@@ -51,13 +51,6 @@ export function unrenderPostIndex() {
 	};
 };
 
-// command object
-const postIndex = {
-	hide: () => store.dispatch( unrenderPostIndex() ),
-	show: () => store.dispatch( renderPostIndex() ),
-	form: data => store.dispatch( formPostIndex( data ) )
-}
-
 
 /**
  * Post
@@ -174,15 +167,6 @@ export function dontFetchCats() {
 	};
 };
 
-// command object
-const categories = {
-	hide: () => store.dispatch( unrenderCats() ),
-	show: () => store.dispatch( renderCats() ),
-	form: data => store.dispatch( formCats( data ) ),
-	cache: () => store.dispatch( dontFetchCats() )
-}
-
-
 
 /**
  * Footer
@@ -206,61 +190,41 @@ export function unrenderFooter() {
 	};
 };
 
-// command object
-const footer = {
-	hide: () => store.dispatch( unrenderFooter() ),
-	show: () => store.dispatch( renderFooter() )
-}
-
 
 /**
  * Initial fetch
  ************************/
 
-export function initRoot() {
-	return function( dispatch, getState ) {
+// export function initRoot() {
+// 	return function( dispatch, getState ) {
 
-		let postsFetch = fetch( postsApi ).then( response => response.json() );
-		let catsFetch = fetch( catsApi ).then( response => response.json() );
-		let nextPageFetch = fetch( postPageApi( 2 ) ).then( response => response.json() );
+// 		let postsFetch = fetch( postsApi ).then( response => response.json() );
+// 		let catsFetch = fetch( catsApi ).then( response => response.json() );
+// 		let nextPageFetch = fetch( postPageApi( 2 ) ).then( response => response.json() );
 
-		// categories
-		if ( getState().components.categories.needToFetch ) {
-			dispatch( unrenderCats() );
+// 		// categories
+// 		if ( getState().components.categories.needToFetch ) {
+// 			dispatch( unrenderCats() );
 
-			Promise.all([ catsFetch ])
-				.then( result => dispatch( formCats( result ) ) )
-				.then( () => dispatch( dontFetchCats() ) )
-		}
+// 			Promise.all([ catsFetch ])
+// 				.then( result => dispatch( formCats( result ) ) )
+// 				.then( () => dispatch( dontFetchCats() ) )
+// 		}
 
-		// post Index
-		dispatch( unrenderPostIndex() );
-		dispatch( unrenderFooter() );
+// 		// post Index
+// 		dispatch( unrenderPostIndex() );
+// 		dispatch( unrenderFooter() );
 
-		Promise.all([ postsFetch, catsFetch, nextPageFetch, 1 ])
-			.then( result => dispatch( formPostIndex( result ) ) )
-			.then( () => dispatch( renderPostIndex() ) )
-			.then( () => dispatch( renderFooter() ) )
-			.then( () => dispatch( dontFetchPost() ) );
+// 		Promise.all([ postsFetch, catsFetch, nextPageFetch, 1 ])
+// 			.then( result => dispatch( formPostIndex( result ) ) )
+// 			.then( () => dispatch( renderPostIndex() ) )
+// 			.then( () => dispatch( renderFooter() ) )
+// 			.then( () => dispatch( dontFetchPost() ) );
 
-		// test shit
+// 	};
+// };
 
-		// let ComponentsList = [ postIndex, footer ];
-
-		// if ( getState().components.categories.needToFetch ) {
-		// 	ComponentsList.push( categories );
-		// }
-
-		// ComponentsList.forEach( item => { item.hide() } );
-
-		// let postsFetch = fetch( postsApi ).then( response => response.json() );
-		// let catsFetch = fetch( catsApi ).then( response => response.json() );
-		// let nextPageFetch = fetch( postPageApi( 2 ) ).then( response => response.json() );
-
-	};
-};
-
-export function initPostPage( id ) {
+export function initPostPage( componentList, id ) {
 	return function( dispatch, getState ) {
 
 		let postFetch = fetch( postApi + id ).then( response => response.json() );
@@ -298,7 +262,7 @@ export function initPostPage( id ) {
 	};
 };
 
-export function initPostPageNum( pageNum ) {
+export function initPostPageNum( components, pageNum ) {
 	return function( dispatch, getState ) {
 
 		let postsFetch = fetch( postPageApi( pageNum ) ).then( response => response.json() );
@@ -327,7 +291,7 @@ export function initPostPageNum( pageNum ) {
 	};
 };
 
-export function initCatsPageNum( pageNum ) {
+export function initCatsPageNum( components, pageNum ) {
 	return function( dispatch, getState ) {
 
 		let postsFetch = fetch( pageApi( pageNum ) ).then( response => response.json() );
@@ -358,3 +322,109 @@ export function initCatsPageNum( pageNum ) {
 
 
 
+// components list
+
+const components = {
+
+	1: {
+		id: 1,
+		name: 'postIndex',
+		showOnInit: true,
+		toCache: false,
+		cached: false,
+		hide: () => store.dispatch( unrenderPostIndex() ),
+		show: () => store.dispatch( renderPostIndex() ),
+		form: data => store.dispatch( formPostIndex( data ) ),
+		api: [ 1, 2, 3 ]
+	},
+
+	2: {
+		id: 2,
+		name: 'categories',
+		showOnInit: false,
+		toCache: true,
+		cached: false,
+		hide: () => store.dispatch( unrenderCats() ),
+		show: () => store.dispatch( renderCats() ),
+		form: data => store.dispatch( formCats( data ) ),
+		api: [ 2 ]
+	},	
+
+	3: {
+		id: 3,
+		name: 'footer',
+		showOnInit: true,
+		toCache: false,
+		cached: false,
+		hide: () => store.dispatch( unrenderFooter() ),
+		show: () => store.dispatch( renderFooter() ),
+		form: () => true,
+		api: []
+	}
+
+};
+
+const fetches = {
+
+	1: {
+		fetch: () => fetch( postsApi ).then( response => response.json() )
+	},
+
+	2: {
+		fetch: () => fetch( catsApi ).then( response => response.json() )
+	},
+
+	3: {
+		fetch: ( pageNum ) => fetch( postPageApi( pageNum ) ).then( response => response.json() )
+	}
+};
+
+
+export function initRoot( componentIds ) {
+	return function( dispatch, getState ) {
+
+		let ComponentsList = [];
+
+		// look through the page array of component ids
+		componentIds.map( id => {	
+			let obj = components[id];
+
+			// add component obj if its not cached
+			if ( !obj.cached ) { 
+				ComponentsList.push( obj );
+			}
+		});	
+
+		// hide all components
+		ComponentsList.forEach( component => { component.hide() } );
+
+		// cache promises
+		let fetchPromises = {};
+
+		ComponentsList.forEach( component => { 
+
+			let dataFetch = Promise.all( component.api.map( id => {
+
+				// if the promise is already cached - return it 
+				if ( typeof fetchPromises[id] !== 'undefined' ) {
+					return fetchPromises[id];
+				} else {
+
+					// options for fetches to call with args
+					switch ( id ) {
+						case 3: 
+							return fetchPromises[id] = fetches[id].fetch( 2 );
+						default:
+							return fetchPromises[id] = fetches[id].fetch();
+					}	
+				}
+			} ) )
+
+			dataFetch.then( result => component.form( result ) )
+					 .then( () => {
+					 	return component.showOnInit ? component.show() : true
+					} )
+		});
+
+	};
+}
