@@ -9,6 +9,8 @@ import { Provider } from 'react-redux';
 import { Router, Route, IndexRoute } from 'react-router';
 // store & history
 import { store, history } from './store';
+// pages
+import pages from './pages';
 // controller
 import './controller';
 // components
@@ -23,10 +25,11 @@ render(
 		<Router history={ history }>
 			<Route component={ App }>
 				<Route component={ Home }>
-					<Route path="/" component={ PostSection }>
+					<Route path={ pages.root.path } component={ PostSection }>
 						<IndexRoute component={ PostIndex } />
-						<Route path="post/:id" component={ PostItem } />
-						<Route path="page/:count" component={ PostIndex } />
+						<Route path={ pages.post.path } component={ PostItem } />
+						<Route path={ pages.postsPage.path } component={ PostIndex } />
+						<Route path={ pages.catsPage.path } component={ PostIndex } />
 					</Route>
 				</Route>
 			</Route>

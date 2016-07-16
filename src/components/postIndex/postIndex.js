@@ -41,13 +41,13 @@ class PostIndex extends React.Component {
                         { this.props.data.currPage > 1 ? 
                             this.props.data.currPage === 2 ?
                                 <PostPageLink href="/">Следующие</PostPageLink> :
-                                <PostPageLink href={ `/page/${this.props.data.currPage - 1}` }>Следующие</PostPageLink> :
+                                <PostPageLink href={ `/posts/page/${this.props.data.currPage - 1}` }>Следующие</PostPageLink> :
                             null
                         }
                     </div>
                     <div className="postIndex__nav-wrap">
                         { this.props.data.nextPageExist ? 
-                            <PostPageLink href={ `/page/${this.props.data.currPage + 1}` }>Предыдущие</PostPageLink> : 
+                            <PostPageLink href={ `/posts/page/${this.props.data.currPage + 1}` }>Предыдущие</PostPageLink> : 
                             null 
                         }
                     </div>

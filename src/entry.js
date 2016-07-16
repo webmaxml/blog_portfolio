@@ -7,7 +7,8 @@ export const postsApi = api + '/posts?filter[posts_per_page]=10&page=1&order=des
 
 // pages
 // expecting - [ {...},{...},... ]
-export const pageApi = pageNum => api + `/posts?filter[posts_per_page]=10&page=${pageNum}&order=desc`;
+export const postPageApi = pageNum => api + `/posts?filter[posts_per_page]=10&page=${pageNum}&order=desc`;
+export const catsPageApi = ( pageNum, catId )  => api + `/posts?categories=${catId}&filter[posts_per_page]=10&page=${pageNum}&order=desc`;
 
 
 // post

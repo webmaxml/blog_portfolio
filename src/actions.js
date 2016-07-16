@@ -1,10 +1,12 @@
 // deps
 import fetch from 'isomorphic-fetch';
+import { store } from './store';
 // entry
 import { postsApi,
 		 postApi,
 		 catsApi,
-		 pageApi } from './entry'; 
+		 postPageApi,
+		 catsPageApi } from './entry'; 
 
 
 /**
@@ -48,6 +50,13 @@ export function unrenderPostIndex() {
 		type: UNRENDER_POST_INDEX,
 	};
 };
+
+// command object
+const postIndex = {
+	hide: () => store.dispatch( unrenderPostIndex() ),
+	show: () => store.dispatch( renderPostIndex() ),
+	form: data => store.dispatch( formPostIndex( data ) )
+}
 
 
 /**
@@ -165,6 +174,15 @@ export function dontFetchCats() {
 	};
 };
 
+// command object
+const categories = {
+	hide: () => store.dispatch( unrenderCats() ),
+	show: () => store.dispatch( renderCats() ),
+	form: data => store.dispatch( formCats( data ) ),
+	cache: () => store.dispatch( dontFetchCats() )
+}
+
+
 
 /**
  * Footer
@@ -188,6 +206,12 @@ export function unrenderFooter() {
 	};
 };
 
+// command object
+const footer = {
+	hide: () => store.dispatch( unrenderFooter() ),
+	show: () => store.dispatch( renderFooter() )
+}
+
 
 /**
  * Initial fetch
@@ -198,7 +222,7 @@ export function initRoot() {
 
 		let postsFetch = fetch( postsApi ).then( response => response.json() );
 		let catsFetch = fetch( catsApi ).then( response => response.json() );
-		let nextPageFetch = fetch( pageApi( 2 ) ).then( response => response.json() );
+		let nextPageFetch = fetch( postPageApi( 2 ) ).then( response => response.json() );
 
 		// categories
 		if ( getState().components.categories.needToFetch ) {
@@ -218,6 +242,20 @@ export function initRoot() {
 			.then( () => dispatch( renderPostIndex() ) )
 			.then( () => dispatch( renderFooter() ) )
 			.then( () => dispatch( dontFetchPost() ) );
+
+		// test shit
+
+		// let ComponentsList = [ postIndex, footer ];
+
+		// if ( getState().components.categories.needToFetch ) {
+		// 	ComponentsList.push( categories );
+		// }
+
+		// ComponentsList.forEach( item => { item.hide() } );
+
+		// let postsFetch = fetch( postsApi ).then( response => response.json() );
+		// let catsFetch = fetch( catsApi ).then( response => response.json() );
+		// let nextPageFetch = fetch( postPageApi( 2 ) ).then( response => response.json() );
 
 	};
 };
@@ -260,7 +298,36 @@ export function initPostPage( id ) {
 	};
 };
 
-export function initPageNum( pageNum ) {
+export function initPostPageNum( pageNum ) {
+	return function( dispatch, getState ) {
+
+		let postsFetch = fetch( postPageApi( pageNum ) ).then( response => response.json() );
+		let catsFetch = fetch( catsApi ).then( response => response.json() );
+		let nextPageFetch = fetch( postPageApi( +pageNum + 1 ) ).then( response => response.json() );
+
+		// categories
+		if ( getState().components.categories.needToFetch ) {
+			dispatch( unrenderCats() );
+
+			Promise.all([ catsFetch ])
+				.then( result => dispatch( formCats( result ) ) )
+				.then( () => dispatch( dontFetchCats() ) )
+		}
+
+		// post Index
+		dispatch( unrenderPostIndex() );
+		dispatch( unrenderFooter() );
+
+		Promise.all([ postsFetch, catsFetch, nextPageFetch, pageNum ])
+			.then( result => dispatch( formPostIndex( result ) ) )
+			.then( () => dispatch( renderPostIndex() ) )
+			.then( () => dispatch( renderFooter() ) )
+			.then( () => dispatch( dontFetchPost() ) );
+
+	};
+};
+
+export function initCatsPageNum( pageNum ) {
 	return function( dispatch, getState ) {
 
 		let postsFetch = fetch( pageApi( pageNum ) ).then( response => response.json() );
@@ -288,3 +355,6 @@ export function initPageNum( pageNum ) {
 
 	};
 };
+
+
+
