@@ -224,43 +224,43 @@ export function unrenderFooter() {
 // 	};
 // };
 
-export function initPostPage( componentList, id ) {
-	return function( dispatch, getState ) {
+// export function initPostPage( componentList, id ) {
+// 	return function( dispatch, getState ) {
 
-		let postFetch = fetch( postApi + id ).then( response => response.json() );
-		let catsFetch = fetch( catsApi ).then( response => response.json() );
+// 		let postFetch = fetch( postApi + id ).then( response => response.json() );
+// 		let catsFetch = fetch( catsApi ).then( response => response.json() );
 
-		// categories
-		if ( getState().components.categories.needToFetch ) {
-			dispatch( unrenderCats() );
+// 		// categories
+// 		if ( getState().components.categories.needToFetch ) {
+// 			dispatch( unrenderCats() );
 
-			Promise.all([ catsFetch ])
-				.then( result => dispatch( formCats( result ) ) )
-				.then( () => dispatch( dontFetchCats() ) )
-		}
+// 			Promise.all([ catsFetch ])
+// 				.then( result => dispatch( formCats( result ) ) )
+// 				.then( () => dispatch( dontFetchCats() ) )
+// 		}
 
-		// post
-		dispatch( unrenderFooter() );
-		dispatch( unrenderPost() );
-		dispatch( unrenderDisqus() );
+// 		// post
+// 		dispatch( unrenderFooter() );
+// 		dispatch( unrenderPost() );
+// 		dispatch( unrenderDisqus() );
 
-		if ( getState().components.post.needToFetch ) {
-			Promise.all([ postFetch, catsFetch ])
-				.then( result => dispatch( formPost( result ) ) )
-				.then( () => dispatch( renderPost() ) )
-				.then( () => dispatch( renderFooter() ) )
-				.then( () => dispatch( renderDisqus() ) );
-		} else {
-			new Promise( ( resolve ) => {
-				dispatch( formPostfromIndex( id ) );
-				resolve();
-			} ).then( () => dispatch( renderPost() ) )
-			   .then( () => dispatch( renderFooter() ) )
-			   .then( () => dispatch( renderDisqus() ) );
-		}
+// 		if ( getState().components.post.needToFetch ) {
+// 			Promise.all([ postFetch, catsFetch ])
+// 				.then( result => dispatch( formPost( result ) ) )
+// 				.then( () => dispatch( renderPost() ) )
+// 				.then( () => dispatch( renderFooter() ) )
+// 				.then( () => dispatch( renderDisqus() ) );
+// 		} else {
+// 			new Promise( ( resolve ) => {
+// 				dispatch( formPostfromIndex( id ) );
+// 				resolve();
+// 			} ).then( () => dispatch( renderPost() ) )
+// 			   .then( () => dispatch( renderFooter() ) )
+// 			   .then( () => dispatch( renderDisqus() ) );
+// 		}
 
-	};
-};
+// 	};
+// };
 
 export function initPostPageNum( components, pageNum ) {
 	return function( dispatch, getState ) {
@@ -335,7 +335,7 @@ const components = {
 		hide: () => store.dispatch( unrenderPostIndex() ),
 		show: () => store.dispatch( renderPostIndex() ),
 		form: data => store.dispatch( formPostIndex( data ) ),
-		api: [ 1, 2, 3 ]
+		api: [ 1, 2, 3, 4 ]
 	},
 
 	2: {
@@ -360,71 +360,135 @@ const components = {
 		show: () => store.dispatch( renderFooter() ),
 		form: () => true,
 		api: []
-	}
+	},
+
+	4: {
+		id: 4,
+		name: 'postItem',
+		showOnInit: true,
+		toCache: false,
+		cached: false,
+		hide: () => store.dispatch( unrenderPost() ),
+		show: () => store.dispatch( renderPost() ),
+		form: data => store.dispatch( formPost( data ) ),
+		api: [ 5, 2 ]
+	},
+
+	5: {
+		id: 5,
+		name: 'disqus',
+		showOnInit: true,
+		toCache: false,
+		cached: false,
+		hide: () => store.dispatch( unrenderDisqus() ),
+		show: () => store.dispatch( renderDisqus() ),
+		form: () => true,
+		api: []
+	},
 
 };
 
-const fetches = {
+const dataList = {
 
 	1: {
-		fetch: () => fetch( postsApi ).then( response => response.json() )
+		get: () => fetch( postsApi ).then( response => response.json() )
 	},
 
 	2: {
-		fetch: () => fetch( catsApi ).then( response => response.json() )
+		get: () => fetch( catsApi ).then( response => response.json() )
 	},
 
 	3: {
-		fetch: ( pageNum ) => fetch( postPageApi( pageNum ) ).then( response => response.json() )
+		get: ( pageNum ) => fetch( postPageApi( pageNum ) ).then( response => response.json() )
+	},
+
+	4: {
+		get: () => 1
+	},
+
+	5: {
+		get: ( id ) => fetch( postApi + id ).then( response => response.json() )
 	}
 };
 
 
-export function initRoot( componentIds ) {
+export function initPage( componentIds, data ) {
 	return function( dispatch, getState ) {
 
-		let ComponentsList = [];
-
-		// look through the page array of component ids
-		componentIds.map( id => {	
-			let obj = components[id];
-
-			// add component obj if its not cached
-			if ( !obj.cached ) { 
-				ComponentsList.push( obj );
-			}
-		});	
+		let componentsList = getComponentsList( componentIds );
 
 		// hide all components
-		ComponentsList.forEach( component => { component.hide() } );
+		componentsList.forEach( hideComponent );
 
-		// cache promises
-		let fetchPromises = {};
+		let cache = {};
 
-		ComponentsList.forEach( component => { 
-
-			let dataFetch = Promise.all( component.api.map( id => {
-
-				// if the promise is already cached - return it 
-				if ( typeof fetchPromises[id] !== 'undefined' ) {
-					return fetchPromises[id];
-				} else {
-
-					// options for fetches to call with args
-					switch ( id ) {
-						case 3: 
-							return fetchPromises[id] = fetches[id].fetch( 2 );
-						default:
-							return fetchPromises[id] = fetches[id].fetch();
-					}	
-				}
-			} ) )
-
-			dataFetch.then( result => component.form( result ) )
-					 .then( () => {
-					 	return component.showOnInit ? component.show() : true
-					} )
+		componentsList.forEach( component => { 
+			getComponentData( component, _.extend( { cache }, data ) )
+				.then( result => formComponent( component, result ) )
+				.then( () => showComponent( component ) )
+				.then( () => cacheComponent( component ) )
 		});
 
 	};
+};
+
+
+function getComponentsList( ids ) {
+	let componentsList = [];
+
+	// look through the page array of component ids
+	ids.map( id => {	
+
+		// add component obj if its not cached
+		if ( !components[id].cached ) { 
+			componentsList.push( components[id] );
+		}
+	});	
+
+	return componentsList;
+};
+
+
+function getComponentData( component, data ) {
+
+	return Promise.all( component.api.map( id => {
+
+		// if the promise is already cached - return it 
+		if ( typeof data.cache[id] !== 'undefined' ) {
+			return data.cache[id];
+		} else {
+			return data.cache[id] = getData( id, data );
+		}
+
+	} ) );
+};
+
+function getData( id, data ) {
+	switch ( id ) {
+		case 3: 
+			return dataList[id].get( 2 );
+		case 5: 
+			return dataList[id].get( data.postId );
+		default:
+			return dataList[id].get();
+	}
+}
+
+function formComponent( component, result ) {
+	return component.form( result );
+}
+
+function hideComponent( component ) {
+	return component.hide();
+}
+
+function showComponent( component ) {
+	return component.showOnInit ? component.show() : true;
+}
+
+function cacheComponent( component ) {
+	if ( component.toCache ) {
+		component.cached = true;
+		component.toCached = false;
+	} 
 }

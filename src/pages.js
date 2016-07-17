@@ -1,7 +1,7 @@
 // deps
 import { store } from './store';
 // actions
-import { initRoot, initPostPage, initPostPageNum, initCatsPageNum } from './actions';
+import { initPage, initPostPageNum, initCatsPageNum } from './actions';
 
 const pages = {
 	root: {
@@ -9,17 +9,17 @@ const pages = {
 		reg: /^\/#?$/,
 		components: [ 1, 2, 3 ],
 		init: function ( uri ) {
-			return store.dispatch( initRoot( this.components ) );
+			return store.dispatch( initPage( this.components ) );
 		}
 	},
 
 	post: {
 		path: 'post/:id',
 		reg: /^\/?post\/\d+\/?$/,
-		components: [ 1, 3, 5, 6, 9 ],
+		components: [ 2, 3, 4, 5 ],
 		init: function ( uri ) {
 			let postId = uri.slice( uri.search(/\d+$/) );
-			return store.dispatch( initPostPage( this.components, postId ) );
+			return store.dispatch( initPage( this.components, { postId } ) );
 		}
 	},
 
@@ -29,7 +29,7 @@ const pages = {
 		components: [ 1, 3, 5, 6, 9 ],
 		init: function ( uri ) {
 			let postPageNum = uri.slice( uri.search(/\d+$/) );
-			return store.dispatch( initPostPageNum( this.components, postPageNum ) );
+			return store.dispatch( initPage( this.components, { postPageNum } ) );
 		}
 	},
 
@@ -42,7 +42,7 @@ const pages = {
 
 			let catId = idPart.slice( 0, idPart.search( /\// ) );
 			let catsPageNum = uri.slice( uri.search(/\d+$/) );
-			return store.dispatch( initCatsPageNum( this.components, catId, catsPageNum ) );
+			return store.dispatch( initCatsPageNum( this.components, { catId, catsPageNum } ) );
 		}
 	}
 };
