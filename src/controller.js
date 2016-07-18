@@ -11,8 +11,6 @@ store.subscribe( handleChange );
 
 history.listen( location => {
 
-	console.log( location );
-
 	window.scrollTo( 0, 0 );
 
 	let uri = location.pathname;

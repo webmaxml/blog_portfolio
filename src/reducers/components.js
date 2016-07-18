@@ -1,6 +1,7 @@
 // reducers
 import mobileMenu from './mobileMenu';
 import postIndex from './postIndex';
+import pageNav from './pageNav';
 import categories from './categories';
 import post from './post';
 import footer from './footer';
@@ -23,16 +24,20 @@ import { TOGGLE_MOBILE_MENU,
 		 RENDER_FOOTER, 
 		 UNRENDER_FOOTER,
 		 RENDER_DISQUS, 
-		 UNRENDER_DISQUS } from '../actions';
+		 UNRENDER_DISQUS,
+		 RENDER_PAGE_NAV, 
+		 UNRENDER_PAGE_NAV, 
+		 FORM_PAGE_NAV } from '../actions';
 
 const initialState = {
-	'mobileMenu':{
+	mobileMenu:{
 		data: { render: false }
 	},
-	'postIndex': {
+	postIndex: {
 		needToFetch: true,
 		data: {
 			currPage: 1, 
+			navUri: '',
 			nextPageExist: false, 
 			render: false,
 			items: []
@@ -45,18 +50,25 @@ const initialState = {
 			items: []
 		}
 	},
-	post:{
+	post:{ 
 		needToFetch: true,
 		data: {
 			render: false,
 			item: {}
 		}
 	},
-	footer:{
+	footer: {
 		data: { render: false }
 	},
-	disqus:{
+	disqus: {
 		data: { render: false }
+	},
+	pageNav:{
+		data: { 
+			render: false,
+			prevHref: '',
+			nextHref: ''
+		}
 	}
 };
 
@@ -79,6 +91,12 @@ function components( state = initialState, action ) {
 		case FORM_POST_INDEX:	
 			return _.extend( {}, state, {
 				postIndex: postIndex( state.postIndex, action )
+			} );
+		case RENDER_PAGE_NAV:
+		case UNRENDER_PAGE_NAV:
+		case FORM_PAGE_NAV:	
+			return _.extend( {}, state, {
+				pageNav: pageNav( state.pageNav, action )
 			} );
 		case RENDER_POST:
 		case UNRENDER_POST:

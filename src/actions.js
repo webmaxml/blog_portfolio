@@ -190,6 +190,37 @@ export function unrenderFooter() {
 	};
 };
 
+/**
+ * Page nav
+ ************************/
+
+
+// render page nav
+export const RENDER_PAGE_NAV = 'RENDER_PAGE_NAV';
+export function renderPageNav() {
+	return {
+		type: RENDER_PAGE_NAV,
+	};
+};
+
+
+// unrender page nav
+export const UNRENDER_PAGE_NAV = 'UNRENDER_PAGE_NAV';
+export function unrenderPageNav() {
+	return {
+		type: UNRENDER_PAGE_NAV,
+	};
+};
+
+// form page nav
+export const FORM_PAGE_NAV = 'FORM_PAGE_NAV';
+export function formPageNav( result ) {
+	return {
+		type: FORM_PAGE_NAV,
+		result
+	};
+};
+
 
 /**
  * Initial fetch
@@ -262,63 +293,63 @@ export function unrenderFooter() {
 // 	};
 // };
 
-export function initPostPageNum( components, pageNum ) {
-	return function( dispatch, getState ) {
+// export function initPostPageNum( components, pageNum ) {
+// 	return function( dispatch, getState ) {
 
-		let postsFetch = fetch( postPageApi( pageNum ) ).then( response => response.json() );
-		let catsFetch = fetch( catsApi ).then( response => response.json() );
-		let nextPageFetch = fetch( postPageApi( +pageNum + 1 ) ).then( response => response.json() );
+// 		let postsFetch = fetch( postPageApi( pageNum ) ).then( response => response.json() );
+// 		let catsFetch = fetch( catsApi ).then( response => response.json() );
+// 		let nextPageFetch = fetch( postPageApi( +pageNum + 1 ) ).then( response => response.json() );
 
-		// categories
-		if ( getState().components.categories.needToFetch ) {
-			dispatch( unrenderCats() );
+// 		// categories
+// 		if ( getState().components.categories.needToFetch ) {
+// 			dispatch( unrenderCats() );
 
-			Promise.all([ catsFetch ])
-				.then( result => dispatch( formCats( result ) ) )
-				.then( () => dispatch( dontFetchCats() ) )
-		}
+// 			Promise.all([ catsFetch ])
+// 				.then( result => dispatch( formCats( result ) ) )
+// 				.then( () => dispatch( dontFetchCats() ) )
+// 		}
 
-		// post Index
-		dispatch( unrenderPostIndex() );
-		dispatch( unrenderFooter() );
+// 		// post Index
+// 		dispatch( unrenderPostIndex() );
+// 		dispatch( unrenderFooter() );
 
-		Promise.all([ postsFetch, catsFetch, nextPageFetch, pageNum ])
-			.then( result => dispatch( formPostIndex( result ) ) )
-			.then( () => dispatch( renderPostIndex() ) )
-			.then( () => dispatch( renderFooter() ) )
-			.then( () => dispatch( dontFetchPost() ) );
+// 		Promise.all([ postsFetch, catsFetch, nextPageFetch, pageNum ])
+// 			.then( result => dispatch( formPostIndex( result ) ) )
+// 			.then( () => dispatch( renderPostIndex() ) )
+// 			.then( () => dispatch( renderFooter() ) )
+// 			.then( () => dispatch( dontFetchPost() ) );
 
-	};
-};
+// 	};
+// };
 
-export function initCatsPageNum( components, pageNum ) {
-	return function( dispatch, getState ) {
+// export function initCatsPageNum( components, pageNum ) {
+// 	return function( dispatch, getState ) {
 
-		let postsFetch = fetch( pageApi( pageNum ) ).then( response => response.json() );
-		let catsFetch = fetch( catsApi ).then( response => response.json() );
-		let nextPageFetch = fetch( pageApi( +pageNum + 1 ) ).then( response => response.json() );
+// 		let postsFetch = fetch( pageApi( pageNum ) ).then( response => response.json() );
+// 		let catsFetch = fetch( catsApi ).then( response => response.json() );
+// 		let nextPageFetch = fetch( pageApi( +pageNum + 1 ) ).then( response => response.json() );
 
-		// categories
-		if ( getState().components.categories.needToFetch ) {
-			dispatch( unrenderCats() );
+// 		// categories
+// 		if ( getState().components.categories.needToFetch ) {
+// 			dispatch( unrenderCats() );
 
-			Promise.all([ catsFetch ])
-				.then( result => dispatch( formCats( result ) ) )
-				.then( () => dispatch( dontFetchCats() ) )
-		}
+// 			Promise.all([ catsFetch ])
+// 				.then( result => dispatch( formCats( result ) ) )
+// 				.then( () => dispatch( dontFetchCats() ) )
+// 		}
 
-		// post Index
-		dispatch( unrenderPostIndex() );
-		dispatch( unrenderFooter() );
+// 		// post Index
+// 		dispatch( unrenderPostIndex() );
+// 		dispatch( unrenderFooter() );
 
-		Promise.all([ postsFetch, catsFetch, nextPageFetch, pageNum ])
-			.then( result => dispatch( formPostIndex( result ) ) )
-			.then( () => dispatch( renderPostIndex() ) )
-			.then( () => dispatch( renderFooter() ) )
-			.then( () => dispatch( dontFetchPost() ) );
+// 		Promise.all([ postsFetch, catsFetch, nextPageFetch, pageNum ])
+// 			.then( result => dispatch( formPostIndex( result ) ) )
+// 			.then( () => dispatch( renderPostIndex() ) )
+// 			.then( () => dispatch( renderFooter() ) )
+// 			.then( () => dispatch( dontFetchPost() ) );
 
-	};
-};
+// 	};
+// };
 
 
 
@@ -335,7 +366,7 @@ const components = {
 		hide: () => store.dispatch( unrenderPostIndex() ),
 		show: () => store.dispatch( renderPostIndex() ),
 		form: data => store.dispatch( formPostIndex( data ) ),
-		api: [ 1, 2, 3, 4 ]
+		api: [ 1, 2, 3, 4, 8 ]
 	},
 
 	2: {
@@ -347,7 +378,7 @@ const components = {
 		hide: () => store.dispatch( unrenderCats() ),
 		show: () => store.dispatch( renderCats() ),
 		form: data => store.dispatch( formCats( data ) ),
-		api: [ 2 ]
+		api: [ 3 ]
 	},	
 
 	3: {
@@ -371,7 +402,7 @@ const components = {
 		hide: () => store.dispatch( unrenderPost() ),
 		show: () => store.dispatch( renderPost() ),
 		form: data => store.dispatch( formPost( data ) ),
-		api: [ 5, 2 ]
+		api: [ 5, 3 ]
 	},
 
 	5: {
@@ -386,28 +417,52 @@ const components = {
 		api: []
 	},
 
+	6: {
+		id: 6,
+		name: 'catsPostIndex',
+		showOnInit: true,
+		toCache: false,
+		cached: false,
+		hide: () => store.dispatch( unrenderPostIndex() ),
+		show: () => store.dispatch( renderPostIndex() ),
+		form: data => store.dispatch( formPostIndex( data ) ),
+		api: [ 6, 7, 3, 4, 8 ]
+	}
+
 };
 
 const dataList = {
 
 	1: {
-		get: () => fetch( postsApi ).then( response => response.json() )
-	},
-
-	2: {
-		get: () => fetch( catsApi ).then( response => response.json() )
-	},
-
-	3: {
 		get: ( pageNum ) => fetch( postPageApi( pageNum ) ).then( response => response.json() )
 	},
 
+	2: {
+		get: ( pageNum ) => fetch( postPageApi( pageNum ) ).then( response => response.json() )
+	},
+
+	3: {
+		get: () => fetch( catsApi ).then( response => response.json() )
+	},
+
 	4: {
-		get: () => 1
+		get: ( pageNum ) => pageNum
 	},
 
 	5: {
 		get: ( id ) => fetch( postApi + id ).then( response => response.json() )
+	},
+
+	6: {
+		get: ( pageNum, catId ) => fetch( catsPageApi( pageNum, catId ) ).then( response => response.json() )
+	},
+
+	7: {
+		get: ( pageNum, catId ) => fetch( catsPageApi( pageNum, catId ) ).then( response => response.json() )
+	},
+
+	8: {
+		get: ( navUri ) => navUri
 	}
 };
 
@@ -465,10 +520,20 @@ function getComponentData( component, data ) {
 
 function getData( id, data ) {
 	switch ( id ) {
-		case 3: 
-			return dataList[id].get( 2 );
+		case 1: 
+			return dataList[id].get( data.pageNum );
+		case 2: 
+			return dataList[id].get( data.pageNum + 1 );
+		case 4: 
+			return dataList[id].get( data.pageNum );
 		case 5: 
 			return dataList[id].get( data.postId );
+		case 6: 
+			return dataList[id].get( data.pageNum, data.catId );
+		case 7: 
+			return dataList[id].get( data.pageNum + 1, data.catId );
+		case 8: 
+			return dataList[id].get( data.navUri );
 		default:
 			return dataList[id].get();
 	}

@@ -25,6 +25,15 @@ class PostIndex extends React.Component {
         TweenMax.from( this.section, .3, { opacity: 0, onComplete: callback } );
     }
     render() {
+        let prevHref, nextHref;
+
+        prevHref = this.props.data.navUri + ( this.props.data.currPage + 1 );
+        nextHref = this.props.data.navUri + ( this.props.data.currPage - 1 );
+
+        if ( this.props.data.currPage === 2 && 
+             this.props.data.navUri === 'posts/page/' ) {
+            nextHref = '/';
+        }
 
         return (
         	<article className="postIndex" ref={ ref => this.section = ref }>
@@ -39,15 +48,13 @@ class PostIndex extends React.Component {
                 <div className="postIndex__nav-line">
                     <div className="postIndex__nav-wrap">
                         { this.props.data.currPage > 1 ? 
-                            this.props.data.currPage === 2 ?
-                                <PostPageLink href="/">Следующие</PostPageLink> :
-                                <PostPageLink href={ `/posts/page/${this.props.data.currPage - 1}` }>Следующие</PostPageLink> :
+                            <PostPageLink href={ nextHref }>Следующие</PostPageLink> :
                             null
                         }
                     </div>
                     <div className="postIndex__nav-wrap">
                         { this.props.data.nextPageExist ? 
-                            <PostPageLink href={ `/posts/page/${this.props.data.currPage + 1}` }>Предыдущие</PostPageLink> : 
+                            <PostPageLink href={ prevHref }>Предыдущие</PostPageLink> : 
                             null 
                         }
                     </div>

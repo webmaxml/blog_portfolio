@@ -9,7 +9,8 @@ const pages = {
 		reg: /^\/#?$/,
 		components: [ 1, 2, 3 ],
 		init: function ( uri ) {
-			return store.dispatch( initPage( this.components ) );
+			let navUri = 'posts/page/';
+			return store.dispatch( initPage( this.components, { pageNum: 1, navUri } ) );
 		}
 	},
 
@@ -26,23 +27,25 @@ const pages = {
 	postsPage: {
 		path: 'posts/page/:count',
 		reg: /^\/?posts\/page\/\d+\/?$/,
-		components: [ 1, 3, 5, 6, 9 ],
+		components: [ 1, 2, 3 ],
 		init: function ( uri ) {
-			let postPageNum = uri.slice( uri.search(/\d+$/) );
-			return store.dispatch( initPage( this.components, { postPageNum } ) );
+			let pageNum = uri.slice( uri.search(/\d+$/) );
+			let navUri = 'posts/page/';
+			return store.dispatch( initPage( this.components, { pageNum, navUri } ) );
 		}
 	},
 
 	catsPage: {
 		path: 'cats/:id/page/:count',
 		reg: /^\/?cats\/\d+\/page\/\d+\/?$/,
-		components: [ 1, 3, 5, 6, 9 ],
+		components: [ 6, 2, 3 ],
 		init: function ( uri ) {
+			let navUri = uri.slice( 0, uri.search(/\d+$/) );
 			let idPart = uri.slice( uri.search( /\d+/ ) );
 
 			let catId = idPart.slice( 0, idPart.search( /\// ) );
-			let catsPageNum = uri.slice( uri.search(/\d+$/) );
-			return store.dispatch( initCatsPageNum( this.components, { catId, catsPageNum } ) );
+			let pageNum = uri.slice( uri.search(/\d+$/) );
+			return store.dispatch( initPage( this.components, { pageNum, catId, navUri } ) );
 		}
 	}
 };

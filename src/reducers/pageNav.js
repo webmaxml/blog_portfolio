@@ -1,43 +1,33 @@
 // actions
-import { RENDER_POST_INDEX, 
-		 UNRENDER_POST_INDEX, 
-		 FORM_POST_INDEX } from '../actions';
+import { RENDER_PAGE_NAV, 
+		 UNRENDER_PAGE_NAV, 
+		 FORM_PAGE_NAV } from '../actions';
 
 function postIndex( state, action ) {
 	switch ( action.type ) {
-		case RENDER_POST_INDEX:
+		case RENDER_PAGE_NAV:
 			return _.extend( {}, state, {
 				data: { 
 					render: true,
-					currPage: state.data.currPage,
-					navUri: state.data.navUri,
-					nextPageExist: state.data.nextPageExist,
-					items: [].concat( state.data.items )
 				} 
 			} );
-		case UNRENDER_POST_INDEX:
+		case UNRENDER_PAGE_NAV:
 			return _.extend( {}, state, {
 				data: { 
 					render: false,
-					currPage: state.data.currPage,
-					navUri: state.data.navUri,
-					nextPageExist: state.data.nextPageExist,
-					items: [].concat( state.data.items )
 				} 
 			} );
-		case FORM_POST_INDEX:
+		case FORM_PAGE_NAV:
 			let jsonPosts = action.result[0];
 			let nextPagePosts = action.result[1];
 			let jsonCats = action.result[2];
 			let currPage = +action.result[3];
-			let navUri = action.result[4];
 			
 			return _.extend( {}, state, { 
 				data: {
 					render: state.data.render,
 					currPage,
 					nextPageExist: nextPagePosts.length > 0,
-					navUri,
 					items: jsonPosts.map( item => {	
 						return {
 			                id: item.id,
