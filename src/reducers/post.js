@@ -28,6 +28,7 @@ function post( state, action, helper ) {
 		case FORM_POST:
 			const jsonPost = action.result[0];
 			const jsonCats = action.result[1];
+			const jsonTags = action.result[2];
 			
 			return _.extend( {}, state, { 
 				data: {
@@ -46,6 +47,16 @@ function post( state, action, helper ) {
 		                		title: catObj.name
 		                	}
 		                } ),
+		                tags: jsonPost.tags.map( tag => {
+
+		                	// item.tags contains array of id's
+		                	// find the tag object in the jsonTags
+		                	const tagObj = _.find( jsonTags, obj => obj.id === tag );
+		                	return {
+		                		id: tagObj.id,
+		                		title: tagObj.name
+		                	}
+		                } ), 
 		                content: jsonPost.content.rendered
 			        }
 				}

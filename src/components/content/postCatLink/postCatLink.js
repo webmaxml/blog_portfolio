@@ -1,5 +1,6 @@
 // deps
 import React from 'react';
+import { Link } from 'react-router';
 
 class PostCatLink extends React.Component {
 
@@ -9,9 +10,9 @@ class PostCatLink extends React.Component {
 
     render() {
         return (
-        	<a className="postCatLink" href={ this.props.href }>
+        	<Link className="postCatLink" to={ this.props.href }>
                 { this.props.children }
-            </a>
+            </Link>
         );
     }
 }

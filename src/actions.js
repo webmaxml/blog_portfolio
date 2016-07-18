@@ -5,8 +5,10 @@ import { store } from './store';
 import { postsApi,
 		 postApi,
 		 catsApi,
+		 tagsApi,
 		 postPageApi,
-		 catsPageApi } from './entry'; 
+		 catsPageApi,
+		 tagsPageApi } from './entry'; 
 
 
 /**
@@ -402,7 +404,7 @@ const components = {
 		hide: () => store.dispatch( unrenderPost() ),
 		show: () => store.dispatch( renderPost() ),
 		form: data => store.dispatch( formPost( data ) ),
-		api: [ 5, 3 ]
+		api: [ 5, 3, 9 ]
 	},
 
 	5: {
@@ -427,6 +429,18 @@ const components = {
 		show: () => store.dispatch( renderPostIndex() ),
 		form: data => store.dispatch( formPostIndex( data ) ),
 		api: [ 6, 7, 3, 4, 8 ]
+	},
+
+	7: {
+		id: 6,
+		name: 'tagsPostIndex',
+		showOnInit: true,
+		toCache: false,
+		cached: false,
+		hide: () => store.dispatch( unrenderPostIndex() ),
+		show: () => store.dispatch( renderPostIndex() ),
+		form: data => store.dispatch( formPostIndex( data ) ),
+		api: [ 10, 11, 3, 4, 8 ]
 	}
 
 };
@@ -463,6 +477,18 @@ const dataList = {
 
 	8: {
 		get: ( navUri ) => navUri
+	},
+
+	9: {
+		get: () => fetch( tagsApi ).then( response => response.json() )
+	},
+
+	10: {
+		get: ( pageNum, tagId ) => fetch( tagsPageApi( pageNum, tagId ) ).then( response => response.json() )
+	},
+
+	11: {
+		get: ( pageNum, tagId ) => fetch( tagsPageApi( pageNum, tagId ) ).then( response => response.json() )
 	}
 };
 
@@ -521,19 +547,23 @@ function getComponentData( component, data ) {
 function getData( id, data ) {
 	switch ( id ) {
 		case 1: 
-			return dataList[id].get( data.pageNum );
+			return dataList[id].get( +data.pageNum );
 		case 2: 
-			return dataList[id].get( data.pageNum + 1 );
+			return dataList[id].get( +data.pageNum + 1 );
 		case 4: 
-			return dataList[id].get( data.pageNum );
+			return dataList[id].get( +data.pageNum );
 		case 5: 
 			return dataList[id].get( data.postId );
 		case 6: 
-			return dataList[id].get( data.pageNum, data.catId );
+			return dataList[id].get( +data.pageNum, data.catId );
 		case 7: 
-			return dataList[id].get( data.pageNum + 1, data.catId );
+			return dataList[id].get( +data.pageNum + 1, data.catId );
 		case 8: 
 			return dataList[id].get( data.navUri );
+		case 10: 
+			return dataList[id].get( +data.pageNum, data.tagId );
+		case 11: 
+			return dataList[id].get( +data.pageNum + 1, data.tagId );
 		default:
 			return dataList[id].get();
 	}

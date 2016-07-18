@@ -41,7 +41,7 @@ class PostItem extends React.Component {
                     { this.props.data.item.cats.map( cat => {
                         return (
                             <li className="postItem__category-wrap" key={ cat.id }>
-                                <PostCatLink href="#">{ cat.title }</PostCatLink>
+                                <PostCatLink href={ `/cats/${ cat.id }/page/1` }>{ cat.title }</PostCatLink>
                             </li>
                         );
                     } ) }
@@ -54,15 +54,15 @@ class PostItem extends React.Component {
                     <SectionHeader>Теги</SectionHeader>
                 </h2>
                 <ul className="postItem__tag-line">
-                    <li className="postItem__tag-wrap">
-                        <PostTagLink href="#">Жизнь</PostTagLink>
-                    </li>
-                    <li className="postItem__tag-wrap">
-                        <PostTagLink href="#">Семья</PostTagLink>
-                    </li>
-                    <li className="postItem__tag-wrap">
-                        <PostTagLink href="#">Деньги</PostTagLink>
-                    </li>
+
+                    { this.props.data.item.tags.map( tag => {
+                        return (
+                            <li className="postItem__tag-wrap" key={ tag.id }>
+                                <PostTagLink href={ `/tags/${ tag.id }/page/1` }>{ tag.title }</PostTagLink>
+                            </li>
+                        );
+                    } ) }
+
                 </ul>
                 <SimilarPosts />
                 <Disqus id = { this.props.data.item.id } 

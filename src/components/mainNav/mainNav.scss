@@ -32,6 +32,8 @@
 
 		transition: color .2s;
 
+		cursor: pointer;
+
 		&:hover {
 			color: lighten( $c_navText, 20% );
 		}

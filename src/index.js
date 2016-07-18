@@ -30,6 +30,7 @@ render(
 						<Route path={ pages.post.path } component={ PostItem } />
 						<Route path={ pages.postsPage.path } component={ PostIndex } />
 						<Route path={ pages.catsPage.path } component={ PostIndex } />
+						<Route path={ pages.tagsPage.path } component={ PostIndex } />
 					</Route>
 				</Route>
 			</Route>

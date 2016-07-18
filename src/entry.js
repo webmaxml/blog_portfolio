@@ -9,6 +9,7 @@ export const postsApi = api + '/posts?filter[posts_per_page]=10&page=1&order=des
 // expecting - [ {...},{...},... ]
 export const postPageApi = pageNum => api + `/posts?filter[posts_per_page]=10&page=${pageNum}&order=desc`;
 export const catsPageApi = ( pageNum, catId )  => api + `/posts?categories=${catId}&filter[posts_per_page]=10&page=${pageNum}&order=desc`;
+export const tagsPageApi = ( pageNum, tagId )  => api + `/posts?tags=${tagId}&filter[posts_per_page]=10&page=${pageNum}&order=desc`;
 
 
 // post
@@ -18,3 +19,7 @@ export const postApi = api + '/posts/'; // + id
 // categories
 // expecting - [ {...},{...},... ]
 export const catsApi = api + '/categories';
+
+// tags
+// expecting - [ {...},{...},... ]
+export const tagsApi = api + '/tags';

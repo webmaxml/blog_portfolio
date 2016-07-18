@@ -28,7 +28,7 @@ class PostItemExcerpt extends React.Component {
                     { this.props.cats.map( cat => {
                         return (
                             <li className="postItemExcerpt__category-wrap" key={ cat.id }>
-                                <PostCatLink href="#">{ cat.title }</PostCatLink>
+                                <PostCatLink href={ `/cats/${cat.id}/page/1` }>{ cat.title }</PostCatLink>
                             </li>
                         );
                     } ) }

@@ -47,6 +47,20 @@ const pages = {
 			let pageNum = uri.slice( uri.search(/\d+$/) );
 			return store.dispatch( initPage( this.components, { pageNum, catId, navUri } ) );
 		}
+	},
+
+	tagsPage: {
+		path: 'tags/:id/page/:count',
+		reg: /^\/?tags\/\d+\/page\/\d+\/?$/,
+		components: [ 7, 2, 3 ],
+		init: function ( uri ) {
+			let navUri = uri.slice( 0, uri.search(/\d+$/) );
+			let idPart = uri.slice( uri.search( /\d+/ ) );
+
+			let tagId = idPart.slice( 0, idPart.search( /\// ) );
+			let pageNum = uri.slice( uri.search(/\d+$/) );
+			return store.dispatch( initPage( this.components, { pageNum, tagId, navUri } ) );
+		}
 	}
 };
 

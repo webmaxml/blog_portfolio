@@ -1,6 +1,7 @@
 // deps
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router';
 // components
 import CatNav from '../catNav/catNav';
 // actions
@@ -47,14 +48,14 @@ class MainNav extends React.Component {
         return (
         	<ul className={ classes }>
                 <li className="mainNav__wrap">
-                    <a href="#" className="mainNav__link mainNav__link--active">Блог</a>
+                    <Link to="/" className="mainNav__link mainNav__link--active">Блог</Link>
                 </li>
     			<li className="mainNav__wrap" 
                     onMouseEnter={ this.hoverEnter }
                     onMouseLeave={ this.hoverLeave }
                     onTouchStart={ this.touchHandle }
                     >
-        				<a href="#" className={ catsClasses }>Рубрики</a>
+        				<span className={ catsClasses }>Рубрики</span>
                         <CatNav mode={ this.state.mode } />      
     			</li>
     			<li className="mainNav__wrap">
