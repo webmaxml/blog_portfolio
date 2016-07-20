@@ -8,7 +8,9 @@ import { postsApi,
 		 tagsApi,
 		 postPageApi,
 		 catsPageApi,
-		 tagsPageApi } from './entry'; 
+		 tagsPageApi,
+		 postsCatsApi,
+		 similarPostsApi } from './entry'; 
 
 
 /**
@@ -193,32 +195,32 @@ export function unrenderFooter() {
 };
 
 /**
- * Page nav
+ * Similar Posts
  ************************/
 
 
-// render page nav
-export const RENDER_PAGE_NAV = 'RENDER_PAGE_NAV';
-export function renderPageNav() {
+// render similar posts
+export const RENDER_SIMILAR_POSTS = 'RENDER_SIMILAR_POSTS';
+export function renderSimilarPosts() {
 	return {
-		type: RENDER_PAGE_NAV,
+		type: RENDER_SIMILAR_POSTS,
 	};
 };
 
 
-// unrender page nav
-export const UNRENDER_PAGE_NAV = 'UNRENDER_PAGE_NAV';
-export function unrenderPageNav() {
+// unrender similar posts
+export const UNRENDER_SIMILAR_POSTS = 'UNRENDER_SIMILAR_POSTS';
+export function unrenderSimilarPosts() {
 	return {
-		type: UNRENDER_PAGE_NAV,
+		type: UNRENDER_SIMILAR_POSTS,
 	};
 };
 
-// form page nav
-export const FORM_PAGE_NAV = 'FORM_PAGE_NAV';
-export function formPageNav( result ) {
+// form similar posts
+export const FORM_SIMILAR_POSTS = 'FORM_SIMILAR_POSTS';
+export function formSimilarPosts( result ) {
 	return {
-		type: FORM_PAGE_NAV,
+		type: FORM_SIMILAR_POSTS,
 		result
 	};
 };
@@ -432,7 +434,7 @@ const components = {
 	},
 
 	7: {
-		id: 6,
+		id: 7,
 		name: 'tagsPostIndex',
 		showOnInit: true,
 		toCache: false,
@@ -441,6 +443,18 @@ const components = {
 		show: () => store.dispatch( renderPostIndex() ),
 		form: data => store.dispatch( formPostIndex( data ) ),
 		api: [ 10, 11, 3, 4, 8 ]
+	},
+
+	8: {
+		id: 8,
+		name: 'similarPosts',
+		showOnInit: true,
+		toCache: false,
+		cached: false,
+		hide: () => store.dispatch( unrenderSimilarPosts() ),
+		show: () => store.dispatch( renderSimilarPosts() ),
+		form: data => store.dispatch( formSimilarPosts( data ) ),
+		api: [ 12 ]
 	}
 
 };
@@ -489,6 +503,10 @@ const dataList = {
 
 	11: {
 		get: ( pageNum, tagId ) => fetch( tagsPageApi( pageNum, tagId ) ).then( response => response.json() )
+	},
+
+	12: {
+		get: ( postId ) => fetch( similarPostsApi( postId ) ).then( response => response.json() )
 	}
 };
 
@@ -503,12 +521,14 @@ export function initPage( componentIds, data ) {
 
 		let cache = {};
 
-		componentsList.forEach( component => { 
-			getComponentData( component, _.extend( { cache }, data ) )
-				.then( result => formComponent( component, result ) )
-				.then( () => showComponent( component ) )
-				.then( () => cacheComponent( component ) )
+		let pagePromises = componentsList.map( component => { 
+			return getComponentData( component, _.extend( { cache }, data ) )
+					.then( result => formComponent( component, result ) )
+					.then( () => showComponent( component ) )
+					.then( () => cacheComponent( component ) )
 		});
+
+		Promise.all( pagePromises ).catch( error => console.log( 'К сожалению при загрузке ресурсов произошла ошибка' ) );
 
 	};
 };
@@ -564,6 +584,8 @@ function getData( id, data ) {
 			return dataList[id].get( +data.pageNum, data.tagId );
 		case 11: 
 			return dataList[id].get( +data.pageNum + 1, data.tagId );
+		case 12: 
+			return dataList[id].get( data.postId );
 		default:
 			return dataList[id].get();
 	}
@@ -584,6 +606,6 @@ function showComponent( component ) {
 function cacheComponent( component ) {
 	if ( component.toCache ) {
 		component.cached = true;
-		component.toCached = false;
+		component.toCache = false;
 	} 
 }

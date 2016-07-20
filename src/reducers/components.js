@@ -5,6 +5,7 @@ import categories from './categories';
 import post from './post';
 import footer from './footer';
 import disqus from './disqus';
+import similarPosts from './similarPosts';
 // actions
 import { TOGGLE_MOBILE_MENU,
 		 FORM_POST_INDEX,
@@ -23,7 +24,10 @@ import { TOGGLE_MOBILE_MENU,
 		 RENDER_FOOTER, 
 		 UNRENDER_FOOTER,
 		 RENDER_DISQUS, 
-		 UNRENDER_DISQUS } from '../actions';
+		 UNRENDER_DISQUS,
+		 RENDER_SIMILAR_POSTS,
+		 UNRENDER_SIMILAR_POSTS,
+		 FORM_SIMILAR_POSTS } from '../actions';
 
 const initialState = {
 	mobileMenu:{
@@ -58,6 +62,12 @@ const initialState = {
 	},
 	disqus: {
 		data: { render: false }
+	},
+	similarPosts: {
+		data: {
+			render: false,
+			items: []
+		}
 	}
 };
 
@@ -91,6 +101,12 @@ function components( state = initialState, action ) {
 		case DONT_FETCH_POST:
 			return _.extend( {}, state, {
 				post: post( state.post, action )
+			} );
+		case RENDER_SIMILAR_POSTS:
+		case UNRENDER_SIMILAR_POSTS:
+		case FORM_SIMILAR_POSTS:	
+			return _.extend( {}, state, {
+				similarPosts: similarPosts( state.similarPosts, action )
 			} );
 		case RENDER_FOOTER:
 		case UNRENDER_FOOTER:

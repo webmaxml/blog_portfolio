@@ -1,13 +1,21 @@
 // deps
 import React from 'react';
+import { connect } from 'react-redux';
+import TweenMax from 'gsap';
 // content components
 import SectionHeader from '../content/sectionHeader/sectionHeader';
 import PostSidebarLink from '../content/postSidebarLink/postSidebarLink';
+// helpers
+import transition from '../../transition';
 
 class SimilarPosts extends React.Component {
 
     constructor(props) {
         super(props);
+    }
+
+    componentWillEnter( callback ) {
+        TweenMax.from( this.section, .3, { opacity: 0, onComplete: callback } );
     }
 
     render() {
@@ -17,15 +25,15 @@ class SimilarPosts extends React.Component {
         			<SectionHeader>Похожие</SectionHeader>
         		</h2>
         		<ul className="similarPosts__list-line">
-        			<li className="similarPosts__item-wrap">
-        				<PostSidebarLink href="#">Похожий пост номер 1</PostSidebarLink>
-        			</li>
-        			<li className="similarPosts__item-wrap">
-        				<PostSidebarLink href="#">Похожий пост номер 2</PostSidebarLink>
-        			</li>
-        			<li className="similarPosts__item-wrap">
-        				<PostSidebarLink href="#">Похожий пост номер 3</PostSidebarLink>
-        			</li>
+                
+                    { this.props.data.items.map( item => {
+                        return (
+                            <li className="similarPosts__item-wrap" key={ item.id }>
+                                <PostSidebarLink href={ `/post/${ item.id }` }>{ item.title }</PostSidebarLink>
+                            </li>
+                        );
+                    } ) }
+
         		</ul>
         	</div>
         );
@@ -33,4 +41,12 @@ class SimilarPosts extends React.Component {
 
 }
 
-export default SimilarPosts;
+function mapStateToProps( state ) {
+    return {
+        data: state.components.similarPosts.data
+    };
+};
+
+const SimilarPostsContainer = connect( mapStateToProps )( transition( SimilarPosts ) );
+
+export default SimilarPostsContainer;

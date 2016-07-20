@@ -23,3 +23,9 @@ export const catsApi = api + '/categories';
 // tags
 // expecting - [ {...},{...},... ]
 export const tagsApi = api + '/tags';
+
+// posts by categories
+// expecting - [ {...},{...},... ]
+export const postsCatsApi = catId => api + `/posts?categories=${catId}`;
+
+export const similarPostsApi = postId => `http://api.blog.webmaxml.ru/wp-json/lazydaddy/v1/similarPosts?id=${ postId }`;

@@ -17,7 +17,7 @@ const pages = {
 	post: {
 		path: 'post/:id',
 		reg: /^\/?post\/\d+\/?$/,
-		components: [ 2, 3, 4, 5 ],
+		components: [ 2, 3, 4, 5, 8 ],
 		init: function ( uri ) {
 			let postId = uri.slice( uri.search(/\d+$/) );
 			return store.dispatch( initPage( this.components, { postId } ) );

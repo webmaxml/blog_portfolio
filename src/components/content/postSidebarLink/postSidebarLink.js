@@ -1,5 +1,6 @@
 // deps
 import React from 'react';
+import { Link } from 'react-router';
 
 class PostSidebarLink extends React.Component {
 
@@ -9,9 +10,9 @@ class PostSidebarLink extends React.Component {
 
     render() {
         return (
-        	<a className="postSidebarLink" href={ this.props.href }>
+        	<Link className="postSidebarLink" to={ this.props.href }>
                 { this.props.children }
-            </a>
+            </Link>
         );
     }
 }
