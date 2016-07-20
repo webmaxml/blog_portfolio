@@ -20,7 +20,7 @@ class SimilarPosts extends React.Component {
 
     render() {
         return (
-        	<div className="similarPosts">
+        	<div className="similarPosts" ref={ ref => this.section = ref }>
         		<h2 className="similarPosts__header-line">
         			<SectionHeader>Похожие</SectionHeader>
         		</h2>

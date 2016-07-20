@@ -7,7 +7,7 @@ const pages = {
 	root: {
 		path: '/',
 		reg: /^\/#?$/,
-		components: [ 1, 2, 3 ],
+		components: [ 1, 2, 3, 9 ],
 		init: function ( uri ) {
 			let navUri = 'posts/page/';
 			return store.dispatch( initPage( this.components, { pageNum: 1, navUri } ) );
@@ -17,7 +17,7 @@ const pages = {
 	post: {
 		path: 'post/:id',
 		reg: /^\/?post\/\d+\/?$/,
-		components: [ 2, 3, 4, 5, 8 ],
+		components: [ 2, 3, 4, 5, 8, 9 ],
 		init: function ( uri ) {
 			let postId = uri.slice( uri.search(/\d+$/) );
 			return store.dispatch( initPage( this.components, { postId } ) );
@@ -27,7 +27,7 @@ const pages = {
 	postsPage: {
 		path: 'posts/page/:count',
 		reg: /^\/?posts\/page\/\d+\/?$/,
-		components: [ 1, 2, 3 ],
+		components: [ 1, 2, 3, 9 ],
 		init: function ( uri ) {
 			let pageNum = uri.slice( uri.search(/\d+$/) );
 			let navUri = 'posts/page/';
@@ -38,7 +38,7 @@ const pages = {
 	catsPage: {
 		path: 'cats/:id/page/:count',
 		reg: /^\/?cats\/\d+\/page\/\d+\/?$/,
-		components: [ 6, 2, 3 ],
+		components: [ 6, 2, 3, 9 ],
 		init: function ( uri ) {
 			let navUri = uri.slice( 0, uri.search(/\d+$/) );
 			let idPart = uri.slice( uri.search( /\d+/ ) );
@@ -52,7 +52,7 @@ const pages = {
 	tagsPage: {
 		path: 'tags/:id/page/:count',
 		reg: /^\/?tags\/\d+\/page\/\d+\/?$/,
-		components: [ 7, 2, 3 ],
+		components: [ 7, 2, 3, 9 ],
 		init: function ( uri ) {
 			let navUri = uri.slice( 0, uri.search(/\d+$/) );
 			let idPart = uri.slice( uri.search( /\d+/ ) );

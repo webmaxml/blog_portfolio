@@ -10,7 +10,8 @@ import { postsApi,
 		 catsPageApi,
 		 tagsPageApi,
 		 postsCatsApi,
-		 similarPostsApi } from './entry'; 
+		 similarPostsApi,
+		 postsTopApi } from './entry'; 
 
 
 /**
@@ -221,6 +222,37 @@ export const FORM_SIMILAR_POSTS = 'FORM_SIMILAR_POSTS';
 export function formSimilarPosts( result ) {
 	return {
 		type: FORM_SIMILAR_POSTS,
+		result
+	};
+};
+
+/**
+ * Top posts
+ ************************/
+
+
+// render top posts
+export const RENDER_POSTS_TOP = 'RENDER_POSTS_TOP';
+export function renderPostsTop() {
+	return {
+		type: RENDER_POSTS_TOP,
+	};
+};
+
+
+// unrender top posts
+export const UNRENDER_POSTS_TOP = 'UNRENDER_POSTS_TOP';
+export function unrenderPostsTop() {
+	return {
+		type: UNRENDER_POSTS_TOP,
+	};
+};
+
+// form top posts
+export const FORM_POSTS_TOP = 'FORM_POSTS_TOP';
+export function formPostsTop( result ) {
+	return {
+		type: FORM_POSTS_TOP,
 		result
 	};
 };
@@ -455,6 +487,18 @@ const components = {
 		show: () => store.dispatch( renderSimilarPosts() ),
 		form: data => store.dispatch( formSimilarPosts( data ) ),
 		api: [ 12 ]
+	},
+
+	9: {
+		id: 9,
+		name: 'postsTop',
+		showOnInit: true,
+		toCache: true,
+		cached: false,
+		hide: () => store.dispatch( unrenderPostsTop() ),
+		show: () => store.dispatch( renderPostsTop() ),
+		form: data => store.dispatch( formPostsTop( data ) ),
+		api: [ 13 ]
 	}
 
 };
@@ -507,6 +551,10 @@ const dataList = {
 
 	12: {
 		get: ( postId ) => fetch( similarPostsApi( postId ) ).then( response => response.json() )
+	},
+
+	13: {
+		get: () => fetch( postsTopApi ).then( response => response.json() )
 	}
 };
 

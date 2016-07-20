@@ -1,5 +1,10 @@
 // deps
 import React from 'react';
+import { connect } from 'react-redux';
+// content components
+import PostSidebarLink from '../content/postSidebarLink/postSidebarLink';
+// helpers
+import transition from '../../transition';
 
 class PostsTop extends React.Component {
 
@@ -7,38 +12,26 @@ class PostsTop extends React.Component {
         super(props);
     }
 
+    componentWillEnter( callback ) {
+        TweenMax.from( this.section, .3, { opacity: 0, onComplete: callback } );
+    }
+
     render() {
         return (
-        	<div className="postsTop">
+        	<div className="postsTop" ref={ ref => this.section = ref }>
 	        	<h1 className="postsTop__header-line">
 	        		<b className="postsTop__header">Топ</b>
 	        	</h1>
 	        	<ul className="postsTop__list">
-	        		<li className="postsTop__item-line">
-	        			<a className="postsTop__link" href="#">
-	        				Расплата за неправильное питание
-	        			</a>
-	        		</li>
-	        		<li className="postsTop__item-line">
-	        			<a className="postsTop__link" href="#">
-	        				Адамыч и Ева
-	        			</a>
-	        		</li>
-	        		<li className="postsTop__item-line">
-	        			<a className="postsTop__link" href="#">
-	        				Сейсмический способ накачать пресс
-	        			</a>
-	        		</li>
-	        		<li className="postsTop__item-line">
-	        			<a className="postsTop__link" href="#">
-	        				Собаки и все что с ними связано
-	        			</a>
-	        		</li>
-	        		<li className="postsTop__item-line">
-	        			<a className="postsTop__link" href="#">
-	        				Сетевой маркетинг. Мой личный опыт
-	        			</a>
-	        		</li>
+
+	        		{ this.props.data.items.map( ( item, index )  => {
+	        			return (
+	        				<li className="postsTop__item-line" key={ index }>
+			        			<PostSidebarLink href={ item.href }>{ item.title }</PostSidebarLink>
+			        		</li>
+	        			);
+	        		} ) }
+	        		
 	        	</ul>
 	        </div>
 	    );
@@ -46,4 +39,13 @@ class PostsTop extends React.Component {
 
 }
 
-export default PostsTop;
+function mapStateToProps( state ) {
+    return {
+        data: state.components.postsTop.data
+    };
+};
+
+const PostsTopContainer = connect( mapStateToProps )( transition( PostsTop ) );
+
+export default PostsTopContainer;
+

@@ -29,3 +29,5 @@ export const tagsApi = api + '/tags';
 export const postsCatsApi = catId => api + `/posts?categories=${catId}`;
 
 export const similarPostsApi = postId => `http://api.blog.webmaxml.ru/wp-json/lazydaddy/v1/similarPosts?id=${ postId }`;
+
+export const postsTopApi = 'https://disqus.com/api/3.0/threads/listPopular.json?api_key=DRTRW7YF22OQ16UlcoKCXrkLugLJOtYbtkEMHbHpnMGwOX2MEpTTqdjQALldBMEs&forum=ilyablog';
