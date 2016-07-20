@@ -7,6 +7,7 @@ import footer from './footer';
 import disqus from './disqus';
 import similarPosts from './similarPosts';
 import postsTop from './postsTop';
+import dateArchive from './dateArchive';
 // actions
 import { TOGGLE_MOBILE_MENU,
 		 FORM_POST_INDEX,
@@ -31,7 +32,10 @@ import { TOGGLE_MOBILE_MENU,
 		 FORM_SIMILAR_POSTS,
 		 RENDER_POSTS_TOP,
 		 UNRENDER_POSTS_TOP,
-		 FORM_POSTS_TOP } from '../actions';
+		 FORM_POSTS_TOP,
+		 RENDER_ARCHIVE,
+		 UNRENDER_ARCHIVE,
+		 FORM_ARCHIVE } from '../actions';
 
 const initialState = {
 	mobileMenu:{
@@ -74,6 +78,12 @@ const initialState = {
 		}
 	},
 	postsTop: {
+		data: {
+			render: false,
+			items: []
+		}
+	},
+	dateArchive: {
 		data: {
 			render: false,
 			items: []
@@ -123,6 +133,12 @@ function components( state = initialState, action ) {
 		case FORM_POSTS_TOP:	
 			return _.extend( {}, state, {
 				postsTop: postsTop( state.postsTop, action )
+			} );
+		case RENDER_ARCHIVE:
+		case UNRENDER_ARCHIVE:
+		case FORM_ARCHIVE:	
+			return _.extend( {}, state, {
+				dateArchive: dateArchive( state.dateArchive, action )
 			} );
 		case RENDER_FOOTER:
 		case UNRENDER_FOOTER:

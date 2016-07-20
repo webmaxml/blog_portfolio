@@ -11,7 +11,8 @@ import { postsApi,
 		 tagsPageApi,
 		 postsCatsApi,
 		 similarPostsApi,
-		 postsTopApi } from './entry'; 
+		 postsTopApi,
+		 dateArchiveApi } from './entry'; 
 
 
 /**
@@ -253,6 +254,37 @@ export const FORM_POSTS_TOP = 'FORM_POSTS_TOP';
 export function formPostsTop( result ) {
 	return {
 		type: FORM_POSTS_TOP,
+		result
+	};
+};
+
+/**
+ * Date archive
+ ************************/
+
+
+// render archive
+export const RENDER_ARCHIVE = 'RENDER_ARCHIVE';
+export function renderDateArchive() {
+	return {
+		type: RENDER_ARCHIVE,
+	};
+};
+
+
+// unrender archive
+export const UNRENDER_ARCHIVE = 'UNRENDER_ARCHIVE';
+export function unrenderDateArchive() {
+	return {
+		type: UNRENDER_ARCHIVE,
+	};
+};
+
+// form archive
+export const FORM_ARCHIVE = 'FORM_ARCHIVE';
+export function formDateArchive( result ) {
+	return {
+		type: FORM_ARCHIVE,
 		result
 	};
 };
@@ -499,6 +531,18 @@ const components = {
 		show: () => store.dispatch( renderPostsTop() ),
 		form: data => store.dispatch( formPostsTop( data ) ),
 		api: [ 13 ]
+	},
+
+	10: {
+		id: 10,
+		name: 'dateArchive',
+		showOnInit: true,
+		toCache: true,
+		cached: false,
+		hide: () => store.dispatch( unrenderDateArchive() ),
+		show: () => store.dispatch( renderDateArchive() ),
+		form: data => store.dispatch( formDateArchive( data ) ),
+		api: [ 14 ]
 	}
 
 };
@@ -555,6 +599,10 @@ const dataList = {
 
 	13: {
 		get: () => fetch( postsTopApi ).then( response => response.json() )
+	},
+
+	14: {
+		get: () => fetch( dateArchiveApi ).then( response => response.json() )
 	}
 };
 

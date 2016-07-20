@@ -3,7 +3,7 @@ import { RENDER_SIMILAR_POSTS,
 		 UNRENDER_SIMILAR_POSTS,
 		 FORM_SIMILAR_POSTS } from '../actions';
 
-function post( state, action, helper ) {
+function similarPosts( state, action, helper ) {
 	switch ( action.type ) {
 		case RENDER_SIMILAR_POSTS:
 			return _.extend( {}, state, {
@@ -33,4 +33,4 @@ function post( state, action, helper ) {
 	}
 };
 
-export default post;
+export default similarPosts;

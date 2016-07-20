@@ -1,7 +1,10 @@
 // deps
 import React from 'react';
+import { connect } from 'react-redux';
 // components
 import ArchiveItem from '../archiveItem/archiveItem';
+// helpers
+import transition from '../../transition';
 
 class Archive extends React.Component {
 
@@ -9,15 +12,24 @@ class Archive extends React.Component {
         super(props);
     }
 
+    componentWillEnter( callback ) {
+        TweenMax.from( this.section, .3, { opacity: 0, onComplete: callback } );
+    }
+
     render() {
         return (
-       		<div className="archive">
+       		<div className="archive" ref={ ref => this.section = ref }>
        			<h1 className="archive__header-line">
 	        		<b className="archive__header">Архив</b>
 	        	</h1>
 	        	<ul className="archive__list">
-	        		<ArchiveItem />
-	        		<ArchiveItem />
+
+                    { this.props.data.items.map( (item, index) => {
+                        return(
+                            <ArchiveItem key={ index } { ...item }/>
+                        );
+                    } ) }
+
 	        	</ul>
        		</div>
         );
@@ -25,4 +37,12 @@ class Archive extends React.Component {
 
 }
 
-export default Archive;
+function mapStateToProps( state ) {
+    return {
+        data: state.components.dateArchive.data
+    };
+};
+
+const ArchiveContainer = connect( mapStateToProps )( transition( Archive ) );
+
+export default ArchiveContainer;

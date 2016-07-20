@@ -3,7 +3,7 @@ import { RENDER_POSTS_TOP,
 		 UNRENDER_POSTS_TOP,
 		 FORM_POSTS_TOP } from '../actions';
 
-function post( state, action, helper ) {
+function postsTop( state, action, helper ) {
 	switch ( action.type ) {
 		case RENDER_POSTS_TOP:
 			return _.extend( {}, state, {
@@ -20,7 +20,6 @@ function post( state, action, helper ) {
 				} 
 			} );
 		case FORM_POSTS_TOP:
-			console.log( 'forming' );
 			let jsonPosts = action.result[0].response;
 
 			return _.extend( {}, state, { 
@@ -39,4 +38,4 @@ function post( state, action, helper ) {
 	}
 };
 
-export default post;
+export default postsTop;

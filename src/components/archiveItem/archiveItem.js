@@ -3,6 +3,8 @@ import React from 'react';
 import ReactTransitionGroup from 'react-addons-transition-group';
 // components
 import MonthList from '../monthList/monthList';
+// content components
+import PostSidebarLink from '../content/postSidebarLink/postSidebarLink';
 
 class ArchiveItem extends React.Component {
 
@@ -26,7 +28,7 @@ class ArchiveItem extends React.Component {
         	<li className="archiveItem">
     			<div className="archiveItem__year-line">
     				<div className="archiveItem__link-wrap">
-        				<a className="archiveItem__link" href="#">2015</a>
+        				<PostSidebarLink href={ this.props.hrefAfter }>{ this.props.year }</PostSidebarLink>
         			</div>
         			<div className="archiveItem__toggle-wrap">
 	        			<button type="button" className="archiveItem__toggle" onClick={ this.clickHandle } onTouchStart={ this.clickHandle }>
@@ -35,7 +37,7 @@ class ArchiveItem extends React.Component {
         			</div>
     			</div>
     			<ReactTransitionGroup component="div">
-	    			{ this.state.monthShow ? <MonthList /> : false }
+	    			{ this.state.monthShow ? <MonthList months={ this.props.months }/> : false }
 	    		</ReactTransitionGroup>
     		</li>
         );
