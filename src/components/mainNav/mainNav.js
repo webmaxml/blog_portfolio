@@ -28,8 +28,12 @@ class MainNav extends React.Component {
     }
 
     touchHandle( event ) {
-        event.preventDefault();
-        this.props.dispatch( toggleCats() );
+        // event.preventDefault();
+
+        if ( event.target === this.catsItem || 
+             event.target === this.catsTitle ) {
+            this.props.dispatch( toggleCats() );
+        }
     }
 
     render() {
@@ -54,8 +58,9 @@ class MainNav extends React.Component {
                     onMouseEnter={ this.hoverEnter }
                     onMouseLeave={ this.hoverLeave }
                     onTouchStart={ this.touchHandle }
+                    ref={ ref => this.catsItem = ref }
                     >
-        				<span className={ catsClasses }>Рубрики</span>
+        				<span className={ catsClasses } ref={ ref => this.catsTitle = ref }>Рубрики</span>
                         <CatNav mode={ this.state.mode } />      
     			</li>
     			<li className="mainNav__wrap">

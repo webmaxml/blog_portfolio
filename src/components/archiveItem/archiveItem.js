@@ -28,7 +28,11 @@ class ArchiveItem extends React.Component {
         	<li className="archiveItem">
     			<div className="archiveItem__year-line">
     				<div className="archiveItem__link-wrap">
-        				<PostSidebarLink href={ this.props.hrefAfter }>{ this.props.year }</PostSidebarLink>
+        				<PostSidebarLink 
+                            href={ `/archive/page/1?after=${ this.props.hrefAfter }&before=${ this.props.hrefBefore }` }
+                        >
+                        { this.props.year }
+                        </PostSidebarLink>
         			</div>
         			<div className="archiveItem__toggle-wrap">
 	        			<button type="button" className="archiveItem__toggle" onClick={ this.clickHandle } onTouchStart={ this.clickHandle }>

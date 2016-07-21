@@ -12,7 +12,8 @@ import { postsApi,
 		 postsCatsApi,
 		 similarPostsApi,
 		 postsTopApi,
-		 dateArchiveApi } from './entry'; 
+		 dateArchiveApi,
+		 archivePageApi } from './entry'; 
 
 
 /**
@@ -543,6 +544,18 @@ const components = {
 		show: () => store.dispatch( renderDateArchive() ),
 		form: data => store.dispatch( formDateArchive( data ) ),
 		api: [ 14 ]
+	},
+
+	11: {
+		id: 11,
+		name: 'archivePostIndex',
+		showOnInit: true,
+		toCache: false,
+		cached: false,
+		hide: () => store.dispatch( unrenderPostIndex() ),
+		show: () => store.dispatch( renderPostIndex() ),
+		form: data => store.dispatch( formPostIndex( data ) ),
+		api: [ 15, 16, 3, 4, 8 ]
 	}
 
 };
@@ -578,7 +591,7 @@ const dataList = {
 	},
 
 	8: {
-		get: ( navUri ) => navUri
+		get: ( navUri, search ) => { return { uri: navUri, params: search } }
 	},
 
 	9: {
@@ -603,7 +616,15 @@ const dataList = {
 
 	14: {
 		get: () => fetch( dateArchiveApi ).then( response => response.json() )
-	}
+	},
+
+	15: {
+		get: ( pageNum, before, after ) => fetch( archivePageApi( pageNum, before, after ) ).then( response => response.json() )
+	},
+
+	16: {
+		get: ( pageNum, before, after ) => fetch( archivePageApi( pageNum, before, after ) ).then( response => response.json() )
+	},
 };
 
 
@@ -675,13 +696,17 @@ function getData( id, data ) {
 		case 7: 
 			return dataList[id].get( +data.pageNum + 1, data.catId );
 		case 8: 
-			return dataList[id].get( data.navUri );
+			return dataList[id].get( data.navUri, data.search );
 		case 10: 
 			return dataList[id].get( +data.pageNum, data.tagId );
 		case 11: 
 			return dataList[id].get( +data.pageNum + 1, data.tagId );
 		case 12: 
 			return dataList[id].get( data.postId );
+		case 15: 
+			return dataList[id].get( +data.pageNum, data.query.before, data.query.after );
+		case 16: 
+			return dataList[id].get( +data.pageNum + 1, data.query.before, data.query.after );
 		default:
 			return dataList[id].get();
 	}

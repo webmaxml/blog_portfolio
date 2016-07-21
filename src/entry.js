@@ -33,3 +33,8 @@ export const similarPostsApi = postId => `http://api.blog.webmaxml.ru/wp-json/la
 export const postsTopApi = 'https://disqus.com/api/3.0/threads/listPopular.json?api_key=DRTRW7YF22OQ16UlcoKCXrkLugLJOtYbtkEMHbHpnMGwOX2MEpTTqdjQALldBMEs&forum=ilyablog';
 
 export const dateArchiveApi = 'http://api.blog.webmaxml.ru/wp-json/lazydaddy/v1/dateArchive';
+
+export const archivePageApi = ( pageNum, before, after ) => `http://api.blog.webmaxml.ru/wp-json/wp/v2/posts?
+																before=${ before }&
+																after=${ after }&
+																page=${ pageNum }`;

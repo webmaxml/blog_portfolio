@@ -27,8 +27,8 @@ class PostIndex extends React.Component {
     render() {
         let prevHref, nextHref;
 
-        prevHref = this.props.data.navUri + ( this.props.data.currPage + 1 );
-        nextHref = this.props.data.navUri + ( this.props.data.currPage - 1 );
+        prevHref = this.props.data.navUri + ( this.props.data.currPage + 1 ) + this.props.data.params;
+        nextHref = this.props.data.navUri + ( this.props.data.currPage - 1 ) + this.props.data.params;
 
         if ( this.props.data.currPage === 2 && 
              this.props.data.navUri === 'posts/page/' ) {

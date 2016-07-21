@@ -31,6 +31,7 @@ render(
 						<Route path={ pages.postsPage.path } component={ PostIndex } />
 						<Route path={ pages.catsPage.path } component={ PostIndex } />
 						<Route path={ pages.tagsPage.path } component={ PostIndex } />
+						<Route path={ pages.archivePage.path } component={ PostIndex } />
 					</Route>
 				</Route>
 			</Route>

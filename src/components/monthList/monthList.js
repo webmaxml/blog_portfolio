@@ -27,7 +27,9 @@ class MonthList extends React.Component {
         		{ this.props.months.map( (item, index) => {
         			return(
         				<li className="monthList__month-line" key={ index }>
-							<PostSidebarLink href={ item.hrefAfter }>{ item.title }</PostSidebarLink>
+							<PostSidebarLink 
+							href={ `/archive/page/1?after=${ item.hrefAfter }&before=${ item.hrefBefore }` }
+							>{ item.title }</PostSidebarLink>
 						</li>
         			);
         		} ) }

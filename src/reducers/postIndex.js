@@ -11,6 +11,7 @@ function postIndex( state, action ) {
 					render: true,
 					currPage: state.data.currPage,
 					navUri: state.data.navUri,
+					params: state.data.params,
 					nextPageExist: state.data.nextPageExist,
 					items: [].concat( state.data.items )
 				} 
@@ -21,6 +22,7 @@ function postIndex( state, action ) {
 					render: false,
 					currPage: state.data.currPage,
 					navUri: state.data.navUri,
+					params: state.data.params,
 					nextPageExist: state.data.nextPageExist,
 					items: [].concat( state.data.items )
 				} 
@@ -37,7 +39,8 @@ function postIndex( state, action ) {
 					render: state.data.render,
 					currPage,
 					nextPageExist: nextPagePosts.length > 0,
-					navUri,
+					navUri: navUri.uri,
+					params: navUri.params,
 					items: jsonPosts.map( item => {	
 						return {
 			                id: item.id,
