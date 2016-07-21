@@ -1,5 +1,6 @@
 // actions
-import { TOGGLE_MOBILE_MENU } from '../actions';
+import { TOGGLE_MOBILE_MENU,
+		 HIDE_MOBILE_MENU} from '../actions';
 
 function mobileMenu( state, action ) {
 	switch ( action.type ) {
@@ -7,6 +8,12 @@ function mobileMenu( state, action ) {
 			return _.extend( {}, state, {
 				data: { 
 					render: !state.data.render,
+				} 
+			} );
+		case HIDE_MOBILE_MENU:
+			return _.extend( {}, state, {
+				data: { 
+					render: false,
 				} 
 			} );
 		default:

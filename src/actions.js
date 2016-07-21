@@ -13,7 +13,8 @@ import { postsApi,
 		 similarPostsApi,
 		 postsTopApi,
 		 dateArchiveApi,
-		 archivePageApi } from './entry'; 
+		 archivePageApi,
+		 searchPageApi } from './entry'; 
 
 
 /**
@@ -25,6 +26,14 @@ export const TOGGLE_MOBILE_MENU = 'TOGGLE_MOBILE_MENU';
 export function toggleMobileMenu() {
 	return {
 		type: TOGGLE_MOBILE_MENU,
+	};
+};
+
+// hide mobile menu
+export const HIDE_MOBILE_MENU = 'HIDE_MOBILE_MENU';
+export function hideMobileMenu() {
+	return {
+		type: HIDE_MOBILE_MENU,
 	};
 };
 
@@ -430,6 +439,7 @@ const components = {
 		id: 1,
 		name: 'postIndex',
 		showOnInit: true,
+		forceHide: false,
 		toCache: false,
 		cached: false,
 		hide: () => store.dispatch( unrenderPostIndex() ),
@@ -442,6 +452,7 @@ const components = {
 		id: 2,
 		name: 'categories',
 		showOnInit: false,
+		forceHide: true,
 		toCache: true,
 		cached: false,
 		hide: () => store.dispatch( unrenderCats() ),
@@ -556,6 +567,18 @@ const components = {
 		show: () => store.dispatch( renderPostIndex() ),
 		form: data => store.dispatch( formPostIndex( data ) ),
 		api: [ 15, 16, 3, 4, 8 ]
+	},
+
+	12: {
+		id: 12,
+		name: 'searchPostIndex',
+		showOnInit: true,
+		toCache: false,
+		cached: false,
+		hide: () => store.dispatch( unrenderPostIndex() ),
+		show: () => store.dispatch( renderPostIndex() ),
+		form: data => store.dispatch( formPostIndex( data ) ),
+		api: [ 17, 18, 3, 4, 8 ]
 	}
 
 };
@@ -625,6 +648,14 @@ const dataList = {
 	16: {
 		get: ( pageNum, before, after ) => fetch( archivePageApi( pageNum, before, after ) ).then( response => response.json() )
 	},
+
+	17: {
+		get: ( pageNum, query) => fetch( searchPageApi( pageNum, query ) ).then( response => response.json() )
+	},
+
+	18: {
+		get: ( pageNum, query ) => fetch( searchPageApi( pageNum, query ) ).then( response => response.json() )
+	},
 };
 
 
@@ -657,7 +688,7 @@ function getComponentsList( ids ) {
 	// look through the page array of component ids
 	ids.map( id => {	
 
-		// add component obj if its not cached
+		// add component obj if its not cached or need to force hide
 		if ( !components[id].cached ) { 
 			componentsList.push( components[id] );
 		}
@@ -707,6 +738,10 @@ function getData( id, data ) {
 			return dataList[id].get( +data.pageNum, data.query.before, data.query.after );
 		case 16: 
 			return dataList[id].get( +data.pageNum + 1, data.query.before, data.query.after );
+		case 17: 
+			return dataList[id].get( +data.pageNum, data.query.s );
+		case 18: 
+			return dataList[id].get( +data.pageNum + 1, data.query.s );
 		default:
 			return dataList[id].get();
 	}

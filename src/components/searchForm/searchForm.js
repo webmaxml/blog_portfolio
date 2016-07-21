@@ -1,5 +1,8 @@
 // deps
 import React from 'react';
+import { reduxForm } from 'redux-form';
+import { connect } from 'react-redux';
+import { push } from 'react-router-redux';
 
 class SearchForm extends React.Component {
 
@@ -8,6 +11,10 @@ class SearchForm extends React.Component {
         this.state = {
             mode: props.mode
         }
+    }
+
+    onSubmit( data ) {
+        this.props.dispatch( push(`/search/page/1?s=${ data.search }`) );
     }
 
     render() {
@@ -20,10 +27,15 @@ class SearchForm extends React.Component {
                 classes = 'searchForm';
                 break;
         };
-        return (
-        	<form className={ classes }>
+        const { fields: { search }, handleSubmit } = this.props;
+        return ( 
+        	<form className={ classes } onSubmit={ handleSubmit( data => this.onSubmit( data ) ) }>
                 <div className="searchForm__wrap">
-    		        <input type="text" className="searchForm__search-input" placeholder="поиск..."/>
+    		        <input type="text" 
+                           className="searchForm__search-input" 
+                           placeholder="поиск..."
+                           { ...search }
+                    />
                 </div>
     			<button className="searchForm__search-btn">
     				<i className="fa fa-search searchForm__search-icon"></i>
@@ -33,5 +45,12 @@ class SearchForm extends React.Component {
     }
 
 }
+
+SearchForm = reduxForm({
+    form: 'searchFrom',
+    fields: [ 'search' ]
+})( SearchForm );
+
+SearchForm = connect()( SearchForm );
 
 export default SearchForm;

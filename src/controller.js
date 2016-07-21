@@ -2,6 +2,8 @@
 import { store, history } from './store';
 // pages
 import pages from './pages';
+// actions
+import { hideMobileMenu } from './actions';
 
 function handleChange() {
 	// console.log( store.getState() );
@@ -12,6 +14,8 @@ store.subscribe( handleChange );
 history.listen( location => {
 
 	window.scrollTo( 0, 0 );
+
+	store.dispatch( hideMobileMenu() );
 
 	let uri = location.pathname;
 	let query = location.query;

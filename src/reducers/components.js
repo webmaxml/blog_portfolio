@@ -10,6 +10,7 @@ import postsTop from './postsTop';
 import dateArchive from './dateArchive';
 // actions
 import { TOGGLE_MOBILE_MENU,
+		 HIDE_MOBILE_MENU,
 		 FORM_POST_INDEX,
 		 RENDER_POST_INDEX,
 		 UNRENDER_POST_INDEX,
@@ -94,6 +95,7 @@ const initialState = {
 function components( state = initialState, action ) {
 	switch ( action.type ) {
 		case TOGGLE_MOBILE_MENU:
+		case HIDE_MOBILE_MENU:
 			return _.extend( {}, state, {
 				mobileMenu: mobileMenu( state.mobileMenu, action )
 			} );

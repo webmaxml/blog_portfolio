@@ -25,7 +25,7 @@ class PostIndex extends React.Component {
         TweenMax.from( this.section, .3, { opacity: 0, onComplete: callback } );
     }
     render() {
-        let prevHref, nextHref;
+        let prevHref, nextHref, children;
 
         prevHref = this.props.data.navUri + ( this.props.data.currPage + 1 ) + this.props.data.params;
         nextHref = this.props.data.navUri + ( this.props.data.currPage - 1 ) + this.props.data.params;
@@ -35,15 +35,21 @@ class PostIndex extends React.Component {
             nextHref = '/';
         }
 
+        if ( this.props.data.items.length === 0 ) {
+            children = [ <li className="postIndex__notFound" key="0">К сожалению постов по данному запросу не найдено</li> ];
+        } else {
+            children = this.props.data.items.map( item => {
+                return(
+                    <PostItemExcerpt key={ item.id } { ...item } />
+                 );
+            } ) 
+        };
+
         return (
         	<article className="postIndex" ref={ ref => this.section = ref }>
                 <Helmet title="Главная" />
             	<ul className="postIndex__list">
-                    { this.props.data.items.map( item => {
-                        return(
-                            <PostItemExcerpt key={ item.id } { ...item } />
-                         );
-                    } ) }
+                    { children }
                 </ul>
                 <div className="postIndex__nav-line">
                     <div className="postIndex__nav-wrap">

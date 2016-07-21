@@ -38,3 +38,5 @@ export const archivePageApi = ( pageNum, before, after ) => `http://api.blog.web
 																before=${ before }&
 																after=${ after }&
 																page=${ pageNum }`;
+
+export const searchPageApi = ( pageNum, query ) => api + `/posts?search=${query}&page=${pageNum}`;

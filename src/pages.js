@@ -72,6 +72,17 @@ const pages = {
 			let pageNum = uri.slice( uri.search(/\d+$/) );
 			return store.dispatch( initPage( this.components, { pageNum, query, search, navUri } ) );
 		}
+	},
+
+	searchPage: {
+		path: 'search/page/:count',
+		reg: /^\/?search\/page\/\d+\/?$/,
+		components: [ 12, 2, 3, 9, 10 ],
+		init: function ( uri, query, search ) {
+			let navUri = uri.slice( 0, uri.search(/\d+$/) );
+			let pageNum = uri.slice( uri.search(/\d+$/) );
+			return store.dispatch( initPage( this.components, { pageNum, query, search, navUri } ) );
+		}
 	}
 };
 

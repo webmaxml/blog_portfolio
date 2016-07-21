@@ -9,4 +9,14 @@
 
 		margin: $base-lh * 3 0;
 	}
+
+	// content
+
+	&__notFound {
+		font-family: $ff_header;
+		font-weight: bold;
+		font-size: $fz3;
+		line-height: $base-lh * 8;
+		text-align: center;
+	}
 }
