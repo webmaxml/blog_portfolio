@@ -5,7 +5,6 @@ import TweenMax from 'gsap';
 import Helmet from 'react-helmet';
 // content components
 import PostDate from '../content/postDate/postDate';
-import PostHeaderLink from '../content/postHeaderLink/postHeaderLink';
 import PostCatLink from '../content/postCatLink/postCatLink';
 import PostContent from '../content/postContent/postContent';
 import SectionHeader from '../content/sectionHeader/sectionHeader';
@@ -34,7 +33,7 @@ class PostItem extends React.Component {
                     <PostDate>{ this.props.data.item.date }</PostDate>
                 </div>
                 <h1 className="postItem__header-line">
-                    <PostHeaderLink href="#">{ this.props.data.item.title }</PostHeaderLink>
+                    <b className="postItem__header">{ this.props.data.item.title }</b>
                 </h1>
                 <ul className="postItem__categories-line">
 

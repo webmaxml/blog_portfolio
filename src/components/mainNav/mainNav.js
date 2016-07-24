@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router';
 // components
 import CatNav from '../catNav/catNav';
+// content components
+import MainNavLink from '../content/mainNavLink/mainNavLink';
 // actions
 import { renderCats, unrenderCats, toggleCats } from '../../actions';
 
@@ -52,7 +54,7 @@ class MainNav extends React.Component {
         return (
         	<ul className={ classes }>
                 <li className="mainNav__wrap">
-                    <Link to="/" className="mainNav__link mainNav__link--active">Блог</Link>
+                   <MainNavLink href="/">Блог</MainNavLink>
                 </li>
     			<li className="mainNav__wrap" 
                     onMouseEnter={ this.hoverEnter }
@@ -64,10 +66,10 @@ class MainNav extends React.Component {
                         <CatNav mode={ this.state.mode } />      
     			</li>
     			<li className="mainNav__wrap">
-    				<a href="#" className="mainNav__link">Цитаты</a>
+    				<MainNavLink href="/quotes">Цитаты</MainNavLink>
     			</li>
     			<li className="mainNav__wrap">
-    				<a href="#" className="mainNav__link">Контакты</a>
+    				<MainNavLink href="/contact">Контакты</MainNavLink>
     			</li>
     		</ul>
         );
@@ -83,6 +85,6 @@ function mapStateToProps( state ) {
 };
 
 
-const MainNavContainer = connect( mapStateToProps )( MainNav );
+const MainNavContainer = connect( mapStateToProps, null, null, { pure: false } )( MainNav );
 
 export default MainNavContainer;

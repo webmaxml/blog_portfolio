@@ -3,7 +3,7 @@ import { store, history } from './store';
 // pages
 import pages from './pages';
 // actions
-import { hideMobileMenu } from './actions';
+import { hideMobileMenu, initPage } from './actions';
 
 function handleChange() {
 	// console.log( store.getState() );
@@ -22,6 +22,10 @@ history.listen( location => {
 	let search = location.search;
 	// find the current page
 	let page = _.find( pages, item => item.reg.test( uri ) )
-	page.init( uri, query, search );
+
+	// get array of page data
+	let pageData = page.getPageData( uri, query, search );
+
+	store.dispatch( initPage( ...pageData ) );
 	
 } );

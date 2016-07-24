@@ -1,0 +1,13 @@
+/* contact */
+.contact {
+	@extend %cnss;
+
+	&__header {
+		padding: $base-lh 0;
+
+		font-family: $ff_header;
+		font-size: $fz2;
+		line-height: $base-lh * 2;
+		text-align: center;
+	}
+}

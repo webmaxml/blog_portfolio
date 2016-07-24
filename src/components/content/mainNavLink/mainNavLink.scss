@@ -1,0 +1,26 @@
+/* mainNavLink */
+.mainNavLink {
+	padding: 0 $base-lh / 2;
+
+	font-family: $ff_header;
+	font-weight: bold;
+	font-size: $fz5;
+	line-height: $base-lh * 2;
+	color: $c_navText;
+
+	transition: color .2s;
+
+	cursor: pointer;
+
+	&:hover {
+		color: lighten( $c_navText, 20% );
+	}
+
+	&.mainNavLink--active {
+		border-bottom: 2px solid $c_accent;
+
+		color: lighten( $c_navText, 20% );
+
+		background-color: lighten( $c_navBg, 6.5% );
+	}
+}

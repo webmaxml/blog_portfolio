@@ -1,0 +1,66 @@
+/* contactForm */
+.contactForm {
+	@extend %cnss;
+
+	// line
+
+	&__group-line {
+		@extend %cnsfs;
+
+		margin-bottom: $base-lh;
+	}
+
+	// content
+
+	&__label {
+		font-family: $ff_header;
+		font-size: $fz5;
+		line-height: $base-lh * 2;
+		text-align: left;
+	}
+
+	&__input, &__textarea {	
+		padding: 0 15px;
+		border: 1px solid $c_additional;
+		border-radius: 3px;
+
+		font-family: $ff_text;
+		font-size: $fz5;
+	}
+
+	&__input {
+		height: $base-lh * 2 + 2;
+
+		line-height: $base-lh * 2;
+	}
+
+	&__textarea {
+		width: 100%;
+		height: $base-lh * 6 + 22;
+		padding-top: 10px;
+		padding-bottom: 10px;
+
+		line-height: $base-lh;
+	}
+
+	&__submit {
+		padding: 0 20px;
+		border-radius: 3px;
+
+		font-family: $ff_header;
+		font-weight: bold;
+		font-size: $fz5;
+		line-height: $base-lh * 2;
+		color: #fff;
+
+		background-color: $c_accent;
+
+		&:hover {
+			background-color: darken( $c_accent, 10% );
+		}
+
+		&:active {
+			background-color: darken( $c_accent, 20% );
+		}
+	}
+}

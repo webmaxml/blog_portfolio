@@ -51,4 +51,14 @@
 			margin-right: 15px;
 		}
 	}
+
+	// content
+
+	&__header {
+		font-family: $ff_header;
+		font-weight: bold;
+		font-size: $fz1;
+		line-height: $base-lh * 2;
+		color: #000;
+	}
 }

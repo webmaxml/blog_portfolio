@@ -23,6 +23,9 @@
 @import '../components/monthList/monthList';
 @import '../components/footer/footer';
 @import '../components/similarPosts/similarPosts';
+@import '../components/contact/contact';
+@import '../components/contactForm/contactForm';
+@import '../components/quotes/quotes';
 
 /***********************
 *  CONTENT COMPONENTS  *
@@ -37,3 +40,4 @@
 @import '../components/content/postTagLink/postTagLink';
 @import '../components/content/sectionHeader/sectionHeader';
 @import '../components/content/postSidebarLink/postSidebarLink';
+@import '../components/content/mainNavLink/mainNavLink';
