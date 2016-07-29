@@ -5,8 +5,8 @@ import pages from './pages';
 // actions
 import { hideMobileMenu, initPage } from './actions';
 
-function handleChange() {
-	// console.log( store.getState() );
+function handleChange( v1, v2 ) {
+	
 }
 
 store.subscribe( handleChange );

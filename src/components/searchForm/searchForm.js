@@ -47,7 +47,7 @@ class SearchForm extends React.Component {
 }
 
 SearchForm = reduxForm({
-    form: 'searchFrom',
+    form: 'searchForm',
     fields: [ 'search' ]
 })( SearchForm );
 

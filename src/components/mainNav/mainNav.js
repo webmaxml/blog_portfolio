@@ -30,8 +30,6 @@ class MainNav extends React.Component {
     }
 
     touchHandle( event ) {
-        // event.preventDefault();
-
         if ( event.target === this.catsItem || 
              event.target === this.catsTitle ) {
             this.props.dispatch( toggleCats() );
@@ -54,7 +52,7 @@ class MainNav extends React.Component {
         return (
         	<ul className={ classes }>
                 <li className="mainNav__wrap">
-                   <MainNavLink href="/">Блог</MainNavLink>
+                   <Link className="mainNav__link" to="/">Блог</Link>
                 </li>
     			<li className="mainNav__wrap" 
                     onMouseEnter={ this.hoverEnter }
@@ -66,10 +64,10 @@ class MainNav extends React.Component {
                         <CatNav mode={ this.state.mode } />      
     			</li>
     			<li className="mainNav__wrap">
-    				<MainNavLink href="/quotes">Цитаты</MainNavLink>
+    				<Link className="mainNav__link" to="/quotes">Цитаты</Link>
     			</li>
     			<li className="mainNav__wrap">
-    				<MainNavLink href="/contact">Контакты</MainNavLink>
+    				<Link className="mainNav__link" to="/contact">Контакты</Link>
     			</li>
     		</ul>
         );
@@ -85,6 +83,6 @@ function mapStateToProps( state ) {
 };
 
 
-const MainNavContainer = connect( mapStateToProps, null, null, { pure: false } )( MainNav );
+const MainNavContainer = connect( mapStateToProps )( MainNav );
 
 export default MainNavContainer;

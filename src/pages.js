@@ -1,5 +1,5 @@
-
 const pages = {
+
 	root: {
 		path: '/',
 		reg: /^\/#?$/,

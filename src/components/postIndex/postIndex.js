@@ -3,12 +3,15 @@ import React from 'react';
 import { connect } from 'react-redux';
 import TweenMax from 'gsap';
 import Helmet from 'react-helmet';
+import ReactTransitionGroup from 'react-addons-transition-group';
 // content components
 import PostPageLink from '../content/postPageLink/postPageLink'
 // components
 import PostItemExcerpt from '../postItemExcerpt/postItemExcerpt';
 // helpers
 import transition from '../../transition';
+
+const componentName = 'postIndex';
 
 class PostIndex extends React.Component {
 
@@ -26,19 +29,19 @@ class PostIndex extends React.Component {
     }
     render() {
         let prevHref, nextHref, children;
+        let { data: { navUri, currPage, params, nextPageExist, items } } = this.props;
 
-        prevHref = this.props.data.navUri + ( this.props.data.currPage + 1 ) + this.props.data.params;
-        nextHref = this.props.data.navUri + ( this.props.data.currPage - 1 ) + this.props.data.params;
+        prevHref = navUri + ( currPage + 1 ) + params;
+        nextHref = navUri + ( currPage - 1 ) + params;
 
-        if ( this.props.data.currPage === 2 && 
-             this.props.data.navUri === 'posts/page/' ) {
+        if ( currPage === 2 && navUri === 'posts/page/' ) {
             nextHref = '/';
         }
 
-        if ( this.props.data.items.length === 0 ) {
+        if ( items.length === 0 ) {
             children = [ <li className="postIndex__notFound" key="0">К сожалению постов по данному запросу не найдено</li> ];
         } else {
-            children = this.props.data.items.map( item => {
+            children = items.map( item => {
                 return(
                     <PostItemExcerpt key={ item.id } { ...item } />
                  );
@@ -53,13 +56,13 @@ class PostIndex extends React.Component {
                 </ul>
                 <div className="postIndex__nav-line">
                     <div className="postIndex__nav-wrap">
-                        { this.props.data.currPage > 1 ? 
+                        { currPage > 1 ? 
                             <PostPageLink href={ nextHref }>Следующие</PostPageLink> :
                             null
                         }
                     </div>
                     <div className="postIndex__nav-wrap">
-                        { this.props.data.nextPageExist ? 
+                        { nextPageExist ? 
                             <PostPageLink href={ prevHref }>Предыдущие</PostPageLink> : 
                             null 
                         }
@@ -77,6 +80,6 @@ function mapStateToProps( state ) {
     };
 };
 
-const PostIndexContainer = connect( mapStateToProps )( transition( PostIndex ) );
+PostIndex = connect( mapStateToProps )( transition( PostIndex ) );
 
-export default PostIndexContainer;
+export default PostIndex;

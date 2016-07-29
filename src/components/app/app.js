@@ -1,5 +1,6 @@
 // deps
 import React from 'react';
+import { connect } from 'react-redux';
 // components
 import Header from '../header/header';
 import Footer from '../footer/footer';

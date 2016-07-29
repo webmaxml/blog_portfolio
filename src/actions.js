@@ -545,7 +545,7 @@ export function initPage( componentIds, data ) {
 					.then( () => cacheComponent( component ) )
 		});
 
-		Promise.all( pagePromises ).catch( error => console.log( 'К сожалению при загрузке ресурсов произошла ошибка' ) );
+		Promise.all( pagePromises ).catch( error => console.log( error ) );
 
 	};
 };
