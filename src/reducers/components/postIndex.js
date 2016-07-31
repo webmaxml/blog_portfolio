@@ -1,7 +1,7 @@
 // actions
 import { RENDER_POST_INDEX, 
 		 UNRENDER_POST_INDEX, 
-		 FORM_POST_INDEX } from '../actions';
+		 FORM_POST_INDEX } from '../../actions';
 
 function postIndex( state, action ) {
 	switch ( action.type ) {

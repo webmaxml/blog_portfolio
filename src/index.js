@@ -7,10 +7,10 @@ import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { Router, Route, IndexRoute } from 'react-router';
-// store & history
-import { store, history } from './store';
+import store from './store';
+import history from './history';
 // pages
-import pages from './pages';
+import pages from './pages/pages';
 // controller
 import './controller';
 // components

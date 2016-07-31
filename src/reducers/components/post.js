@@ -3,7 +3,7 @@ import { RENDER_POST,
 		 UNRENDER_POST, 
 		 FORM_POST,
 		 FORM_POST_FROM_INDEX,
-		 DONT_FETCH_POST } from '../actions';
+		 DONT_FETCH_POST } from '../../actions';
 
 function post( state, action, helper ) {
 	switch ( action.type ) {

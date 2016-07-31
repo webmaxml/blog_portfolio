@@ -7,7 +7,7 @@ import footer from './footer';
 import disqus from './disqus';
 import similarPosts from './similarPosts';
 import postsTop from './postsTop';
-import dateArchive from './dateArchive';
+import dateArchive from '../../components/archive/reducer';
 // actions
 import { TOGGLE_MOBILE_MENU,
 		 HIDE_MOBILE_MENU,
@@ -36,7 +36,7 @@ import { TOGGLE_MOBILE_MENU,
 		 FORM_POSTS_TOP,
 		 RENDER_ARCHIVE,
 		 UNRENDER_ARCHIVE,
-		 FORM_ARCHIVE } from '../actions';
+		 FORM_ARCHIVE } from '../../actions';
 
 const initialState = {
 	mobileMenu:{

@@ -3,7 +3,7 @@ const pages = {
 	root: {
 		path: '/',
 		reg: /^\/#?$/,
-		components: [ 1, 2, 3, 9, 10 ],
+		components: [ 'postIndex:posts', 'dateArchive', 'categories', 'footer', 'postsTop' ],
 		getPageData: function ( uri, query, search ) {
 			let navUri = 'posts/page/';
 			return [ this.components, { pageNum: 1, navUri, search } ];
@@ -23,7 +23,7 @@ const pages = {
 	postsPage: {
 		path: 'posts/page/:count',
 		reg: /^\/?posts\/page\/\d+\/?$/,
-		components: [ 1, 2, 3, 9, 10 ],
+		components: [ 'postIndex:posts', 'dateArchive', 'categories', 'footer', 'postsTop'  ],
 		getPageData: function ( uri, query, search ) {
 			let pageNum = uri.slice( uri.search(/\d+$/) );
 			let navUri = 'posts/page/';
@@ -34,7 +34,7 @@ const pages = {
 	catsPage: {
 		path: 'cats/:id/page/:count',
 		reg: /^\/?cats\/\d+\/page\/\d+\/?$/,
-		components: [ 6, 2, 3, 9, 10 ],
+		components: [ 'postIndex:cats', 'dateArchive', 'categories', 'footer', 'postsTop' ],
 		getPageData: function ( uri, query, search ) {
 			let navUri = uri.slice( 0, uri.search(/\d+$/) );
 			let idPart = uri.slice( uri.search( /\d+/ ) );
@@ -48,7 +48,7 @@ const pages = {
 	tagsPage: {
 		path: 'tags/:id/page/:count',
 		reg: /^\/?tags\/\d+\/page\/\d+\/?$/,
-		components: [ 7, 2, 3, 9, 10 ],
+		components: [ 'postIndex:tags', 'dateArchive', 'categories', 'footer', 'postsTop' ],
 		getPageData: function ( uri, query, search ) {
 			let navUri = uri.slice( 0, uri.search(/\d+$/) );
 			let idPart = uri.slice( uri.search( /\d+/ ) );
@@ -62,7 +62,7 @@ const pages = {
 	archivePage: {
 		path: 'archive/page/:count',
 		reg: /^\/?archive\/page\/\d+\/?$/,
-		components: [ 11, 2, 3, 9, 10 ],
+		components: [ 'postIndex:archive', 'dateArchive', 'categories', 'footer', 'postsTop' ],
 		getPageData: function ( uri, query, search ) {
 			let navUri = uri.slice( 0, uri.search(/\d+$/) );
 			let pageNum = uri.slice( uri.search(/\d+$/) );
@@ -73,7 +73,7 @@ const pages = {
 	searchPage: {
 		path: 'search/page/:count',
 		reg: /^\/?search\/page\/\d+\/?$/,
-		components: [ 12, 2, 3, 9, 10 ],
+		components: [ 'postIndex:search', 'dateArchive', 'categories', 'footer', 'postsTop' ],
 		getPageData: function ( uri, query, search ) {
 			let navUri = uri.slice( 0, uri.search(/\d+$/) );
 			let pageNum = uri.slice( uri.search(/\d+$/) );

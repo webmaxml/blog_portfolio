@@ -7,7 +7,7 @@ import CatNav from '../catNav/catNav';
 // content components
 import MainNavLink from '../content/mainNavLink/mainNavLink';
 // actions
-import { renderCats, unrenderCats, toggleCats } from '../../actions';
+import { renderCats, unrenderCats, toggleCats } from '../catNav/actions';
 
 class MainNav extends React.Component {
 

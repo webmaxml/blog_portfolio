@@ -1,12 +1,13 @@
-// store
-import { store, history } from './store';
-// pages
-import pages from './pages';
+// deps
+import store from './store';
+import history from './history';
+import pages from './pages/pages';
 // actions
-import { hideMobileMenu, initPage } from './actions';
+import { hideMobileMenu } from './components/mobileMenu/actions';
+import { initPage } from './pages/actions';
 
-function handleChange( v1, v2 ) {
-	
+function handleChange(  ) {
+	// console.log( store.getState() );
 }
 
 store.subscribe( handleChange );

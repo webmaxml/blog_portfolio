@@ -3,7 +3,7 @@ import { RENDER_CATS,
 		 UNRENDER_CATS,
 		 TOGGLE_CATS,
 		 FORM_CATS,
-		 DONT_FETCH_CATS } from '../actions';
+		 DONT_FETCH_CATS } from '../../actions';
 
 function categories( state, action ) {
 	switch ( action.type ) {

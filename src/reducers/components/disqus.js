@@ -1,6 +1,6 @@
 // actions
 import { RENDER_DISQUS, 
-		 UNRENDER_DISQUS } from '../actions';
+		 UNRENDER_DISQUS } from '../../actions';
 
 function footer( state, action ) {
 	switch ( action.type ) {

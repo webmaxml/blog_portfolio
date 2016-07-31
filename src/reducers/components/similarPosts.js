@@ -1,7 +1,7 @@
 // actions
 import { RENDER_SIMILAR_POSTS,
 		 UNRENDER_SIMILAR_POSTS,
-		 FORM_SIMILAR_POSTS } from '../actions';
+		 FORM_SIMILAR_POSTS } from '../../actions';
 
 function similarPosts( state, action, helper ) {
 	switch ( action.type ) {

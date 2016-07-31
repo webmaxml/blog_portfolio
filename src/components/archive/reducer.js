@@ -1,16 +1,29 @@
 // actions
-import { RENDER_ARCHIVE,
+import { unrenderDateArchive,
+		 renderDateArchive,
+		 formDateArchive,
+		 cacheDateArchive,
+		 RENDER_ARCHIVE,
 		 UNRENDER_ARCHIVE,
-		 FORM_ARCHIVE } from '../actions';
+		 CACHE_ARCHIVE,
+		 FORM_ARCHIVE } from './actions';
 
-function toLocalISOString( year, month ) {
-	let zoneDiff = 10800000;
-	let date = new Date( year, month ).valueOf();
+const initialState = {
+	showOnInit: true,
+	toCache: true,
+	cached: false,
+	hide: unrenderDateArchive,
+	show: renderDateArchive,
+	form: formDateArchive,
+	cache: cacheDateArchive,
+	api: [ 14 ],
+	data: {
+		render: false,
+		items: []
+	}
+};
 
-	return new Date( date + zoneDiff ).toISOString()
-}
-
-function dateArchive( state, action, helper ) {
+function dateArchive( state = initialState, action ) {
 	switch ( action.type ) {
 		case RENDER_ARCHIVE:
 			return _.extend( {}, state, {
@@ -82,9 +95,22 @@ function dateArchive( state, action, helper ) {
 					items 
 				}
 			});
+		case CACHE_ARCHIVE:
+			return _.extend( {}, state, {
+				toCache: false,
+				cached: true
+			} );
 		default:
 			return state;
 	}
 };
+
+// helper
+function toLocalISOString( year, month ) {
+	let zoneDiff = 10800000;
+	let date = new Date( year, month ).valueOf();
+
+	return new Date( date + zoneDiff ).toISOString()
+}
 
 export default dateArchive;

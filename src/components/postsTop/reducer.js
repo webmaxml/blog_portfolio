@@ -1,9 +1,29 @@
 // actions
-import { RENDER_POSTS_TOP,
+import { renderPostsTop,
+		 unrenderPostsTop,
+		 formPostsTop,
+		 cachePostsTop,
+		 RENDER_POSTS_TOP,
 		 UNRENDER_POSTS_TOP,
-		 FORM_POSTS_TOP } from '../actions';
+		 CACHE_POSTS_TOP,
+		 FORM_POSTS_TOP } from './actions';
 
-function postsTop( state, action, helper ) {
+const initialState = {
+	showOnInit: true,
+	toCache: true,
+	cached: false,
+	hide: unrenderPostsTop,
+	show: renderPostsTop,
+	form: formPostsTop,
+	cache: cachePostsTop,
+	api: [ 13 ],
+	data: {
+		render: false,
+		items: []
+	}
+};
+
+function postsTop( state = initialState, action, helper ) {
 	switch ( action.type ) {
 		case RENDER_POSTS_TOP:
 			return _.extend( {}, state, {
@@ -33,6 +53,11 @@ function postsTop( state, action, helper ) {
 					} )
 				}
 			});
+		case CACHE_POSTS_TOP:
+			return _.extend( {}, state, {
+				toCache: false,
+				cached: true
+			} );
 		default:
 			return state;
 	}

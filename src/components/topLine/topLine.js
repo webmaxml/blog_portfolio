@@ -7,7 +7,7 @@ import MainNav from '../mainNav/mainNav';
 import SearchForm from '../searchForm/searchForm';
 import MobileMenu from '../mobileMenu/mobileMenu';
 // actions
-import { toggleMobileMenu } from '../../actions';
+import { toggleMobileMenu } from '../mobileMenu/actions';
 
 class TopLine extends React.Component {
 

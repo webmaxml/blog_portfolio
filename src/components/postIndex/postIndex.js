@@ -11,8 +11,6 @@ import PostItemExcerpt from '../postItemExcerpt/postItemExcerpt';
 // helpers
 import transition from '../../transition';
 
-const componentName = 'postIndex';
-
 class PostIndex extends React.Component {
 
     constructor(props) {

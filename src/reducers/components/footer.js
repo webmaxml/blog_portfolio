@@ -1,6 +1,6 @@
 // actions
 import { RENDER_FOOTER, 
-		 UNRENDER_FOOTER } from '../actions';
+		 UNRENDER_FOOTER } from '../../actions';
 
 function footer( state, action ) {
 	switch ( action.type ) {
