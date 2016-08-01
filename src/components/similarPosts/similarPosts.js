@@ -2,6 +2,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import TweenMax from 'gsap';
+import store from '../../store';
 // content components
 import SectionHeader from '../content/sectionHeader/sectionHeader';
 import PostSidebarLink from '../content/postSidebarLink/postSidebarLink';
@@ -12,10 +13,42 @@ class SimilarPosts extends React.Component {
 
     constructor(props) {
         super(props);
+
+        this.throttled = _.throttle( this.scrollHandler.bind( this ), 300 );
+        this.hideDisqus = store.getState().components.disqus.hide;
+        this.showDisqus = store.getState().components.disqus.show;
     }
 
     componentWillEnter( callback ) {
         TweenMax.from( this.section, .3, { opacity: 0, onComplete: callback } );
+    }
+
+    componentDidMount() {
+        this.bottomValue = this.section.getBoundingClientRect().top;
+        
+        window.addEventListener( 'scroll', this.throttled );
+    }
+
+    scrollHandler( event ) {
+        let scrollValue = event.view.innerHeight + event.pageY;
+
+        if ( scrollValue > this.bottomValue ) {
+            this.renderDisqus();
+            this.removeScrollListener();
+        }
+    }
+
+    renderDisqus() {
+        this.props.dispatch( this.showDisqus() );
+    }
+
+    componentWillUnmount() {
+        this.removeScrollListener();
+        this.props.dispatch( this.hideDisqus() );
+    }
+
+    removeScrollListener() {
+        window.removeEventListener( 'scroll', this.throttled );
     }
 
     render() {

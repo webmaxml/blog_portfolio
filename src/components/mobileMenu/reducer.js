@@ -1,8 +1,14 @@
 // actions
-import { TOGGLE_MOBILE_MENU,
+import { toggleMobileMenu,
+		 hideMobileMenu,
+		 TOGGLE_MOBILE_MENU,
 		 HIDE_MOBILE_MENU} from './actions';
 
 const initialState = {
+	actions: {
+		hide: hideMobileMenu,
+		toggle: toggleMobileMenu
+	},
 	data: { render: false }
 };
 

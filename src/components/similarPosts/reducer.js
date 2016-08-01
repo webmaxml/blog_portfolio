@@ -2,8 +2,10 @@
 import { unrenderSimilarPosts,
 		 renderSimilarPosts,
 		 formSimilarPosts,
+		 postSimilarPostsBottomBoundary,
 		 RENDER_SIMILAR_POSTS,
 		 UNRENDER_SIMILAR_POSTS,
+		 POST_SIMILAR_POSTS_BOTTOM_BOUNDARY,
 		 FORM_SIMILAR_POSTS } from './actions';
 
 const initialState = {
@@ -14,6 +16,8 @@ const initialState = {
 	hide: unrenderSimilarPosts,
 	show: renderSimilarPosts,
 	form: formSimilarPosts,
+	postBottom: postSimilarPostsBottomBoundary,
+	bottomValue: 0,
 	api: [ 12 ],
 	data: {
 		render: false,
@@ -46,6 +50,10 @@ function similarPosts( state = initialState, action ) {
 					items: jsonPosts
 				}
 			});
+		case POST_SIMILAR_POSTS_BOTTOM_BOUNDARY:
+			return _.extend( {}, state, {
+				bottomValue: action.value
+			} );
 		default:
 			return state;
 	}

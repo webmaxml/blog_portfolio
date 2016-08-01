@@ -10,9 +10,9 @@ import { Router, Route, IndexRoute } from 'react-router';
 import store from './store';
 import history from './history';
 // pages
-import pages from './pages/pages';
-// controller
-import './controller';
+const pages = store.getState().pages.items;
+// modules
+import './modules/index';
 // components
 import App from './components/app/app';
 import Home from './components/home/home';

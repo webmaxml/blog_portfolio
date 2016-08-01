@@ -23,3 +23,12 @@ export function formSimilarPosts( result ) {
 		result
 	};
 };
+
+// post component bottom boundary
+export const POST_SIMILAR_POSTS_BOTTOM_BOUNDARY = 'POST_SIMILAR_POSTS_BOTTOM_BOUNDARY';
+export function postSimilarPostsBottomBoundary( value ) {
+	return {
+		type: POST_SIMILAR_POSTS_BOTTOM_BOUNDARY,
+		value
+	};
+};
