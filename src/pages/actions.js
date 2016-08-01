@@ -13,8 +13,9 @@ export function initPage( componentNames, data ) {
 					// hide all components
 					componentsList.forEach( component => dispatch( component.hide() ) );
 
+					// every component has api list to fetch, there are common api items
+					// we need to cache them and check the cache before fetching new api item
 					let cache = {};
-
 					let pagePromises = componentsList.map( component => { 
 						return getComponentData( component, _.extend( { cache }, data ) )
 								.then( result => component.form ? dispatch( component.form( result ) ) : true )

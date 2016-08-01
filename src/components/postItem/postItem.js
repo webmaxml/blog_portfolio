@@ -75,7 +75,7 @@ class PostItem extends React.Component {
 
 function mapStateToProps( state ) {
     return {
-        data: state.components.post.data
+        data: state.components.postItem.data
     };
 };
 

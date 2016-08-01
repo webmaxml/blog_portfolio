@@ -13,7 +13,15 @@ const pages = {
 	post: {
 		path: 'post/:id',
 		reg: /^\/?post\/\d+\/?$/,
-		components: [ 2, 3, 4, 5, 8, 9, 10 ],
+		components: [ 
+			'categories', 
+			'footer', 
+			'postItem', 
+			'disqus', 
+			'similarPosts', 
+			'postsTop', 
+			'dateArchive' 
+		],
 		getPageData: function ( uri, query, search ) {
 			let postId = uri.slice( uri.search(/\d+$/) );
 			return [ this.components, { postId } ];
@@ -84,7 +92,7 @@ const pages = {
 	contact: {
 		path: 'contact',
 		reg: /^\/?contact\/?$/,
-		components: [ 2, 3, 9, 10 ],
+		components: [ 'categories', 'footer', 'postsTop', 'dateArchive' ],
 		getPageData: function ( uri, query, search ) {
 			return [ this.components, {} ];
 		}
@@ -93,7 +101,7 @@ const pages = {
 	quotes: {
 		path: 'quotes',
 		reg: /^\/?quotes\/?$/,
-		components: [ 2, 3 ],
+		components: [ 'categories', 'footer' ],
 		getPageData: function ( uri, query, search ) {
 			return [ this.components, {} ];
 		}

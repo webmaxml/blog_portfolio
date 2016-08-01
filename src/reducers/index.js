@@ -10,6 +10,9 @@ import mobileMenu from '../components/mobileMenu/reducer';
 import categories from '../components/catNav/reducer';
 import footer from '../components/footer/reducer';
 import postsTop from '../components/postsTop/reducer';
+import postItem from '../components/postItem/reducer';
+import disqus from '../components/disqus/reducer';
+import similarPosts from '../components/similarPosts/reducer';
 
 const rootReducer = combineReducers({
 	pages,
@@ -19,7 +22,10 @@ const rootReducer = combineReducers({
 		mobileMenu,
 		categories,
 		footer,
-		postsTop
+		postsTop,
+		postItem,
+		disqus,
+		similarPosts
 	}),
 	routing: routerReducer,
 	form: reducer
