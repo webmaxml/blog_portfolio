@@ -1,16 +1,8 @@
-// render disqus 
-export const RENDER_DISQUS = 'RENDER_DISQUS';
-export function renderDisqus() {
+// switch disqus state
+export const SWITCH_DISQUS_STATE = 'SWITCH_DISQUS_STATE';
+export function switchDisqusState( newState ) {
 	return {
-		type: RENDER_DISQUS,
-	};
-};
-
-
-// unrender disqus
-export const UNRENDER_DISQUS = 'UNRENDER_DISQUS';
-export function unrenderDisqus() {
-	return {
-		type: UNRENDER_DISQUS,
+		type: SWITCH_DISQUS_STATE,
+		newState
 	};
 };

@@ -37,18 +37,4 @@
 			margin: 0;
 		}
 	}
-
-	// content
-
-	&__toggle {
-		align-self: flex-end;
-
-		font-size: 20px;
-		line-height: $base-lh * 2;
-		color: $c_navText;
-
-		@media ( min-width: 770px ) {
-			display: none;
-		}
-	}
 }

@@ -1,32 +1,28 @@
 // actions
-import { renderFooter,
-		 unrenderFooter,
-		 RENDER_FOOTER, 
-		 UNRENDER_FOOTER } from './actions';
+import { SWITCH_FOOTER_STATE } from './actions';
 
 const initialState = {
-	showOnInit: true,
-	toCache: false,
-	cached: false,
-	hide: unrenderFooter,
-	show: renderFooter,
-	api: [],
-	data: { render: false }
+	state: {
+		render: {
+			value: false,
+			stamp: 0
+		}
+	}
 };
 
 function footer( state = initialState, action ) {
 	switch ( action.type ) {
-		case RENDER_FOOTER:
-			return _.extend( {}, state, {
-				data: { 
-					render: true
-				} 
-			} );
-		case UNRENDER_FOOTER:
-			return _.extend( {}, state, {
-				data: { 
-					render: false
-				} 
+		case SWITCH_FOOTER_STATE:
+			let render = typeof action.newState.render === 'undefined' ? 
+								  	state.state.render :
+								  	action.newState.render;
+			// if value = 'toggle', toggle the value
+			render.value = render.value === 'toggle' ? !state.state.render.value : render.value; 
+
+			return _.extend( {}, state, { 
+				state: {
+					render
+				}
 			} );
 		default:
 			return state;

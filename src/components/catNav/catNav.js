@@ -33,7 +33,7 @@ class CatNav extends React.Component {
                 TweenMax.fromTo( this.section, .3, { height: 'auto', opacity: 1 }, { height: 0, opacity: 0, onComplete: callback } );
                 break;
             default:
-                TweenMax.fromTo( this.section, .2, { opacity: 1 }, { opacity: 0, onComplete: callback } );
+                callback();
                 break;
         } 
     }
@@ -68,7 +68,8 @@ class CatNav extends React.Component {
 
 function mapStateToProps( state ) {
     return {
-        data: state.components.categories.data
+        render: state.components.categories.state.render.value,
+        data: state.components.categories.ui
     };
 };
 

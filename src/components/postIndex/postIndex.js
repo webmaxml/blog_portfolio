@@ -74,7 +74,8 @@ class PostIndex extends React.Component {
 
 function mapStateToProps( state ) {
     return {
-        data: state.components.postIndex.data
+        render: state.components.postIndex.state.render.value,
+        data: state.components.postIndex.ui
     };
 };
 

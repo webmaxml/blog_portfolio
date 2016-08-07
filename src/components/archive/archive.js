@@ -39,7 +39,8 @@ class Archive extends React.Component {
 
 function mapStateToProps( state ) {
     return {
-        data: state.components.dateArchive.data
+        render: state.components.dateArchive.state.render.value,
+        data: state.components.dateArchive.ui
     };
 };
 

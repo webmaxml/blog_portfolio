@@ -1,16 +1,8 @@
-// render footer 
-export const RENDER_FOOTER = 'RENDER_FOOTER';
-export function renderFooter() {
+// switch mobile menu state
+export const SWITCH_FOOTER_STATE = 'SWITCH_FOOTER_STATE';
+export function switchFooterState( newState ) {
 	return {
-		type: RENDER_FOOTER,
-	};
-};
-
-
-// unrender footer
-export const UNRENDER_FOOTER = 'UNRENDER_FOOTER';
-export function unrenderFooter() {
-	return {
-		type: UNRENDER_FOOTER,
+		type: SWITCH_FOOTER_STATE,
+		newState
 	};
 };

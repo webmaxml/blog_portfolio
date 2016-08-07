@@ -15,12 +15,11 @@ class MobileMenu extends React.Component {
     }
 
     componentWillEnter( callback ) {
-    	TweenLite.set( this.menu, { height:"auto" } );
-    	TweenMax.from( this.menu, .3, { height: 0, opacity: 0, onComplete: callback } );
+    	TweenMax.fromTo( this.menu, .3, { width: 0, opacity: 0 }, { width: '80%', opacity: 1, onComplete: callback } );
     }
 
     componentWillLeave( callback ) {
-    	TweenMax.fromTo( this.menu, .3, { height: 'auto', opacity: 1 }, { height: 0, opacity: 0, onComplete: callback } );
+    	TweenMax.fromTo( this.menu, .3, { width: '80%', opacity: 1 }, { width: 0, opacity: 0, onComplete: callback } );
     }
 
     render() {
@@ -36,7 +35,7 @@ class MobileMenu extends React.Component {
 
 function mapStateToProps( state ) {
     return {
-        data: state.components.mobileMenu.data
+        render: state.components.mobileMenu.state.render.value
     };
 };
 

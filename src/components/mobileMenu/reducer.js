@@ -1,30 +1,28 @@
 // actions
-import { toggleMobileMenu,
-		 hideMobileMenu,
-		 TOGGLE_MOBILE_MENU,
-		 HIDE_MOBILE_MENU} from './actions';
+import { SWITCH_MOBILE_MENU_STATE } from './actions';
 
 const initialState = {
-	actions: {
-		hide: hideMobileMenu,
-		toggle: toggleMobileMenu
-	},
-	data: { render: false }
+	state: {
+		render: {
+			value: false,
+			stamp: 0
+		}
+	}
 };
 
 function mobileMenu( state = initialState, action ) {
 	switch ( action.type ) {
-		case TOGGLE_MOBILE_MENU:
-			return _.extend( {}, state, {
-				data: { 
-					render: !state.data.render,
-				} 
-			} );
-		case HIDE_MOBILE_MENU:
-			return _.extend( {}, state, {
-				data: { 
-					render: false,
-				} 
+		case SWITCH_MOBILE_MENU_STATE:
+			let render = typeof action.newState.render === 'undefined' ? 
+								  	state.state.render :
+								  	action.newState.render;
+			// if value = 'toggle', toggle the value
+			render.value = render.value === 'toggle' ? !state.state.render.value : render.value; 
+
+			return _.extend( {}, state, { 
+				state: {
+					render
+				}
 			} );
 		default:
 			return state;

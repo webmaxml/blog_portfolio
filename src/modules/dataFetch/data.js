@@ -12,7 +12,7 @@ import { postsApi,
 		 postsTopApi,
 		 dateArchiveApi,
 		 archivePageApi,
-		 searchPageApi } from './entry';
+		 searchPageApi } from '../../entry';
 
 const dataFetch = {
 
@@ -28,10 +28,6 @@ const dataFetch = {
 		get: () => fetch( catsApi ).then( response => response.json() )
 	},
 
-	4: {
-		get: ( pageNum ) => pageNum
-	},
-
 	5: {
 		get: ( id ) => fetch( postApi + id ).then( response => response.json() )
 	},
@@ -42,10 +38,6 @@ const dataFetch = {
 
 	7: {
 		get: ( pageNum, catId ) => fetch( catsPageApi( pageNum, catId ) ).then( response => response.json() )
-	},
-
-	8: {
-		get: ( navUri, search ) => { return { uri: navUri, params: search } }
 	},
 
 	9: {
@@ -89,22 +81,18 @@ const dataFetch = {
 	},
 };
 
-function getData( id, data ) {
+export function getData( id, data ) {
 	switch ( id ) {
 		case 1: 
 			return dataFetch[id].get( +data.pageNum );
 		case 2: 
 			return dataFetch[id].get( +data.pageNum + 1 );
-		case 4: 
-			return dataFetch[id].get( +data.pageNum );
 		case 5: 
 			return dataFetch[id].get( data.postId );
 		case 6: 
 			return dataFetch[id].get( +data.pageNum, data.catId );
 		case 7: 
 			return dataFetch[id].get( +data.pageNum + 1, data.catId );
-		case 8: 
-			return dataFetch[id].get( data.navUri, data.search );
 		case 10: 
 			return dataFetch[id].get( +data.pageNum, data.tagId );
 		case 11: 
@@ -122,6 +110,23 @@ function getData( id, data ) {
 		default:
 			return dataFetch[id].get();
 	}
+};
+
+let fetchCache = {};
+export function getComponentData( api, data ) {
+	console.log( 'dataFetch - forming Promise' );
+	return Promise.all( api.map( id => {
+
+		// if the promise is already cached - return it 
+		if ( typeof fetchCache[id] === 'undefined' ) {
+			return fetchCache[id] = getData( id, data );
+		} else {
+			return fetchCache[id];
+		}
+
+	} ) );
 }
 
-export default getData;
+export function fetchCacheCleaner() {
+	fetchCache = {};
+}

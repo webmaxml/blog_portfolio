@@ -1,59 +1,94 @@
 // actions
-import { unrenderSimilarPosts,
-		 renderSimilarPosts,
-		 formSimilarPosts,
-		 postSimilarPostsBottomBoundary,
-		 RENDER_SIMILAR_POSTS,
-		 UNRENDER_SIMILAR_POSTS,
-		 POST_SIMILAR_POSTS_BOTTOM_BOUNDARY,
-		 FORM_SIMILAR_POSTS } from './actions';
+import { SWITCH_SIMILAR_POSTS_STATE, 
+		 FORM_SIMILAR_POSTS, 
+		 POST_SIMILAR_POSTS_COORD } from './actions';
 
 const initialState = {
-	name: 'similarPosts',
-	showOnInit: true,
-	toCache: false,
-	cached: false,
-	hide: unrenderSimilarPosts,
-	show: renderSimilarPosts,
-	form: formSimilarPosts,
-	postBottom: postSimilarPostsBottomBoundary,
-	bottomValue: 0,
 	api: [ 12 ],
-	data: {
-		render: false,
+	topCoord: null,
+	ui: {
 		items: []
+	},
+	state: {
+		render: {
+			value: false,
+			stamp: 0
+		},
+		needToFetch: {
+			value: false,
+			stamp: 0
+		},
+		isFetched: {
+			value: false,
+			stamp: 0
+		},
+		isFormed: {
+			value: false,
+			stamp: 0
+		},
+		isCached: {
+			value: false,
+			stamp: 0
+		},
+		coordPosted: {
+			value: false,
+			stamp: 0
+		}
 	}
 };
 
 function similarPosts( state = initialState, action ) {
 	switch ( action.type ) {
-		case RENDER_SIMILAR_POSTS:
-			return _.extend( {}, state, {
-				data: { 
-					render: true,
-					items: [].concat( state.data.items )
-				} 
-			} );
-		case UNRENDER_SIMILAR_POSTS:
-			return _.extend( {}, state, {
-				data: { 
-					render: false,
-					items: [].concat( state.data.items )
-				} 
-			} );
 		case FORM_SIMILAR_POSTS:
-			let jsonPosts = action.result[0];
+			let jsonPosts = action.fetchData[0];
 			
 			return _.extend( {}, state, { 
-				data: {
-					render: state.data.render,
+				ui: {
 					items: jsonPosts
 				}
 			});
-		case POST_SIMILAR_POSTS_BOTTOM_BOUNDARY:
-			return _.extend( {}, state, {
-				bottomValue: action.value
+		case SWITCH_SIMILAR_POSTS_STATE:
+			let needToFetch = typeof action.newState.needToFetch === 'undefined' ? 
+								  	state.state.needToFetch :
+								  	action.newState.needToFetch;
+			let isFetched = typeof action.newState.isFetched === 'undefined' ?  
+									  state.state.isFetched :
+									  action.newState.isFetched;
+			let isFormed = typeof action.newState.isFormed === 'undefined' ?  
+									  state.state.isFormed :
+									  action.newState.isFormed;
+			let isCached = typeof action.newState.isCached === 'undefined' ?  
+									  state.state.isCached :
+									  action.newState.isCached;
+			let render = typeof action.newState.render === 'undefined' ?  
+									  state.state.render :
+									  action.newState.render;
+			let coordPosted = typeof action.newState.coordPosted === 'undefined' ?  
+									  state.state.coordPosted :
+									  action.newState.coordPosted;
+
+			// if value = 'toggle', toggle the value
+			needToFetch.value = needToFetch.value === 'toggle' ? !state.state.needToFetch.value : needToFetch.value;
+			isFetched.value = isFetched.value === 'toggle' ? !state.state.isFetched.value : isFetched.value;
+			isFormed.value = isFormed.value === 'toggle' ? !state.state.isFormed.value : isFormed.value;
+			isCached.value = isCached.value === 'toggle' ? !state.state.isCached.value : isCached.value;
+			render.value = render.value === 'toggle' ? !state.state.render.value : render.value;
+			coordPosted.value = coordPosted.value === 'toggle' ? !state.state.coordPosted.value : coordPosted.value;
+
+			return _.extend( {}, state, { 
+				state: {
+					render,
+					needToFetch,
+					isFetched,
+					isFormed,
+					isCached,
+					coordPosted
+				}
 			} );
+		case POST_SIMILAR_POSTS_COORD:		
+			return _.extend( {}, state, { 
+				topCoord: action.value
+			});
 		default:
 			return state;
 	}

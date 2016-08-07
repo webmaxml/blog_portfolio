@@ -36,7 +36,7 @@ class Footer extends React.Component {
 
 function mapStateToProps( state ) {
     return {
-        data: state.components.footer.data
+        render: state.components.footer.state.render.value
     };
 };
 

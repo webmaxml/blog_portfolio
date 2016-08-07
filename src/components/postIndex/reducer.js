@@ -1,101 +1,108 @@
 // actions
-import { formPostIndex,
-		 renderPostIndex,
-		 unrenderPostIndex,
-		 switchPostIndex,
-		 RENDER_POST_INDEX, 
-		 UNRENDER_POST_INDEX, 
-		 SWITCH_POST_INDEX,
-		 FORM_POST_INDEX } from './actions';
+import { SWITCH_POST_INDEX_MODE,
+		 FORM_POST_INDEX,
+		 SWITCH_POST_INDEX_STATE } from './actions';
 
 const initialState = {
-	name: 'postIndex',
-	state: 'posts',
-	showOnInit: true,
-	toCache: false,
-	cached: false,
-	hide: unrenderPostIndex,
-	show: renderPostIndex,
-	form: formPostIndex,
-	switchState: switchPostIndex,
-	api: [ 1, 2, 3, 4, 8 ],
-	data: {
-		currPage: 1, 
-		navUri: '',
-		nextPageExist: false, 
-		render: false,
+	mode: null,
+	api: [],
+	ui: {
+		currPage: null, 
+		navUri: null,
+		params: null,
+		nextPageExist: false,
 		items: []
+	},
+	state: {
+		render: {
+			value: false,
+			stamp: 0
+		},
+		needToFetch: {
+			value: false,
+			stamp: 0
+		},
+		isFetched: {
+			value: false,
+			stamp: 0
+		},
+		isFormed: {
+			value: false,
+			stamp: 0
+		}
 	}
 };
 
 function postIndex( state = initialState, action ) {
 	switch ( action.type ) {
-		case RENDER_POST_INDEX:
-			return _.extend( {}, state, {
-				data: { 
-					render: true,
-					currPage: state.data.currPage,
-					navUri: state.data.navUri,
-					params: state.data.params,
-					nextPageExist: state.data.nextPageExist,
-					items: [].concat( state.data.items )
-				} 
-			} );
-		case UNRENDER_POST_INDEX:
-			return _.extend( {}, state, {
-				data: { 
-					render: false,
-					currPage: state.data.currPage,
-					navUri: state.data.navUri,
-					params: state.data.params,
-					nextPageExist: state.data.nextPageExist,
-					items: [].concat( state.data.items )
-				} 
-			} );
-		case SWITCH_POST_INDEX:
-			let api, componentState;
-			switch ( action.state ) {
+		case SWITCH_POST_INDEX_MODE:
+			let api, mode;
+			switch ( action.mode ) {
 				case 'cats':
-					componentState = 'cats';
-					api = [ 6, 7, 3, 4, 8 ];
+					mode = 'cats';
+					api = [ 6, 7, 3 ];
 					break;
 				case 'posts':
-					componentState = 'posts';
-					api = [ 1, 2, 3, 4, 8 ];
+					mode = 'posts';
+					api = [ 1, 2, 3 ];
 					break;
 				case 'tags':
-					componentState = 'tags';
-					api = [ 10, 11, 3, 4, 8 ];
+					mode = 'tags';
+					api = [ 10, 11, 3 ];
 					break;
 				case 'archive':
-					componentState = 'archive';
-					api = [ 15, 16, 3, 4, 8 ];
+					mode = 'archive';
+					api = [ 15, 16, 3 ];
 					break;
 				case 'search':
-					componentState = 'search';
-					api = [ 17, 18, 3, 4, 8 ];
+					mode = 'search';
+					api = [ 17, 18, 3 ];
 					break;
 			};
 
-			return _.extend( {}, state, { 
-				api, 
-				state: componentState  
-			} );
+			return _.extend( {}, state, { api, mode } );
+		case SWITCH_POST_INDEX_STATE:
+			let needToFetch = typeof action.newState.needToFetch === 'undefined' ? 
+								  	state.state.needToFetch :
+								  	action.newState.needToFetch;
+			let isFetched = typeof action.newState.isFetched === 'undefined' ?  
+									  state.state.isFetched :
+									  action.newState.isFetched;
+			let isFormed = typeof action.newState.isFormed === 'undefined' ?  
+									  state.state.isFormed :
+									  action.newState.isFormed;
+			let render = typeof action.newState.render === 'undefined' ? 
+								  	state.state.render :
+								  	action.newState.render;
 
+			// if value = 'toggle', toggle the value
+			needToFetch.value = needToFetch.value === 'toggle' ? !state.state.needToFetch.value : needToFetch.value; 
+			isFetched.value = isFetched.value === 'toggle' ? !state.state.isFetched.value : isFetched.value; 
+			isFormed.value = isFormed.value === 'toggle' ? !state.state.isFormed.value : isFormed.value; 
+			render.value = render.value === 'toggle' ? !state.state.render.value : render.value; 
+
+			return _.extend( {}, state, { 
+				state: {
+					render,
+					needToFetch,
+					isFetched,
+					isFormed
+				}
+			} );
 		case FORM_POST_INDEX:
-			let jsonPosts = action.result[0];
-			let nextPagePosts = action.result[1];
-			let jsonCats = action.result[2];
-			let currPage = +action.result[3];
-			let navUri = action.result[4];
+			let jsonPosts = action.fetchData[0];
+			let nextPagePosts = action.fetchData[1];
+			let jsonCats = action.fetchData[2];
+			let currPage = +action.pageData.pageNum;
+			let navUri = action.pageData.navUri;
+			let params = action.pageData.search;
 			
 			return _.extend( {}, state, { 
-				data: {
-					render: state.data.render,
+				ui: {
 					currPage,
 					nextPageExist: nextPagePosts.length > 0,
-					navUri: navUri.uri,
-					params: navUri.params,
+					navUri,
+					params,
 					items: jsonPosts.map( item => {	
 						return {
 			                id: item.id,

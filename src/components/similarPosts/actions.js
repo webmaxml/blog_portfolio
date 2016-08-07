@@ -1,34 +1,27 @@
-// render similar posts
-export const RENDER_SIMILAR_POSTS = 'RENDER_SIMILAR_POSTS';
-export function renderSimilarPosts() {
-	return {
-		type: RENDER_SIMILAR_POSTS,
-	};
-};
-
-
-// unrender similar posts
-export const UNRENDER_SIMILAR_POSTS = 'UNRENDER_SIMILAR_POSTS';
-export function unrenderSimilarPosts() {
-	return {
-		type: UNRENDER_SIMILAR_POSTS,
-	};
-};
-
 // form similar posts
 export const FORM_SIMILAR_POSTS = 'FORM_SIMILAR_POSTS';
-export function formSimilarPosts( result ) {
+export function formSimilarPosts( fetchData, pageData ) {
 	return {
 		type: FORM_SIMILAR_POSTS,
-		result
+		fetchData,
+		pageData
 	};
 };
 
-// post component bottom boundary
-export const POST_SIMILAR_POSTS_BOTTOM_BOUNDARY = 'POST_SIMILAR_POSTS_BOTTOM_BOUNDARY';
-export function postSimilarPostsBottomBoundary( value ) {
+// switch similar posts state
+export const SWITCH_SIMILAR_POSTS_STATE = 'SWITCH_SIMILAR_POSTS_STATE';
+export function switchSimilarPostsState( newState ) {
 	return {
-		type: POST_SIMILAR_POSTS_BOTTOM_BOUNDARY,
+		type: SWITCH_SIMILAR_POSTS_STATE,
+		newState
+	};
+};
+
+// post similar posts coord value
+export const POST_SIMILAR_POSTS_COORD = 'POST_SIMILAR_POSTS_COORD';
+export function postSimilarPostsValue( value ) {
+	return {
+		type: POST_SIMILAR_POSTS_COORD,
 		value
 	};
 };

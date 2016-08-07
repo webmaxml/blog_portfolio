@@ -1,46 +1,39 @@
 // actions
-import { unrenderDateArchive,
-		 renderDateArchive,
-		 formDateArchive,
-		 cacheDateArchive,
-		 RENDER_ARCHIVE,
-		 UNRENDER_ARCHIVE,
-		 CACHE_ARCHIVE,
-		 FORM_ARCHIVE } from './actions';
+import { SWITCH_ARCHIVE_STATE, FORM_ARCHIVE } from './actions';
 
 const initialState = {
-	showOnInit: true,
-	toCache: true,
-	cached: false,
-	hide: unrenderDateArchive,
-	show: renderDateArchive,
-	form: formDateArchive,
-	cache: cacheDateArchive,
 	api: [ 14 ],
-	data: {
-		render: false,
+	ui: {
 		items: []
+	},
+	state: {
+		render: {
+			value: false,
+			stamp: 0
+		},
+		needToFetch: {
+			value: false,
+			stamp: 0
+		},
+		isFetched: {
+			value: false,
+			stamp: 0
+		},
+		isFormed: {
+			value: false,
+			stamp: 0
+		},
+		isCached: {
+			value: false,
+			stamp: 0
+		}
 	}
 };
 
 function dateArchive( state = initialState, action ) {
 	switch ( action.type ) {
-		case RENDER_ARCHIVE:
-			return _.extend( {}, state, {
-				data: { 
-					render: true,
-					items: [].concat( state.data.items )
-				} 
-			} );
-		case UNRENDER_ARCHIVE:
-			return _.extend( {}, state, {
-				data: { 
-					render: false,
-					items: [].concat( state.data.items )
-				} 
-			} );
 		case FORM_ARCHIVE:
-			const json = action.result[0];
+			const json = action.fetchData[0];
 
 			const firstPostDate = new Date( json[0].date );
 			const lastPostDate = new Date( json[1].date );
@@ -90,15 +83,42 @@ function dateArchive( state = initialState, action ) {
 			};
 
 			return _.extend( {}, state, { 
-				data: {
-					render: state.data.render,
+				ui: {
 					items 
 				}
 			});
-		case CACHE_ARCHIVE:
-			return _.extend( {}, state, {
-				toCache: false,
-				cached: true
+		case SWITCH_ARCHIVE_STATE:
+			let needToFetch = typeof action.newState.needToFetch === 'undefined' ? 
+								  	state.state.needToFetch :
+								  	action.newState.needToFetch;
+			let isFetched = typeof action.newState.isFetched === 'undefined' ?  
+									  state.state.isFetched :
+									  action.newState.isFetched;
+			let isFormed = typeof action.newState.isFormed === 'undefined' ?  
+									  state.state.isFormed :
+									  action.newState.isFormed;
+			let isCached = typeof action.newState.isCached === 'undefined' ?  
+									  state.state.isCached :
+									  action.newState.isCached;
+			let render = typeof action.newState.render === 'undefined' ?  
+									  state.state.render :
+									  action.newState.render;
+
+			// if value = 'toggle', toggle the value
+			needToFetch.value = needToFetch.value === 'toggle' ? !state.state.needToFetch.value : needToFetch.value;
+			isFetched.value = isFetched.value === 'toggle' ? !state.state.isFetched.value : isFetched.value;
+			isFormed.value = isFormed.value === 'toggle' ? !state.state.isFormed.value : isFormed.value;
+			isCached.value = isCached.value === 'toggle' ? !state.state.isCached.value : isCached.value;
+			render.value = render.value === 'toggle' ? !state.state.render.value : render.value;
+
+			return _.extend( {}, state, { 
+				state: {
+					render,
+					needToFetch,
+					isFetched,
+					isFormed,
+					isCached
+				}
 			} );
 		default:
 			return state;

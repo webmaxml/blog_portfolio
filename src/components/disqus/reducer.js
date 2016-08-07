@@ -1,33 +1,28 @@
 // actions
-import { unrenderDisqus,
-		 renderDisqus,
-		 RENDER_DISQUS, 
-		 UNRENDER_DISQUS } from './actions';
+import { SWITCH_DISQUS_STATE } from './actions';
 
 const initialState = {
-	name: 'disqus',
-	showOnInit: true,
-	toCache: false,
-	cached: false,
-	hide: unrenderDisqus,
-	show: renderDisqus,
-	api: [],
-	data: { render: false }
+	state: {
+		render: {
+			value: false,
+			stamp: 0
+		}
+	}
 };
 
 function disqus( state = initialState, action ) {
 	switch ( action.type ) {
-		case RENDER_DISQUS:
-			return _.extend( {}, state, {
-				data: { 
-					render: true
-				} 
-			} );
-		case UNRENDER_DISQUS:
-			return _.extend( {}, state, {
-				data: { 
-					render: false
-				} 
+		case SWITCH_DISQUS_STATE:
+			let render = typeof action.newState.render === 'undefined' ? 
+								  	state.state.render :
+								  	action.newState.render;
+			// if value = 'toggle', toggle the value
+			render.value = render.value === 'toggle' ? !state.state.render.value : render.value; 
+
+			return _.extend( {}, state, { 
+				state: {
+					render
+				}
 			} );
 		default:
 			return state;

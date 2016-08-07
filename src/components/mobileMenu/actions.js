@@ -1,15 +1,8 @@
-// toggle mobile menu
-export const TOGGLE_MOBILE_MENU = 'TOGGLE_MOBILE_MENU';
-export function toggleMobileMenu() {
+// switch mobile menu state
+export const SWITCH_MOBILE_MENU_STATE = 'SWITCH_MOBILE_MENU_STATE';
+export function switchMobileMenuState( newState ) {
 	return {
-		type: TOGGLE_MOBILE_MENU,
-	};
-};
-
-// hide mobile menu
-export const HIDE_MOBILE_MENU = 'HIDE_MOBILE_MENU';
-export function hideMobileMenu() {
-	return {
-		type: HIDE_MOBILE_MENU,
+		type: SWITCH_MOBILE_MENU_STATE,
+		newState
 	};
 };

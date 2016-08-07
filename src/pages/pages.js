@@ -1,118 +1,133 @@
 // deps
-import { initPage } from './actions';
+import { switchPageState, formPageData } from './actions';
 
 const pages = {
 
-	actions: { initPage },
+	actions: { switchPageState, formPageData },
 
 	items: {
 
 		root: {
+			name: 'root',
 			path: '/',
 			reg: /^\/#?$/,
-			components: [ 'postIndex:posts', 'dateArchive', 'categories', 'footer', 'postsTop' ],
 			getPageData: function ( uri, query, search ) {
 				let navUri = 'posts/page/';
-				return [ this.components, { pageNum: 1, navUri, search } ];
+				return { pageNum: 1, navUri, search };
 			}
 		},
 
 		post: {
+			name: 'post',
 			path: 'post/:id',
 			reg: /^\/?post\/\d+\/?$/,
-			components: [ 
-				'categories', 
-				'footer', 
-				'postItem',
-				'similarPosts', 
-				'postsTop', 
-				'dateArchive' 
-			],
 			getPageData: function ( uri, query, search ) {
 				let postId = uri.slice( uri.search(/\d+$/) );
-				return [ this.components, { postId } ];
+				return { postId };
 			}
 		},
 
 		postsPage: {
+			name: 'postsPage',
 			path: 'posts/page/:count',
 			reg: /^\/?posts\/page\/\d+\/?$/,
-			components: [ 'postIndex:posts', 'dateArchive', 'categories', 'footer', 'postsTop'  ],
 			getPageData: function ( uri, query, search ) {
 				let pageNum = uri.slice( uri.search(/\d+$/) );
 				let navUri = 'posts/page/';
-				return [ this.components, { pageNum, navUri, search } ];
+				return { pageNum, navUri, search };
 			}
 		},
 
 		catsPage: {
+			name: 'catsPage',
 			path: 'cats/:id/page/:count',
 			reg: /^\/?cats\/\d+\/page\/\d+\/?$/,
-			components: [ 'postIndex:cats', 'dateArchive', 'categories', 'footer', 'postsTop' ],
 			getPageData: function ( uri, query, search ) {
 				let navUri = uri.slice( 0, uri.search(/\d+$/) );
 				let idPart = uri.slice( uri.search( /\d+/ ) );
 
 				let catId = idPart.slice( 0, idPart.search( /\// ) );
 				let pageNum = uri.slice( uri.search(/\d+$/) );
-				return [ this.components, { pageNum, catId, navUri, search } ];
+				return { pageNum, catId, navUri, search };
 			}
 		},
 
 		tagsPage: {
+			name: 'tagsPage',
 			path: 'tags/:id/page/:count',
 			reg: /^\/?tags\/\d+\/page\/\d+\/?$/,
-			components: [ 'postIndex:tags', 'dateArchive', 'categories', 'footer', 'postsTop' ],
 			getPageData: function ( uri, query, search ) {
 				let navUri = uri.slice( 0, uri.search(/\d+$/) );
 				let idPart = uri.slice( uri.search( /\d+/ ) );
 
 				let tagId = idPart.slice( 0, idPart.search( /\// ) );
 				let pageNum = uri.slice( uri.search(/\d+$/) );
-				return [ this.components, { pageNum, tagId, navUri, search } ]
+				return { pageNum, tagId, navUri, search };
 			}
 		},
 
 		archivePage: {
+			name: 'archivePage',
 			path: 'archive/page/:count',
 			reg: /^\/?archive\/page\/\d+\/?$/,
-			components: [ 'postIndex:archive', 'dateArchive', 'categories', 'footer', 'postsTop' ],
 			getPageData: function ( uri, query, search ) {
 				let navUri = uri.slice( 0, uri.search(/\d+$/) );
 				let pageNum = uri.slice( uri.search(/\d+$/) );
-				return [ this.components, { pageNum, query, search, navUri } ];
+				return { pageNum, query, search, navUri };
 			}
 		},
 
 		searchPage: {
+			name: 'searchPage',
 			path: 'search/page/:count',
 			reg: /^\/?search\/page\/\d+\/?$/,
-			components: [ 'postIndex:search', 'dateArchive', 'categories', 'footer', 'postsTop' ],
 			getPageData: function ( uri, query, search ) {
 				let navUri = uri.slice( 0, uri.search(/\d+$/) );
 				let pageNum = uri.slice( uri.search(/\d+$/) );
-				return [ this.components, { pageNum, query, search, navUri } ];
+				return { pageNum, query, search, navUri };
 			}
 		},
 
 		contact: {
+			name: 'contact',
 			path: 'contact',
 			reg: /^\/?contact\/?$/,
-			components: [ 'categories', 'footer', 'postsTop', 'dateArchive' ],
 			getPageData: function ( uri, query, search ) {
-				return [ this.components, {} ];
+				return {};
 			}
 		},
 
 		quotes: {
+			name: 'quotes',
 			path: 'quotes',
 			reg: /^\/?quotes\/?$/,
-			components: [ 'categories', 'footer' ],
 			getPageData: function ( uri, query, search ) {
-				return [ this.components, {} ];
+				return {};
 			}
 		},
 
+		404: {
+			name: '404',
+			path: '404',
+			reg: /alwaysFalse/,
+			getPageData: function ( uri, query, search ) {
+				return {};
+			}
+		}
+
+	},
+
+	pageData: {},
+
+	state: {
+		currentPage: {
+			value: 'pending',
+			stamp: 0
+		},
+		pageDataFormed: {
+			value: false,
+			stamp: 0
+		}
 	}
 };
 

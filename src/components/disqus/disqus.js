@@ -44,7 +44,7 @@ class Disqus extends React.Component {
 
 function mapStateToProps( state ) {
     return {
-        data: state.components.disqus.data
+        render: state.components.disqus.state.render.value
     };
 };
 

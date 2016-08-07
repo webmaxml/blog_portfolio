@@ -1,50 +1,42 @@
 // actions
-import { renderPostsTop,
-		 unrenderPostsTop,
-		 formPostsTop,
-		 cachePostsTop,
-		 RENDER_POSTS_TOP,
-		 UNRENDER_POSTS_TOP,
-		 CACHE_POSTS_TOP,
-		 FORM_POSTS_TOP } from './actions';
+import { SWITCH_POSTS_TOP_STATE, FORM_POSTS_TOP } from './actions';
 
 const initialState = {
-	showOnInit: true,
-	toCache: true,
-	cached: false,
-	hide: unrenderPostsTop,
-	show: renderPostsTop,
-	form: formPostsTop,
-	cache: cachePostsTop,
 	api: [ 13 ],
-	data: {
-		render: false,
+	ui: {
 		items: []
+	},
+	state: {
+		render: {
+			value: false,
+			stamp: 0
+		},
+		needToFetch: {
+			value: false,
+			stamp: 0
+		},
+		isFetched: {
+			value: false,
+			stamp: 0
+		},
+		isFormed: {
+			value: false,
+			stamp: 0
+		},
+		isCached: {
+			value: false,
+			stamp: 0
+		}
 	}
 };
 
-function postsTop( state = initialState, action, helper ) {
+function postsTop( state = initialState, action ) {
 	switch ( action.type ) {
-		case RENDER_POSTS_TOP:
-			return _.extend( {}, state, {
-				data: { 
-					render: true,
-					items: [].concat( state.data.items )
-				} 
-			} );
-		case UNRENDER_POSTS_TOP:
-			return _.extend( {}, state, {
-				data: { 
-					render: false,
-					items: [].concat( state.data.items )
-				} 
-			} );
 		case FORM_POSTS_TOP:
-			let jsonPosts = action.result[0].response;
+			let jsonPosts = action.fetchData[0].response;
 
 			return _.extend( {}, state, { 
-				data: {
-					render: state.data.render,
+				ui: {
 					items: jsonPosts.map( item => {
 						return {
 							title: item.title,
@@ -53,10 +45,38 @@ function postsTop( state = initialState, action, helper ) {
 					} )
 				}
 			});
-		case CACHE_POSTS_TOP:
-			return _.extend( {}, state, {
-				toCache: false,
-				cached: true
+		case SWITCH_POSTS_TOP_STATE:
+			let needToFetch = typeof action.newState.needToFetch === 'undefined' ? 
+								  	state.state.needToFetch :
+								  	action.newState.needToFetch;
+			let isFetched = typeof action.newState.isFetched === 'undefined' ?  
+									  state.state.isFetched :
+									  action.newState.isFetched;
+			let isFormed = typeof action.newState.isFormed === 'undefined' ?  
+									  state.state.isFormed :
+									  action.newState.isFormed;
+			let isCached = typeof action.newState.isCached === 'undefined' ?  
+									  state.state.isCached :
+									  action.newState.isCached;
+			let render = typeof action.newState.render === 'undefined' ?  
+									  state.state.render :
+									  action.newState.render;
+
+			// if value = 'toggle', toggle the value
+			needToFetch.value = needToFetch.value === 'toggle' ? !state.state.needToFetch.value : needToFetch.value;
+			isFetched.value = isFetched.value === 'toggle' ? !state.state.isFetched.value : isFetched.value;
+			isFormed.value = isFormed.value === 'toggle' ? !state.state.isFormed.value : isFormed.value;
+			isCached.value = isCached.value === 'toggle' ? !state.state.isCached.value : isCached.value;
+			render.value = render.value === 'toggle' ? !state.state.render.value : render.value;
+
+			return _.extend( {}, state, { 
+				state: {
+					render,
+					needToFetch,
+					isFetched,
+					isFormed,
+					isCached
+				}
 			} );
 		default:
 			return state;

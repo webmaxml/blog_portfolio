@@ -1,33 +1,18 @@
-// render archive
-export const RENDER_ARCHIVE = 'RENDER_ARCHIVE';
-export function renderDateArchive() {
-	return {
-		type: RENDER_ARCHIVE,
-	};
-};
-
-
-// unrender archive
-export const UNRENDER_ARCHIVE = 'UNRENDER_ARCHIVE';
-export function unrenderDateArchive() {
-	return {
-		type: UNRENDER_ARCHIVE,
-	};
-};
-
 // form archive
 export const FORM_ARCHIVE = 'FORM_ARCHIVE';
-export function formDateArchive( result ) {
+export function formDateArchive( fetchData, pageData ) {
 	return {
 		type: FORM_ARCHIVE,
-		result
+		fetchData,
+		pageData
 	};
 };
 
-// cache archive
-export const CACHE_ARCHIVE = 'CACHE_ARCHIVE';
-export function cacheDateArchive() {
+// switch archive state
+export const SWITCH_ARCHIVE_STATE = 'SWITCH_ARCHIVE_STATE';
+export function switchArchiveState( newState ) {
 	return {
-		type: CACHE_ARCHIVE
+		type: SWITCH_ARCHIVE_STATE,
+		newState
 	};
 };

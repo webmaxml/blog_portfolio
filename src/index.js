@@ -11,8 +11,8 @@ import store from './store';
 import history from './history';
 // pages
 const pages = store.getState().pages.items;
-// modules
-import './modules/index';
+// controller
+import './controller';
 // components
 import App from './components/app/app';
 import Home from './components/home/home';
@@ -21,6 +21,9 @@ import PostIndex from './components/postIndex/postIndex';
 import PostItem from './components/postItem/postItem';
 import Contact from './components/contact/contact';
 import Quotes from './components/quotes/quotes';
+
+// controllers
+import './pages/controller';
 
 render( 
 	<Provider store={ store }>

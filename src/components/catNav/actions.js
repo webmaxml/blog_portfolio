@@ -7,35 +7,11 @@ export function formCats( result ) {
 	};
 };
 
-// render cats 
-export const RENDER_CATS = 'RENDER_CATS';
-export function renderCats() {
+// switch cats state
+export const SWITCH_CATS_STATE = 'SWITCH_CATS_STATE';
+export function switchCatsState( newState ) {
 	return {
-		type: RENDER_CATS,
-	};
-};
-
-
-// unrender cats
-export const UNRENDER_CATS = 'UNRENDER_CATS';
-export function unrenderCats() {
-	return {
-		type: UNRENDER_CATS,
-	};
-};
-
-// toggle cats
-export const TOGGLE_CATS = 'TOGGLE_CATS';
-export function toggleCats() {
-	return {
-		type: TOGGLE_CATS,
-	};
-};
-
-// cache cats
-export const CACHE_CATS = 'CACHE_CATS';
-export function cacheCats() {
-	return {
-		type: CACHE_CATS,
+		type: SWITCH_CATS_STATE,
+		newState
 	};
 };

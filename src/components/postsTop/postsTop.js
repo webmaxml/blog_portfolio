@@ -41,7 +41,8 @@ class PostsTop extends React.Component {
 
 function mapStateToProps( state ) {
     return {
-        data: state.components.postsTop.data
+        render: state.components.postsTop.state.render.value,
+        data: state.components.postsTop.ui
     };
 };
 

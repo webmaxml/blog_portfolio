@@ -1,22 +1,18 @@
 // form post state
 export const FORM_POST = 'FORM_POST';
-export function formPost( result ) {
+export function formPost( fetchData, pageData ) {
 	return {
 		type: FORM_POST,
-		result
+		fetchData,
+		pageData
 	};
 };
-// render post 
-export const RENDER_POST = 'RENDER_POST';
-export function renderPost() {
+
+// switch post item state
+export const SWITCH_POST_ITEM_STATE = 'SWITCH_POST_ITEM_STATE';
+export function switchPostItemState( newState ) {
 	return {
-		type: RENDER_POST,
-	};
-};
-// unrender post
-export const UNRENDER_POST = 'UNRENDER_POST';
-export function unrenderPost() {
-	return {
-		type: UNRENDER_POST,
+		type: SWITCH_POST_ITEM_STATE,
+		newState
 	};
 };

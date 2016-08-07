@@ -2,21 +2,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import TweenMax from 'gsap';
-import store from '../../store';
 // content components
 import SectionHeader from '../content/sectionHeader/sectionHeader';
 import PostSidebarLink from '../content/postSidebarLink/postSidebarLink';
 // helpers
 import transition from '../../transition';
+// actions
+import { postSimilarPostsValue, switchSimilarPostsState } from './actions';
 
 class SimilarPosts extends React.Component {
 
     constructor(props) {
         super(props);
-
-        this.throttled = _.throttle( this.scrollHandler.bind( this ), 300 );
-        this.hideDisqus = store.getState().components.disqus.hide;
-        this.showDisqus = store.getState().components.disqus.show;
     }
 
     componentWillEnter( callback ) {
@@ -24,31 +21,16 @@ class SimilarPosts extends React.Component {
     }
 
     componentDidMount() {
-        this.bottomValue = this.section.getBoundingClientRect().top;
+        let value = this.section.getBoundingClientRect().top;
         
-        window.addEventListener( 'scroll', this.throttled );
-    }
-
-    scrollHandler( event ) {
-        let scrollValue = event.view.innerHeight + event.pageY;
-
-        if ( scrollValue > this.bottomValue ) {
-            this.renderDisqus();
-            this.removeScrollListener();
-        }
-    }
-
-    renderDisqus() {
-        this.props.dispatch( this.showDisqus() );
-    }
-
-    componentWillUnmount() {
-        this.removeScrollListener();
-        this.props.dispatch( this.hideDisqus() );
-    }
-
-    removeScrollListener() {
-        window.removeEventListener( 'scroll', this.throttled );
+        this.props.dispatch( postSimilarPostsValue( value ) );
+        console.log( 'similarPosts - coord post' );
+        this.props.dispatch( switchSimilarPostsState({
+            coordPosted: {
+                value: true,
+                stamp: Date.now()
+            }
+        }) );
     }
 
     render() {
@@ -76,7 +58,8 @@ class SimilarPosts extends React.Component {
 
 function mapStateToProps( state ) {
     return {
-        data: state.components.similarPosts.data
+        render: state.components.similarPosts.state.render.value,
+        data: state.components.similarPosts.ui
     };
 };
 
