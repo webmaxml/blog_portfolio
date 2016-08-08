@@ -3,8 +3,38 @@ import store from '../../store';
 // actions
 import { switchWindowState } from './actions';
 
+let throttledDisqus = _.throttle( disqusHandler, 300 );
+let throttledTopLine = _.throttle( topLineHandler, 300 );
 
-function scrollHandler( event ) {
+window.addEventListener( 'scroll', throttledTopLine );
+
+function topLineHandler( event ) {
+	let menuScrollMode = store.getState().modules.windowReducer.state.menuScrollMode.value;
+
+	// if not scrolled and menu is in scroll mode
+	if ( window.pageYOffset === 0 && menuScrollMode ) {
+		console.log( 'window - menu scroll mode off' );
+		store.dispatch( switchWindowState({ 
+			menuScrollMode: {
+				value: false,
+				stamp: Date.now()
+			}
+		}) );
+	}
+
+	// if scrolled and menu is not in scroll mode
+	if ( window.pageYOffset > 0 && !menuScrollMode ) {
+		console.log( 'window - menu scroll mode on' );
+		store.dispatch( switchWindowState({ 
+			menuScrollMode: {
+				value: true,
+				stamp: Date.now()
+			}
+		}) );
+	}
+}
+
+function disqusHandler( event ) {
 	let keyCoord = store.getState().components.similarPosts.topCoord;
 	let currentPos = window.innerHeight + window.pageYOffset;
 
@@ -22,7 +52,7 @@ function scrollHandler( event ) {
 }
 
 function removeAndReset() {
-	window.removeEventListener( 'scroll', throttled );
+	window.removeEventListener( 'scroll', throttledDisqus );
 
 	console.log( 'window - listener remove nad reset' );
 	store.dispatch( switchWindowState({ 
@@ -36,8 +66,6 @@ function removeAndReset() {
 		}
 	}) );
 }
-
-let throttled = _.throttle( scrollHandler, 300 );
 
 /**
  *	remove scrollListener to similarPosts and reset states
@@ -98,7 +126,7 @@ function setScrollListener() {
 	// perform actions depending on conditions
 	if ( conds[0] && conds[1] ) {
 		
-		window.addEventListener( 'scroll', throttled );
+		window.addEventListener( 'scroll', throttledDisqus );
 
 		console.log( 'window - listener set' );
 		store.dispatch( switchWindowState({ 

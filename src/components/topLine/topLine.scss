@@ -1,15 +1,57 @@
 /* topLine */
+// .topLine{
+// 	position: fixed;
+// 	top: 0;
+// 	left: 0;
+// 	z-index: 10;
+
+// 	width: 100%;
+// 	height: $base-lh * 2;
+
+// 	background-color: $c_navBg;
+// 	box-shadow: 0 0 5px rgba(0,0,0,0.5);
+
+// 	// wrap
+
+// 	&__wrap {
+// 		display: flex;
+// 		flex-flow: column wrap;
+// 		justify-content: flex-end;
+
+// 		@extend %wrapper;
+
+// 		@media ( min-width: 770px ) {
+// 			flex-flow: row wrap;
+// 		}
+// 	}
+
+// 	&__mobileMenu-wrap {
+// 		display: flex;
+// 		flex-flow: row wrap;
+// 		justify-content: flex-end;
+	
+// 		margin-right: -15px;
+// 		margin-left: -15px;
+
+// 		@media ( min-width: 770px ) {
+// 			margin: 0;
+// 		}
+// 	}
+// }
+
+/* topLine */
 .topLine{
 	position: fixed;
 	top: 0;
 	left: 0;
 	z-index: 10;
 
-	width: 100%;
-	height: $base-lh * 2;
+	@extend %rwcs;
 
-	background-color: $c_navBg;
-	box-shadow: 0 0 5px rgba(0,0,0,0.5);
+	width: 100%;
+	height: $base-lh * 2.5;
+
+	transition: .3s;
 
 	// wrap
 
@@ -17,6 +59,8 @@
 		display: flex;
 		flex-flow: column wrap;
 		justify-content: flex-end;
+
+		width: 100%;
 
 		@extend %wrapper;
 
@@ -37,4 +81,10 @@
 			margin: 0;
 		}
 	}
+}
+
+// modificator
+.topLine.topLine--scrolled {
+	background-color: rgba( 0, 0, 0, .9 );
+	height: $base-lh * 2;
 }

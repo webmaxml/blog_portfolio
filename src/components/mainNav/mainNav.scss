@@ -13,9 +13,10 @@
 		position: relative;
 
 		@extend %rwss;
+		align-self: center;
 
 		&:not( :last-child ) {
-			margin-right: 50px;
+			margin-right: 30px;
 		}
 	}
 
@@ -35,15 +36,11 @@
 		cursor: pointer;
 
 		&:hover {
-			color: lighten( $c_navText, 20% );
+			color: $c_accent;
 		}
 
 		&.mainNav__link--active {
-			border-bottom: 2px solid $c_accent;
-
-			color: lighten( $c_navText, 20% );
-
-			background-color: lighten( $c_navBg, 6.5% );
+			color: $c_accent;
 		}
 	}
 }

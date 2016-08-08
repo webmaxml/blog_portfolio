@@ -15,8 +15,10 @@ class TopLine extends React.Component {
     }
 
     render() {
+        let mainClass = this.props.scrolled ? 'topLine topLine--scrolled' : 'topLine';
+
         return (
-        	<section className="topLine">
+        	<section className={ mainClass }>
                 <div className="topLine__wrap">
                     { this.props.mobileMenuOpen ? null : <MainNav mode="default" /> }
                     <SearchForm mode="default" />
@@ -32,7 +34,8 @@ class TopLine extends React.Component {
 
 function mapStateToProps( state ) {
     return {
-        mobileMenuOpen: state.components.mobileMenu.state.render.value
+        mobileMenuOpen: state.components.mobileMenu.state.render.value,
+        scrolled: state.modules.windowReducer.state.menuScrollMode.value
     };
 };
 

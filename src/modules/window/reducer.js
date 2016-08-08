@@ -11,6 +11,10 @@ const initialState = {
 			value: false,
 			stamp: 0
 		},
+		menuScrollMode: {
+			value: false,
+			stamp: 0
+		},
 	}
 };
 
@@ -23,11 +27,15 @@ function windowReducer( state = initialState, action ) {
 			let keyPosReached = typeof action.newState.keyPosReached === 'undefined' ? 
 								  	state.state.keyPosReached :
 								  	action.newState.keyPosReached;
+			let menuScrollMode = typeof action.newState.menuScrollMode === 'undefined' ? 
+								  	state.state.menuScrollMode :
+								  	action.newState.menuScrollMode;
 
 			return _.extend( {}, state, { 
 				state: {
 					listenerSet,
-					keyPosReached
+					keyPosReached,
+					menuScrollMode
 				}
 			} );
 		default:

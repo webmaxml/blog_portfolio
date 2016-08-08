@@ -95,7 +95,7 @@ function mapStateToProps( state ) {
     // the cats render state to switch come classes
     return {
         catsOpen: state.components.categories.state.render.value,
-        activeItem: state.components.mainNav.state.activeItem.value,
+        activeItem: state.components.mainNav.state.activeItem.value
     };
 };
 

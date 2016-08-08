@@ -14,10 +14,10 @@ class Logo extends React.Component {
                 </div>
                 <div className="logo__text-wrap">
             		<div className="logo__text-big-line">
-            			<b className="logo__text-big">Мой Блог</b>
+            			<b className="logo__text-big">Lazy Daddy</b>
                     </div>
                     <div className="logo__text-small-line">
-            			<small className="logo__text-small">Я пишу здесь всякое</small>
+            			<small className="logo__text-small">Я пишу здесь когда мне не лень</small>
             		</div>
                 </div>
         	</div>
