@@ -25,7 +25,7 @@
 	// content
 
 	&__search-input {
-		width: 20px;
+		width: 100px;
 
 		font-size: $fz5;
 		line-height: $base-lh;
@@ -42,7 +42,7 @@
 		}
 
 		&:focus {
-			width: 160px;
+			width: 200px;
 
 			opacity: 1;
 		}
