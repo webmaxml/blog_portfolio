@@ -53,23 +53,22 @@ class MainNav extends React.Component {
         }
     }
 
-    render() {
-        let classes;
-        switch( this.state.mode ) {
-            case 'mobile':
-                classes = 'mainNav mainNav--mobile';
-                break;
-            default:
-                classes = 'mainNav';
-                break;
-        };
+    render() { 
+        const itemClass = 'mainNav__link';
+        const itemActiveClass = 'mainNav__link mainNav__link--active';
+        const navClass = 'mainNav';
+        const navMobileClass = 'mainNav mainNav--mobile';
 
-        let catsClasses = this.props.catsOpen ? 'mainNav__link mainNav__link--active' :  
-                                                'mainNav__link';
+        let mainClass = this.state.mode === 'mobile' ? navMobileClass : navClass;
+        let blogClass = this.props.activeItem === 'blog' ? itemActiveClass : itemClass;
+        let catsClass = this.props.catsOpen ? itemActiveClass : itemClass; 
+        let quoteClass = this.props.activeItem === 'quotes' ? itemActiveClass : itemClass;
+        let contactClass = this.props.activeItem === 'contact' ? itemActiveClass : itemClass;
+
         return (
-        	<ul className={ classes }>
+        	<ul className={ mainClass }>
                 <li className="mainNav__wrap">
-                   <Link className="mainNav__link" to="/">Блог</Link>
+                   <Link className={ blogClass } to="/">Блог</Link>
                 </li>
     			<li className="mainNav__wrap" 
                     onMouseEnter={ this.hoverEnter }
@@ -77,14 +76,14 @@ class MainNav extends React.Component {
                     onTouchStart={ this.touchHandle }
                     ref={ ref => this.catsItem = ref }
                     >
-        				<span className={ catsClasses } ref={ ref => this.catsTitle = ref }>Рубрики</span>
+        				<span className={ catsClass } ref={ ref => this.catsTitle = ref }>Рубрики</span>
                         <CatNav mode={ this.state.mode } />      
     			</li>
     			<li className="mainNav__wrap">
-    				<Link className="mainNav__link" to="/quotes">Цитаты</Link>
+    				<Link className={ quoteClass } to="/quotes">Цитаты</Link>
     			</li>
     			<li className="mainNav__wrap">
-    				<Link className="mainNav__link" to="/contact">Контакты</Link>
+    				<Link className={ contactClass } to="/contact">Контакты</Link>
     			</li>
     		</ul>
         );
@@ -95,7 +94,8 @@ class MainNav extends React.Component {
 function mapStateToProps( state ) {
     // the cats render state to switch come classes
     return {
-        catsOpen: state.components.categories.state.render.value
+        catsOpen: state.components.categories.state.render.value,
+        activeItem: state.components.mainNav.state.activeItem.value,
     };
 };
 

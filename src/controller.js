@@ -1,4 +1,5 @@
 // controllers
+import './components/mainNav/controller';
 import './components/disqus/controller';
 import './modules/window/controller';
 import './components/similarPosts/controller';
