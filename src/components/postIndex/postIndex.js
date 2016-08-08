@@ -48,7 +48,6 @@ class PostIndex extends React.Component {
 
         return (
         	<article className="postIndex" ref={ ref => this.section = ref }>
-                <Helmet title="Главная" />
             	<ul className="postIndex__list">
                     { children }
                 </ul>

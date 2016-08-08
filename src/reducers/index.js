@@ -15,14 +15,15 @@ import disqus from '../components/disqus/reducer';
 import similarPosts from '../components/similarPosts/reducer';
 import mainNav from '../components/mainNav/reducer';
 import mobileToggle from '../components/mobileToggle/reducer';
+import helmet from '../components/helmet/reducer';
 // modules
-import scrollListener from '../modules/scrollListener/reducer';
 import dataFetch from '../modules/dataFetch/reducer';
 import windowReducer from '../modules/window/reducer';
 
 const rootReducer = combineReducers({
 	pages,
 	components: combineReducers({
+		helmet,
 		postIndex,
 		dateArchive,
 		mobileMenu,
@@ -36,7 +37,6 @@ const rootReducer = combineReducers({
 		mobileToggle
 	}),
 	modules: combineReducers({
-		scrollListener,
 		dataFetch,
 		windowReducer
 	}),
