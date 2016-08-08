@@ -21,10 +21,10 @@ class MobileToggle extends React.Component {
             this.setState({ click: true });
             return;
         }
-        console.log( 'mobileToggle - toggling' );
+        console.log( 'mobileToggle - open' );
         this.props.dispatch( switchMobileToggleState({
             open: {
-                value: 'toggle',
+                value: true,
                 stamp: Date.now()
             }
         }) );
@@ -32,10 +32,10 @@ class MobileToggle extends React.Component {
 
     touchHandle( event ) {
         this.setState({ click: false });
-        console.log( 'mobileToggle - toggling' );
+        console.log( 'mobileToggle - open' );
         this.props.dispatch( switchMobileToggleState({
             open: {
-                value: 'toggle',
+                value: true,
                 stamp: Date.now()
             }
         }) );
@@ -44,20 +44,12 @@ class MobileToggle extends React.Component {
     render() {
         return (
             <button className="mobileToggle" onClick={ this.clickHandle } onTouchStart={ this.touchHandle }>
-                { this.props.open ? <i className="fa fa-times mobileToggle-icon"></i> :
-                                    <i className="fa fa-bars mobileToggle-icon"></i> }        
+                <i className="fa fa-bars mobileToggle-icon"></i>     
             </button>
         );
     }
 }
 
-function mapStateToProps( state ) {
-    return {
-        open: state.components.mobileToggle.state.open.value
-    };
-};
-
-
-const MobileToggleContainer = connect( mapStateToProps )( MobileToggle );
+const MobileToggleContainer = connect()( MobileToggle );
 
 export default MobileToggleContainer;

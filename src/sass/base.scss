@@ -26,6 +26,13 @@
 	align-items: stretch;
 }
 
+%rnes {
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: flex-end;
+	align-items: stretch;
+}
+
 %rwss {
 	display: flex;
 	flex-flow: row wrap;
@@ -81,8 +88,4 @@
 	flex-flow: column nowrap;
 	justify-content: flex-start;
 	align-items: flex-start;
-}
-
-.smoothAppear {
-	transition: .5s;
 }

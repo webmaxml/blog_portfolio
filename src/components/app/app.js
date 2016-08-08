@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import Helmet from '../helmet/helmet';
 import Header from '../header/header';
 import Footer from '../footer/footer';
+import MobileMenu from '../mobileMenu/mobileMenu';
 
 class App extends React.Component {
 
@@ -19,6 +20,7 @@ class App extends React.Component {
                 <Header />
                 { this.props.children }
                 <Footer />
+                <MobileMenu />
             </div>
         );
     }

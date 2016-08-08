@@ -7,9 +7,13 @@
 	// content
 
 	& .searchForm__search-input {
-		width: 200px;
+		width: 100px;
 
 		opacity: 1;
+
+		@media ( min-width: 360px ) {
+			width: 200px;
+		}	
 	}
 
 	& .searchForm__search-icon {

@@ -1,15 +1,27 @@
 .catNav.catNav--mobile {
 	position: static;
 
+	@extend %cnss;
 	width: 100%;
+	overflow: hidden;
 
-	background-color: inherit;
-	box-shadow: none;
+	background-color: $c_navBg;
+
+	&::before {
+		display: none;
+	}
 
 	// line
 
 	.catNav__line {
 		@extend %rwcs;
+	}
+
+	// content
+
+	.catNav__link {
+		color: #fff;
+		text-align: center;
 	}
 
 }

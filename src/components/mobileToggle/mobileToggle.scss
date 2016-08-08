@@ -2,6 +2,8 @@
 .mobileToggle {
 	align-self: flex-end;
 
+	width: $base-lh * 2;
+
 	font-size: 20px;
 	line-height: $base-lh * 2;
 	color: $c_navText;

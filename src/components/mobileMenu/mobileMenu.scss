@@ -1,12 +1,44 @@
 /* mobileMenu */
 .mobileMenu {
-	display: flex;
-	flex-flow: column nowrap;
+	position: fixed;
+	top: 0;
+	right: 0;
+	z-index: 15;
 
-	background-color: $c_navBg;
-	box-shadow: 0 0 5px rgba(0,0,0,0.5);
+	@extend %rnes;
+
+	height: 100%;
 
 	@media ( min-width: 770px ) {
 		display: none;
 	}	
+
+	&__wrap {
+		position: relative;
+		@extend %cnss;
+
+		width: 80%;
+
+		background-color: $c_navBg;
+		box-shadow: 0 0 5px rgba(0,0,0,0.5);
+
+		@media ( min-width: 480px ) {
+			width: 60%;
+		}	
+	}
+
+	&__close-btn {
+		position: absolute;
+		top: 0;
+		left: -44px;
+
+		width: 44px;
+		border-radius: 3px;
+	}
+
+	&__close-icon {
+		font-size: 20px;
+		line-height: $base-lh * 2;
+		color: $c_accent;
+	}
 }

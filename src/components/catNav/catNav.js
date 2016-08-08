@@ -19,10 +19,10 @@ class CatNav extends React.Component {
         switch ( this.state.mode ) {
             case 'mobile':
                 TweenLite.set( this.section, { height:"auto" } );
-                TweenMax.from( this.section, .3, { height: 0, opacity: 0, onComplete: callback } );
+                TweenMax.from( this.section, .4, { height: 0, opacity: 0, onComplete: callback } );
                 break;
             default:
-                TweenMax.from( this.section, .3, { opacity: 0, onComplete: callback } );
+                TweenMax.from( this.section, .4, { opacity: 0, top: '55px', onComplete: callback } );
                 break;
         } 
     }
@@ -39,15 +39,8 @@ class CatNav extends React.Component {
     }
 
     render() {
-    	let classes;
-        switch( this.state.mode ) {
-            case 'mobile':
-                classes = 'catNav catNav--mobile';
-                break;
-            default:
-                classes = 'catNav';
-                break;
-        };
+    	let classes = this.state.mode === 'mobile' ? 'catNav catNav--mobile' :
+                                                     this.props.scrolled ? 'catNav catNav--scrolled' : 'catNav';
 
         return (
         	<ul className={ classes } ref={ ref => this.section = ref }>
@@ -69,7 +62,8 @@ class CatNav extends React.Component {
 function mapStateToProps( state ) {
     return {
         render: state.components.categories.state.render.value,
-        data: state.components.categories.ui
+        data: state.components.categories.ui,
+        scrolled: state.modules.windowReducer.state.menuScrollMode.value
     };
 };
 

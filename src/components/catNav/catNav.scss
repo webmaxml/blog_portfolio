@@ -1,7 +1,7 @@
 /* catNav */
 .catNav {
 	position: absolute;
-	top: $base-lh * 2 + 2;
+	top: $base-lh * 2;
 	left: 0;
 	z-index: 6;
 
@@ -9,31 +9,60 @@
 
 	width: 160px;
 
-	background-color: $c_navBg;
-	box-shadow: 0 0 5px rgba(0,0,0,0.5);
+	background-color: #fff;
+
+	&::before {
+		position: absolute;
+		top: -6px;
+		left: 30px;
+
+		display: block;
+		content: "";
+
+		width: 0;
+		height: 0;
+
+		border-bottom: 6px solid #fff;
+		border-left: 8px solid transparent;
+		border-right: 8px solid transparent;
+	}
 
 	// line
 
-	&__line {
+	.catNav__line {
 		@extend %rwss;
 	}
 
 	// content
 
-	&__link {
+	.catNav__link {
+		width: 100%;
 		padding: $base-lh / 2;
 
 		font-family: $ff_header;
 		font-weight: bold;
 		font-size: $fz6;
 		line-height: $base-lh;
-		color: $c_navText;
+		color: $c_header;
 
 		transition: .2s;
 
 		&:hover {
-			color: lighten( $c_navText, 20% );
+			color: #fff;
+			background-color: $c_accent;
 		}
+	}
+}
+
+.catNav.catNav--scrolled {
+	background-color: $c_navBg;
+
+	&::before {
+		display: none;
+	}
+
+	.catNav__link {
+		color: #fff;
 	}
 }
 

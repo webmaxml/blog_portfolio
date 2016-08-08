@@ -1,10 +1,11 @@
 .mainNav.mainNav--mobile {
-	display: flex;
-	flex-flow: column nowrap;
+	@extend %cnss;
 
 	// wrap
 
 	& .mainNav__wrap {
+		align-self: stretch;
+
 		margin-right: 0;
 	}
 
@@ -24,7 +25,7 @@
 		&.mainNav__link--active {
 			border-bottom: none;
 
-			color: lighten( $c_navText, 20% );
+			color: $c_accent;
 
 			background-color: lighten( $c_navBg, 6.5% );
 		}
