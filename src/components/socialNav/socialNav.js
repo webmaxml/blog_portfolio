@@ -24,18 +24,18 @@ class SocialNav extends React.Component {
         return ( 
         	<ul className={ classes }>
         		<li className="socialNav__item">
-        			<a href="#" className="socialNav__icon-wrap">
+        			<a href="#" className="socialNav__icon-wrap-vk">
         				<i className="fa fa-vk socialNav__icon"></i>
         			</a>
         		</li>
         		<li className="socialNav__item">
-        			<a href="#" className="socialNav__icon-wrap">
+        			<a href="#" className="socialNav__icon-wrap-inst">
         				<i className="fa fa-instagram socialNav__icon"></i>
         			</a>
         		</li>
         		<li className="socialNav__item">
-        			<a href="#" className="socialNav__icon-wrap">
-        				<i className="fa fa-youtube socialNav__icon"></i>
+        			<a href="#" className="socialNav__icon-wrap-youtube">
+        				<i className="fa fa-youtube-play socialNav__icon"></i>
         			</a>
         		</li>
         	</ul> 
