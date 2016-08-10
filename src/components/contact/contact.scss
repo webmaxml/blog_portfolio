@@ -8,6 +8,13 @@
 		font-family: $ff_header;
 		font-size: $fz2;
 		line-height: $base-lh * 2;
-		text-align: center;
+	}
+
+	&__text {
+		margin-bottom: $base-lh;
+
+		font-family: $ff_text;
+		font-size: $fz5;
+		line-height: $base-lh;
 	}
 }

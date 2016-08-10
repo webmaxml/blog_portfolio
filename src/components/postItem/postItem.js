@@ -2,7 +2,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import TweenMax from 'gsap';
-import Helmet from 'react-helmet';
 // content components
 import PostDate from '../content/postDate/postDate';
 import PostCatLink from '../content/postCatLink/postCatLink';
@@ -12,6 +11,7 @@ import PostTagLink from '../content/postTagLink/postTagLink';
 // components
 import SimilarPosts from '../similarPosts/similarPosts';
 import Disqus from '../disqus/disqus';
+import SocialShare from '../socialShare/socialShare';
 // helpers
 import transition from '../../transition';
 
@@ -26,6 +26,7 @@ class PostItem extends React.Component {
     }
 
     render() {
+        let url = "http://blog.webmaxml.ru/";
        return (
             <article className="postItem" ref={ ref => this.section = ref }>
                 <div className="postItemt__date-line">
@@ -62,6 +63,7 @@ class PostItem extends React.Component {
                     } ) }
 
                 </ul>
+                <SocialShare />
                 <SimilarPosts />
                 <Disqus id = { this.props.data.item.id } 
                         title = { this.props.data.item.title }

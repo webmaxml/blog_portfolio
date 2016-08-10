@@ -1,14 +1,17 @@
 /* postSidebarLink */
 .postSidebarLink {
+	position: relative;
+
+	width: 100%;
+
 	font-family: $ff_header;
-	font-weight: bold;
 	font-size: $fz4;
-	line-height: $base-lh;
+	line-height: $base-lh * 2;
 	color: $c_header;
 
-	transition: .2s;
+	transition: .3s;
 
 	&:hover {
-		color: darken( $c_header, 50% );
+		color: $c_accent;
 	}
 }

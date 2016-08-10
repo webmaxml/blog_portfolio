@@ -13,6 +13,8 @@
 		flex-flow: row nowrap;
 		justify-content: center;
 
+		margin-bottom: $base-lh;
+
 		@media( min-width: 770px ) {
 			justify-content: flex-end;
 		}
@@ -22,8 +24,6 @@
 		display: flex;
 		flex-flow: row wrap;
 		justify-content: flex-start;
-
-		margin-top: $base-lh;
 
 		@media( min-width: 500px ) {
 			justify-content: center;

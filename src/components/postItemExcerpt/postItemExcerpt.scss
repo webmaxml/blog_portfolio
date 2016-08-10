@@ -47,4 +47,14 @@
 	&__comments-wrap {
 		@extend %rnss;
 	}
+
+	// content
+
+	&__comments-icon {
+		margin-right: 7px;
+
+		font-size: $fz5;
+		color: $c_header;
+		line-height: $base-lh * 2;
+	}
 }

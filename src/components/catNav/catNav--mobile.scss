@@ -22,6 +22,10 @@
 	.catNav__link {
 		color: #fff;
 		text-align: center;
+
+		&:hover {
+			color: $c_accent;
+		}
 	}
 
 }

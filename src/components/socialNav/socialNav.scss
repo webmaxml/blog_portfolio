@@ -15,11 +15,9 @@
 		}
 	}
 
-	&__icon-wrap-vk, &__icon-wrap-inst, &__icon-wrap-youtube {
-		display: flex;
-		flex-flow: row nowrap;
-		justify-content: center;
-		align-items: center;
+	&__icon-wrap-vk, &__icon-wrap-inst, &__icon-wrap-youtube,
+	&__icon-wrap-facebook, &__icon-wrap-google, &__icon-wrap-twitch, &__icon-wrap-twitter {
+		@extend %rncc;
 		
 		width: 35px;
 		height: 35px;
@@ -29,7 +27,23 @@
 	}
 
 	&__icon-wrap-vk {
-		background-color: #264A84;
+		background-color: #507299;
+	}
+
+	&__icon-wrap-facebook {
+		background-color: #3C5C99;
+	}
+
+	&__icon-wrap-google {
+		background-color: #E24147;
+	}
+
+	&__icon-wrap-twitch {
+		background-color: #64459B;
+	}
+
+	&__icon-wrap-twitter {
+		background-color: #02AAEB;
 	}
 
 	&__icon-wrap-inst {

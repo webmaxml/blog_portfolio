@@ -42,6 +42,7 @@ class PostItemExcerpt extends React.Component {
                         <BtnLink href={ `/post/${ this.props.id }`}>Читать далее</BtnLink>
                     </div>
                     <div className="postItemExcerpt__comments-wrap">
+                        <i className="fa fa-comments postItemExcerpt__comments-icon"></i>
                         <PostCommentsLink href={ `/post/${ this.props.id }` }></PostCommentsLink>
                     </div>
                 </footer>

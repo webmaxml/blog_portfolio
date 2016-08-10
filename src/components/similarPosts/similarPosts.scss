@@ -6,6 +6,8 @@
 
 	&__header-line {
 		@extend %rnss;
+
+		margin-bottom: $base-lh;
 	}
 
 	&__list-line {

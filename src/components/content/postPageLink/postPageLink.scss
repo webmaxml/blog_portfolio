@@ -4,9 +4,9 @@
 	font-size: $fz4;
 	color: $c_header;
 
-	transition: .2s;
+	transition: .3s;
 
 	&:hover {
-		color: darken( $c_header, 50% );
+		color: $c_accent;
 	}
 }

@@ -1,13 +1,13 @@
 /* postCommentsLink */
 .postCommentsLink {
-	font-family: $ff_text;
+	font-family: $ff_header;
 	font-size: $fz5;
 	line-height: $base-lh * 2;
 	color: $c_header;
 
-	transition: .2s;
+	transition: .3s;
 
 	&:hover {
-		color: darken( $c_header, 50% );
+		color: $c_accent;
 	}
 }
