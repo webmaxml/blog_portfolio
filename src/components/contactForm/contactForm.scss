@@ -10,6 +10,12 @@
 		margin-bottom: $base-lh;
 	}
 
+	&__submit-line {
+		@extend %rwbc;
+
+		margin-bottom: $base-lh;
+	}
+
 	// content
 
 	&__label {

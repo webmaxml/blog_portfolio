@@ -83,6 +83,13 @@
 	align-items: stretch;
 }
 
+%rwbc {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-between;
+	align-items: center;
+}
+
 %cnss {
 	display: flex;
 	flex-flow: column nowrap;

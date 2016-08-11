@@ -2,6 +2,7 @@
 import React from 'react';
 import { reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
+import ReCAPTCHA from "react-google-recaptcha";
 
 class ContactForm extends React.Component {
 
@@ -29,9 +30,10 @@ class ContactForm extends React.Component {
         			<label htmlFor="message" className="contactForm__label">Сообщение</label>
         			<textarea id="message" className="contactForm__textarea" { ...message } />
         		</div>
-        		<div className="contactForm__group-line">
-        			<button type="submit" className="contactForm__submit">Отправить</button>
-        		</div>
+                <div className="contactForm__submit-line">
+                    <ReCAPTCHA sitekey="6LdSYycTAAAAAJmvI2ZYc5bhDL4SAG2kWVV19AJU" />
+            		<button type="submit" className="contactForm__submit">Отправить</button>
+                </div>
         	</form>
         );	
     }
