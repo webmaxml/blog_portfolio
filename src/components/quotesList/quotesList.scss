@@ -1,0 +1,60 @@
+/* quotesList */
+.quotesList {
+	@extend %cnss;
+
+	width: 100%;
+
+	&__item-wrap {
+		position: relative;
+
+		padding: $base-lh * 2 - 1 0;
+
+		&:not(:last-child) {	
+			border-bottom: 1px solid $c_header;
+		}
+	}
+
+	&__item-footer {
+		@extend %rwbc;
+	}
+
+	// content
+
+	&__item-text {
+		position: relative;
+
+		border-left: 1px solid darken( $c_additional, 30% );
+		padding: 0 20px;
+		margin-bottom: $base-lh;
+
+		font-family: $ff_logo;
+		font-size: $fz4;
+		line-height: $base-lh * 2;
+		color: darken( $c_additional, 30% );
+		text-align: center;
+	}
+
+	&__author{
+		font-family: $ff_header;
+		font-weight: bold;
+		font-size: $fz5;
+		line-height: $base-lh;
+	}
+
+	&__open-quote, &__close-quote {
+		position: absolute;
+
+		font-size: 15px;
+		color: darken( $c_additional, 30% );
+	}
+
+	&__open-quote {
+		top: 0;
+		left: 5px;
+	}
+
+	&__close-quote {
+		bottom: 0;
+		right: 5px;
+	}
+}

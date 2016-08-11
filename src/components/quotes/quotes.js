@@ -1,5 +1,7 @@
 // deps
 import React from 'react';
+// components
+import QuotesList from '../quotesList/quotesList';
 
 class Quotes extends React.Component {
 
@@ -11,7 +13,7 @@ class Quotes extends React.Component {
         return (
         	<main className="quotes">
                 <div className="quotes__wrap">
-            		{ this.props.children }
+            		<QuotesList />
                 </div>
         	</main>
         );

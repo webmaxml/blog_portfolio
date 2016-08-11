@@ -20,7 +20,7 @@ import PostSection from './components/postSection/postSection';
 import PostIndex from './components/postIndex/postIndex';
 import PostItem from './components/postItem/postItem';
 import Contact from './components/contact/contact';
-import Quotes from './components/quotes/quotes';
+import QuotesList from './components/quotesList/quotesList';
 
 // controllers
 import './pages/controller';
@@ -39,9 +39,9 @@ render(
 						<Route path={ pages.archivePage.path } component={ PostIndex } />
 						<Route path={ pages.searchPage.path } component={ PostIndex } />
 						<Route path={ pages.contact.path } component={ Contact } />
+						<Route path={ pages.quotes.path } component={ QuotesList } />
 					</Route>
 				</Route>
-				<Route path={ pages.quotes.path } component={ Quotes } />
 			</Route>
 		</Router>
 	</Provider>, 

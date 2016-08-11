@@ -33,6 +33,13 @@
 	align-items: stretch;
 }
 
+%rwes {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: flex-end;
+	align-items: stretch;
+}
+
 %rwss {
 	display: flex;
 	flex-flow: row wrap;

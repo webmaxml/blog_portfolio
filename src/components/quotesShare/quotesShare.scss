@@ -1,0 +1,64 @@
+/* quotesShare */
+.quotesShare {
+	@extend %rnss;
+
+	&__count {
+		font-family: $ff_header;
+		font-size: $fz6;
+		line-height: $base-lh;
+		color: #fff;
+	}
+
+	&__google-btn, &__vk-btn, &__twitter-btn {
+		overflow: hidden;
+
+		padding: 0 10px;
+		border-radius: 3px;
+		margin-right: 15px;
+	}
+
+	&__google-btn {
+		background-color: #E24147;
+
+		&:hover {
+			background-color: darken( #E24147, 10% );
+		}
+
+		&:active {
+			background-color: darken( #E24147, 20% );
+		}
+	}
+
+	&__vk-btn {
+		background-color: #507299;
+
+		&:hover {
+			background-color: darken( #507299, 10% );
+		}
+
+		&:active {
+			background-color: darken( #507299, 20% );
+		}
+	}
+
+	&__twitter-btn {
+		background-color: #02AAEB;
+
+		&:hover {
+			background-color: darken( #02AAEB, 10% );
+		}
+
+		&:active {
+			background-color: darken( #02AAEB, 20% );
+		}
+	}
+
+	&__icon {
+		float: left;
+		margin-right: 15px;
+
+		font-size: $fz5;
+		line-height: $base-lh;
+		color: #fff;
+	}
+}
