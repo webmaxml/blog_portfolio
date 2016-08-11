@@ -97,6 +97,13 @@
 	align-items: stretch;
 }
 
+%cnsc {
+	display: flex;
+	flex-flow: column nowrap;
+	justify-content: flex-start;
+	align-items: center;
+}
+
 %cnsfs {
 	display: flex;
 	flex-flow: column nowrap;

@@ -19,19 +19,21 @@ class ContactForm extends React.Component {
         return (
         	<form className="contactForm" onSubmit={ handleSubmit( data => this.onSubmit( data ) ) }>
         		<div className="contactForm__group-line">
-        			<label htmlFor="name" className="contactForm__label">Имя</label>
-        			<input id="name" className="contactForm__input" { ...name } />
+                    <i className="fa fa-user contactForm__icon" />
+        			<input id="name" className="contactForm__input" placeholder="Ваше имя" { ...name } />
         		</div>
         		<div className="contactForm__group-line">
-        			<label htmlFor="email" className="contactForm__label">Email</label>
-        			<input id="email" className="contactForm__input" { ...email } />
+                    <i className="fa fa-envelope contactForm__icon" />
+        			<input id="email" className="contactForm__input" placeholder="Ваш email" { ...email } />
         		</div>
         		<div className="contactForm__group-line">
-        			<label htmlFor="message" className="contactForm__label">Сообщение</label>
-        			<textarea id="message" className="contactForm__textarea" { ...message } />
+                    <i className="fa fa-pencil contactForm__icon" />
+        			<textarea id="message" className="contactForm__textarea" placeholder="Текст сообщения" { ...message } />
         		</div>
-                <div className="contactForm__submit-line">
+                <div className="contactForm__centering-line">
                     <ReCAPTCHA sitekey="6LdSYycTAAAAAJmvI2ZYc5bhDL4SAG2kWVV19AJU" />
+                </div>
+                <div className="contactForm__centering-line">
             		<button type="submit" className="contactForm__submit">Отправить</button>
                 </div>
         	</form>

@@ -1,19 +1,31 @@
 /* contactForm */
 .contactForm {
-	@extend %cnss;
+	@extend %cnsc;
+
+	margin-top: $base-lh * 2;
 
 	// line
 
 	&__group-line {
-		@extend %cnsfs;
+		@extend %rnss;
 
-		margin-bottom: $base-lh;
+		width: 100%;
+		margin-bottom: $base-lh * 2;
+
+		@media( min-width: 480px ) {
+			width: 80%;
+		}
 	}
 
-	&__submit-line {
-		@extend %rwbc;
+	&__centering-line {
+		@extend %rncc;
 
-		margin-bottom: $base-lh;
+		width: 100%;
+		margin-bottom: $base-lh * 2;
+
+		@media( min-width: 480px ) {
+			width: 80%;
+		}
 	}
 
 	// content
@@ -26,29 +38,43 @@
 	}
 
 	&__input, &__textarea {	
+		width: 100%;
 		padding: 0 15px;
-		border: 1px solid $c_additional;
+		border-top: 1px solid #bcbcbc;
+		border-left: 1px solid #ddd;
+		border-right: 1px solid #ddd;
+		border-bottom: 1px solid #f4f4f4;
 		border-radius: 3px;
 
 		font-family: $ff_text;
-		font-size: $fz6;		
+		font-size: $fz5;
+		line-height: $base-lh;	
+
+		box-shadow: inset 0 2px 2px -1px rgba(0, 0, 0, .2);	
+
+		transition: border linear 0.2s, box-shadow linear 0.2s;
+
+		&:focus {
+			border-color: rgba(64, 204, 255, 0.8);
+			box-shadow: inset 0 2px 2px -1px rgba(0, 0, 0, .2), 0 0 5px rgba(64, 204, 255, 0.6);
+
+			&::placeholder {
+				opacity: 0;
+			}
+		}
+
 	}
 
 	&__input {
-		height: $base-lh + 10;
-		padding: 5px;
-
-		line-height: $base-lh;
-
+		height: $base-lh + 22;
+		padding-top: 10px;
+		padding-bottom: 10px;
 	}
 
 	&__textarea {
-		width: 100%;
 		height: $base-lh * 6 + 22;
 		padding-top: 10px;
 		padding-bottom: 10px;
-
-		line-height: $base-lh;
 	}
 
 	&__submit {
@@ -69,6 +95,21 @@
 
 		&:active {
 			background-color: darken( $c_accent, 20% );
+		}
+	}
+
+	&__icon {
+		display: none;
+
+		width: 20px;
+		margin-top: 13px;
+		margin-right: 12px;
+
+		font-size: 16px;
+		color: $c_header;
+
+		@media( min-width: 670px ) {
+			display: inline-block;
 		}
 	}
 }
