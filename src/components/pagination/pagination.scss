@@ -1,0 +1,78 @@
+/* pagination */
+.pagination {
+	@extend %rnes;
+
+	margin: $base-lh * 2 0;
+
+	&__item {
+		
+	}
+
+	&__arrow-btn {
+		@extend %rncc;
+
+		width: 45px;
+		border-radius: 3px;
+	
+		background-color: $c_accent;
+
+		transition: .2s;
+
+		&:hover {
+			background-color: darken( $c_accent, 10% );
+		}
+
+		&:active {
+			background-color: darken( $c_accent, 20% );
+		}
+	}
+
+	&__num-btn {
+		@extend %rncc;
+
+		width: $base-lh * 1.5;
+		border: 1px solid $c_accent;
+		border-radius: 3px;
+
+		font-family: $ff_header;
+		font-weight: bold;
+		font-size: $fz5;
+		line-height: $base-lh * 1.5 - 2;
+		color: #000;
+
+		transition: .2s;
+
+		&:hover {
+			background-color: $c_accent;
+			color: #fff;
+		}
+
+		&:active {
+			border-color: darken( $c_accent, 20% );
+
+			background-color: darken( $c_accent, 20% );
+			color: #fff;
+		}
+
+		&.pagination__num-btn--active {
+			background-color: $c_accent;
+			color: #fff;
+
+			&:hover {
+				background-color: darken( $c_accent, 10% );
+			}
+
+			&:active {
+				border-color: darken( $c_accent, 20% );
+
+				background-color: darken( $c_accent, 20% );
+			}
+		}
+	}
+
+	&__icon {
+		font-size: $fz3;
+		line-height: $base-lh * 1.5;
+		color: #fff;
+	}
+}

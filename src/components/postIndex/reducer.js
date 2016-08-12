@@ -40,23 +40,23 @@ function postIndex( state = initialState, action ) {
 			switch ( action.mode ) {
 				case 'cats':
 					mode = 'cats';
-					api = [ 6, 7, 3 ];
+					api = [ 6, 3 ];
 					break;
 				case 'posts':
 					mode = 'posts';
-					api = [ 1, 2, 3 ];
+					api = [ 1, 3 ];
 					break;
 				case 'tags':
 					mode = 'tags';
-					api = [ 10, 11, 3 ];
+					api = [ 10, 3 ];
 					break;
 				case 'archive':
 					mode = 'archive';
-					api = [ 15, 16, 3 ];
+					api = [ 15, 3 ];
 					break;
 				case 'search':
 					mode = 'search';
-					api = [ 17, 18, 3 ];
+					api = [ 17, 3 ];
 					break;
 			};
 
@@ -90,9 +90,9 @@ function postIndex( state = initialState, action ) {
 				}
 			} );
 		case FORM_POST_INDEX:
-			let jsonPosts = action.fetchData[0];
-			let nextPagePosts = action.fetchData[1];
-			let jsonCats = action.fetchData[2];
+			let jsonPosts = action.fetchData[0].json;
+			let totalPages = +action.fetchData[0].totalPages;
+			let jsonCats = action.fetchData[1];
 			let currPage = +action.pageData.pageNum;
 			let navUri = action.pageData.navUri;
 			let params = action.pageData.search;
@@ -100,7 +100,7 @@ function postIndex( state = initialState, action ) {
 			return _.extend( {}, state, { 
 				ui: {
 					currPage,
-					nextPageExist: nextPagePosts.length > 0,
+					totalPages,
 					navUri,
 					params,
 					items: jsonPosts.map( item => {	

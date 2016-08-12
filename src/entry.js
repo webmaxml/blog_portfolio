@@ -40,3 +40,4 @@ export const archivePageApi = ( pageNum, before, after ) => `http://api.blog.web
 																page=${ pageNum }`;
 
 export const searchPageApi = ( pageNum, query ) => api + `/posts?search=${query}&page=${pageNum}`;
+export const pageNumPostApi = 'http://api.blog.webmaxml.ru/wp-json/lazydaddy/v1/postNumPages';

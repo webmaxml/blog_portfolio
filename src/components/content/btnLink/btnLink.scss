@@ -11,6 +11,8 @@
 
 	background-color: $c_accent;
 
+	transition: .2s;
+
 	&:hover {
 		background-color: darken( $c_accent, 10% );
 	}

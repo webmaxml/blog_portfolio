@@ -2,14 +2,6 @@
 .postIndex {
 	@extend %cnss;
 
-	// line
-
-	&__nav-line {
-		@extend %rnbs;
-
-		margin: $base-lh * 3 0;
-	}
-
 	// content
 
 	&__notFound {

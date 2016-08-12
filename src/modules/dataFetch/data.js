@@ -12,16 +12,18 @@ import { postsApi,
 		 postsTopApi,
 		 dateArchiveApi,
 		 archivePageApi,
-		 searchPageApi } from '../../entry';
+		 searchPageApi,
+		 pageNumPostApi } from '../../entry';
 
 const dataFetch = {
 
 	1: {
-		get: ( pageNum ) => fetch( postPageApi( pageNum ) ).then( response => response.json() )
-	},
-
-	2: {
-		get: ( pageNum ) => fetch( postPageApi( pageNum ) ).then( response => response.json() )
+		get: ( pageNum ) => fetch( postPageApi( pageNum ) ).then( response => { 
+			let totalPages = response.headers.get( 'X-WP-TotalPages' );
+			return response.json().then( json => { 
+				return { json, totalPages };
+			} );
+		})
 	},
 
 	3: {
@@ -33,11 +35,12 @@ const dataFetch = {
 	},
 
 	6: {
-		get: ( pageNum, catId ) => fetch( catsPageApi( pageNum, catId ) ).then( response => response.json() )
-	},
-
-	7: {
-		get: ( pageNum, catId ) => fetch( catsPageApi( pageNum, catId ) ).then( response => response.json() )
+		get: ( pageNum, catId ) => fetch( catsPageApi( pageNum, catId ) ).then( response => { 
+			let totalPages = response.headers.get( 'X-WP-TotalPages' );
+			return response.json().then( json => { 
+				return { json, totalPages };
+			} );
+		})
 	},
 
 	9: {
@@ -45,11 +48,12 @@ const dataFetch = {
 	},
 
 	10: {
-		get: ( pageNum, tagId ) => fetch( tagsPageApi( pageNum, tagId ) ).then( response => response.json() )
-	},
-
-	11: {
-		get: ( pageNum, tagId ) => fetch( tagsPageApi( pageNum, tagId ) ).then( response => response.json() )
+		get: ( pageNum, tagId ) => fetch( tagsPageApi( pageNum, tagId ) ).then( response => { 
+			let totalPages = response.headers.get( 'X-WP-TotalPages' );
+			return response.json().then( json => { 
+				return { json, totalPages };
+			} );
+		})
 	},
 
 	12: {
@@ -65,48 +69,44 @@ const dataFetch = {
 	},
 
 	15: {
-		get: ( pageNum, before, after ) => fetch( archivePageApi( pageNum, before, after ) ).then( response => response.json() )
-	},
-
-	16: {
-		get: ( pageNum, before, after ) => fetch( archivePageApi( pageNum, before, after ) ).then( response => response.json() )
+		get: ( pageNum, before, after ) => fetch( archivePageApi( pageNum, before, after ) ).then( response => { 
+			let totalPages = response.headers.get( 'X-WP-TotalPages' );
+			return response.json().then( json => { 
+				return { json, totalPages };
+			} );
+		})
 	},
 
 	17: {
-		get: ( pageNum, query) => fetch( searchPageApi( pageNum, query ) ).then( response => response.json() )
+		get: ( pageNum, query) => fetch( searchPageApi( pageNum, query ) ).then( response => { 
+			let totalPages = response.headers.get( 'X-WP-TotalPages' );
+			return response.json().then( json => { 
+				return { json, totalPages };
+			} );
+		})
 	},
 
-	18: {
-		get: ( pageNum, query ) => fetch( searchPageApi( pageNum, query ) ).then( response => response.json() )
-	},
+	19: {
+		get: () => fetch( pageNumPostApi ).then( response => response.json() )
+	}
 };
 
 export function getData( id, data ) {
 	switch ( id ) {
 		case 1: 
 			return dataFetch[id].get( +data.pageNum );
-		case 2: 
-			return dataFetch[id].get( +data.pageNum + 1 );
 		case 5: 
 			return dataFetch[id].get( data.postId );
 		case 6: 
 			return dataFetch[id].get( +data.pageNum, data.catId );
-		case 7: 
-			return dataFetch[id].get( +data.pageNum + 1, data.catId );
 		case 10: 
 			return dataFetch[id].get( +data.pageNum, data.tagId );
-		case 11: 
-			return dataFetch[id].get( +data.pageNum + 1, data.tagId );
 		case 12: 
 			return dataFetch[id].get( data.postId );
 		case 15: 
 			return dataFetch[id].get( +data.pageNum, data.query.before, data.query.after );
-		case 16: 
-			return dataFetch[id].get( +data.pageNum + 1, data.query.before, data.query.after );
 		case 17: 
 			return dataFetch[id].get( +data.pageNum, data.query.s );
-		case 18: 
-			return dataFetch[id].get( +data.pageNum + 1, data.query.s );
 		default:
 			return dataFetch[id].get();
 	}
