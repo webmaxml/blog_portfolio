@@ -4,6 +4,10 @@
 
 	// content
 
+	&__list {
+		margin-bottom: $base-lh * 2;
+	}
+
 	&__notFound {
 		font-family: $ff_header;
 		font-size: $fz4;

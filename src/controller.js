@@ -1,4 +1,5 @@
 // controllers
+import './components/footer/controller';
 import './components/helmet/controller';
 import './components/mainNav/controller';
 import './components/disqus/controller';

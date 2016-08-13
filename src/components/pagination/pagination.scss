@@ -2,12 +2,6 @@
 .pagination {
 	@extend %rnes;
 
-	margin: $base-lh * 2 0;
-
-	&__item {
-		
-	}
-
 	&__arrow-btn {
 		@extend %rncc;
 
