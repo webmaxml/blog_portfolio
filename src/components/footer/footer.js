@@ -37,6 +37,20 @@ class Footer extends React.Component {
                         </ul>
                     </div>
                     <div className="footer__section">
+                        <h3 className="footer__header">Рубрики</h3>
+                        <ul className="footer__catList">
+                            <li className="footer__cat-item">
+                                <Link className="footer__cat-link" to="/">Отвал башки</Link>
+                            </li>
+                            <li className="footer__cat-item">
+                                <Link className="footer__cat-link" to="/quotes">Просто жизнь</Link>
+                            </li>
+                            <li className="footer__cat-item">
+                                <Link className="footer__cat-link" to="/contact">Размышления у камина</Link>
+                            </li>
+                        </ul>
+                    </div>
+                    <div className="footer__section">
                         <h3 className="footer__header">Теги</h3>
                         <ul className="footer__tagList">
                             <li className="footer__tag-item">
