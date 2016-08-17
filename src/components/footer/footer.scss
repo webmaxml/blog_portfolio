@@ -1,6 +1,6 @@
 /* footer */
 .footer {
-	padding: $base-lh 0;
+	padding-bottom: $base-lh;
 	margin-top: $base-lh * 2;
 
 	background-color: $c_navBg;
@@ -13,15 +13,29 @@
 	}
 
 	&__section {
-		width: 33%;
+		width: 100%;
+
+		text-align: center;
+
+		@media ( min-width: 780px ) {
+			width: 33%;
+
+			text-align: left;
+		}
 	}
 
 	&__tagList {
-		@extend %rwss;
+		@extend %rwcs;
+
+		@media ( min-width: 780px ) {
+			justify-content: flex-start;
+		}
 	}
 
 
 	&__tag-item {
+		margin-bottom: 10px;
+
 		&:not( :last-child ) {
 			margin-right: 10px;
 		}
@@ -30,7 +44,7 @@
 	// content
 
 	&__header {
-		margin-bottom: $base-lh;
+		margin: $base-lh 0;
 
 		font-family: $ff_header;
 		font-weight: bold;

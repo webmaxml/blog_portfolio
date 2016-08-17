@@ -8,10 +8,15 @@
 	font-size: $fz4;
 	line-height: $base-lh * 2;
 	color: $c_header;
+	text-align: center;
 
 	transition: .3s;
 
 	&:hover {
 		color: $c_accent;
+	}
+
+	@media ( min-width: 990px ) {
+		text-align: left;
 	}
 }

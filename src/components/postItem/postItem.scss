@@ -23,16 +23,24 @@
 	}
 
 	&__tag-line {
-		@extend %rwss;
+		@extend %rwcs;
 
 		margin-bottom: $base-lh * 2;
+
+		@media ( min-width: 990px ) {
+			justify-content: flex-start;
+		}
 	}
 
 	&__tag-header-line {
-		@extend %rnss;
+		@extend %rncs;
 
 		margin-top: $base-lh * 2;
 		margin-bottom: $base-lh;
+
+		@media ( min-width: 990px ) {
+			justify-content: flex-start;
+		}
 	}
 
 	// wrap
@@ -57,8 +65,12 @@
 
 	&__header {
 		font-family: $ff_header;
-		font-size: $fz1;
+		font-size: $fz2;
 		line-height: $base-lh * 2;
 		color: #000;
+
+		@media ( min-width: 480px ) {
+			font-size: $fz1;
+		}
 	}
 }

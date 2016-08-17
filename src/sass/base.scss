@@ -69,6 +69,13 @@
 	align-items: center;
 }
 
+%rncs {
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: center;
+	align-items: stretch;
+}
+
 %rwsc {
 	display: flex;
 	flex-flow: row wrap;

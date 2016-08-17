@@ -14,8 +14,13 @@ class MobileMenu extends React.Component {
 
     constructor(props) {
         super(props);
+        this.state = {
+            click: true
+        };
+
         this.menuClose = this.menuClose.bind( this );
         this.outClickHandler = this.outClickHandler.bind( this );
+        this.outTouchHandler = this.outTouchHandler.bind( this );
     }
 
     componentWillEnter( callback ) {
@@ -28,16 +33,32 @@ class MobileMenu extends React.Component {
 
     componentDidMount() {
         document.addEventListener( 'click', this.outClickHandler );
+        document.addEventListener( 'touchstart', this.outTouchHandler );
     }
 
     outClickHandler( event ) {
+        if ( !this.state.click ) {
+            this.setState({ click: true });
+            return;
+        }
+        console.log( 'click' );
         if ( event.target === this.menu ) {
+            this.menuClose();
+        }
+    }
+
+    outTouchHandler( event ) {
+        console.log( 'touch' );
+        if ( event.target === this.menu ) {
+            event.preventDefault();
+            this.setState({ click: false });
             this.menuClose();
         }
     }
 
     componentWillUnmount() {
         document.removeEventListener( 'click', this.outClickHandler );
+        document.removeEventListener( 'touchstart', this.outTouchHandler );
     }
 
     menuClose() {

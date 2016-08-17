@@ -31,6 +31,7 @@ class MobileToggle extends React.Component {
     }
 
     touchHandle( event ) {
+        event.preventDefault();
         this.setState({ click: false });
         console.log( 'mobileToggle - open' );
         this.props.dispatch( switchMobileToggleState({

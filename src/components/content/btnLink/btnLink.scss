@@ -1,11 +1,11 @@
 /* btnLink */
 .btnLink {
-	padding: 0 20px;
+	padding: 0 15px;
 	border-radius: 3px;
 
 	font-family: $ff_header;
 	font-weight: bold;
-	font-size: $fz5;
+	font-size: $fz6;
 	line-height: $base-lh * 2;
 	color: #fff;
 
@@ -19,5 +19,11 @@
 
 	&:active {
 		background-color: darken( $c_accent, 20% );
+	}
+
+	@media ( min-width: 480px ) {
+		padding: 0 20px;
+
+		font-size: $fz5;
 	}
 }

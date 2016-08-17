@@ -7,9 +7,13 @@
 	// line
 
 	&__header-line {
-		@extend %rnss;
+		@extend %rncs;
 
 		margin-bottom: $base-lh;
+
+		@media ( min-width: 990px ) {
+			justify-content: flex-start;
+		}
 	}
 
 	&__btn-line {

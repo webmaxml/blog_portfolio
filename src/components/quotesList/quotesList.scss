@@ -15,7 +15,11 @@
 	}
 
 	&__item-footer {
-		@extend %rwbc;
+		@extend %rwcs;
+
+		@media ( min-width: 680px ) {
+			justify-content: space-between;
+		}
 	}
 
 	// content
@@ -23,9 +27,7 @@
 	&__item-text {
 		position: relative;
 
-		border-left: 1px solid darken( $c_additional, 30% );
 		padding: 0 20px;
-		margin-bottom: $base-lh;
 
 		font-family: $ff_logo;
 		font-size: $fz4;
@@ -35,10 +37,22 @@
 	}
 
 	&__author{
+		order: 0;
+
+		width: 100%;
+		margin-top: $base-lh;
+
 		font-family: $ff_header;
 		font-weight: bold;
 		font-size: $fz5;
 		line-height: $base-lh;
+		text-align: center;
+
+		@media ( min-width: 680px ) {
+			order: 2;
+
+			width: auto;
+		}
 	}
 
 	&__open-quote, &__close-quote {

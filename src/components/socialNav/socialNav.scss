@@ -1,15 +1,14 @@
 /* socialNav */
 .socialNav {
-	display: flex;
-	flex-flow: row wrap;
-	align-items: center;
+	@extend %rwcs;
 
 	align-self: center;
-	height: $base-lh * 3;
 
 	// wrap
 
 	&__item {
+		margin-bottom: 15px;
+
 		&:not( :last-child ) {
 			margin-right: 15px
 		}

@@ -15,7 +15,7 @@
 
 		margin-bottom: $base-lh;
 
-		@media( min-width: 770px ) {
+		@media( min-width: 990px ) {
 			justify-content: flex-end;
 		}
 	}
@@ -29,7 +29,7 @@
 			justify-content: center;
 		}
 
-		@media( min-width: 770px ) {
+		@media( min-width: 990px ) {
 			justify-content: flex-start;
 		}
 	}

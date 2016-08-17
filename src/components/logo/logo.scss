@@ -45,16 +45,24 @@
 
 	&__text-big {
 		font-family: $ff_logo;
-		font-size: $fz1;
+		font-size: $fz2;
 		line-height: $base-lh * 2; 
 		color: $c_logoText;
 		text-transform: uppercase;
+
+		@media ( min-width: 480px ) {
+			font-size: $fz1;
+		}
 	}
 
 	&__text-small {
 		font-family: $ff_logo;
-		font-size: $fz4;
+		font-size: $fz5;
 		line-height: $base-lh; 
 		color: $c_additional;
+
+		@media ( min-width: 480px ) {
+			font-size: $fz4;
+		}
 	}
 }
