@@ -53,6 +53,16 @@
 		}
 	}
 
+	&__category-sep {
+		align-self: center;
+
+		width: 1px;
+		height: 14px;
+		margin-left: 15px;
+
+		background-color: $c_header;
+	}
+
 	&__tag-wrap {
 		@extend %rnss;
 

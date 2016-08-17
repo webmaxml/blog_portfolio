@@ -25,10 +25,14 @@ class PostItemExcerpt extends React.Component {
         		</h1>
         		<ul className="postItemExcerpt__categories-line">
 
-                    { this.props.cats.map( cat => {
+                    { this.props.cats.map( ( cat, index, arr ) => {
+                        // do not show separator on the last element
                         return (
                             <li className="postItemExcerpt__category-wrap" key={ cat.id }>
                                 <PostCatLink href={ `/cats/${cat.id}/page/1` }>{ cat.title }</PostCatLink>
+                                { index !== ( arr.length - 1 ) ? 
+                                    <div className="postItemExcerpt__category-sep"></div> : null
+                                }
                             </li>
                         );
                     } ) }

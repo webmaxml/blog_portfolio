@@ -37,10 +37,14 @@ class PostItem extends React.Component {
                 </h1>
                 <ul className="postItem__categories-line">
 
-                    { this.props.data.item.cats.map( cat => {
+                    { this.props.data.item.cats.map( ( cat, index, arr ) => {
+                        // do not show separator on the last element
                         return (
                             <li className="postItem__category-wrap" key={ cat.id }>
                                 <PostCatLink href={ `/cats/${ cat.id }/page/1` }>{ cat.title }</PostCatLink>
+                                { index !== ( arr.length - 1 ) ? 
+                                    <div className="postItem__category-sep"></div> : null
+                                }
                             </li>
                         );
                     } ) }
