@@ -44,32 +44,32 @@ function menuToggle() {
  *	triggered by - page
  */
 
-// let prevPageStamp = 0;
-// function menuHideOnRefresh() {
-// 	let currentState = store.getState();
+let prevPageStamp = 0;
+function menuHideOnRefresh() {
+	let currentState = store.getState();
 
-// 	// checking if there is need to process
-// 	let currentPage = currentState.pages.state.currentPage;
+	// checking if there is need to process
+	let currentPage = currentState.pages.state.currentPage;
 
-// 	if ( currentPage.stamp === prevPageStamp ) {
-// 		return;
-// 	}
-// 	prevPageStamp = currentPage.stamp;
+	if ( currentPage.stamp === prevPageStamp ) {
+		return;
+	}
+	prevPageStamp = currentPage.stamp;
 
-// 	let mobileOpen = currentState.components.mobileMenu.state.render;
+	let mobileOpen = currentState.components.mobileMenu.state.render;
 
-// 	if ( mobileOpen.value === true ) {
-// 		console.log( 'mobileMenu - hide on refresh' );
-// 		store.dispatch( switchMobileMenuState({
-// 			render: {
-// 				value: false,
-// 				stamp: Date.now()
-// 			}
-// 		}) )
-// 	}
+	if ( mobileOpen.value === true ) {
+		console.log( 'mobileMenu - hide on refresh' );
+		store.dispatch( switchMobileMenuState({
+			render: {
+				value: false,
+				stamp: Date.now()
+			}
+		}) )
+	}
 	
-// };
+};
 
 // subscribe handlers
 store.subscribe( menuToggle );
-// store.subscribe( menuHideOnRefresh );
+store.subscribe( menuHideOnRefresh );

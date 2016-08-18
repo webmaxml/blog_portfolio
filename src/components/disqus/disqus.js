@@ -1,6 +1,7 @@
 // deps
 import React from 'react';
 import { connect } from 'react-redux';
+import store from '../../store';
 // helpers
 import transition from '../../transition';
 
@@ -35,10 +36,16 @@ class Disqus extends React.Component {
 
 	        ( document.head || document.body ).appendChild( script ); 
 	    }
+
+	    let pageHash = store.getState().pages.pageData.hash;
+	    if ( pageHash === '#disqus_thread' ) {
+	    	console.log( '--------------------scrolling-------------------' );
+	    	window.scrollTo( 0, this.section.getBoundingClientRect().top );
+	    }
 	}
 
     render() {
-        return <div id="disqus_thread" />;
+        return <div id="disqus_thread" ref={ ref => this.section = ref }/>;
     }
 }
 

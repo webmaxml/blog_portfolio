@@ -20,13 +20,16 @@ function renderDisqus() {
 	}
 	prevReachedStamp = keyPosReached.stamp;
 
+	let disqusRender = currentState.components.disqus.state.render;
+
 	// forming conditions
 	let conds = [ 
-		keyPosReached.value === true
+		keyPosReached.value === true,
+		disqusRender.value === false
 	];
 
 	// perform actions depending on conditions
-	if ( conds[0] ) {
+	if ( conds[0] && conds[1] ) {
 		console.log( 'disqus - render' );
 		store.dispatch( switchDisqusState({ 
 			render: {
@@ -72,10 +75,46 @@ function hideDisqus() {
 			}
 		}) );
 	};
-	
 };
 
+/**
+ *	show disqus when entering with #disqus_thread hash
+ *	
+ *	triggered by - page
+ */
+
+let prevPageDataStamp = 0;
+function showImmidiatelyDisqus() {
+	let currentState = store.getState();
+
+	// checking if there is need to process
+	let pageDataFormed = currentState.pages.state.pageDataFormed;
+	if ( pageDataFormed.stamp === prevPageDataStamp ) {
+		return;
+	}
+	prevPageDataStamp = pageDataFormed.stamp;
+
+	let pageData = currentState.pages.pageData;
+
+	// forming conditions
+	let conds = [ 
+		pageData.hash === '#disqus_thread'
+	];
+
+	// perform actions depending on conditions
+	if ( conds[0] ) {
+		console.log( 'disqus - show immidiately' );
+		store.dispatch( switchDisqusState({ 
+			render: {
+				value: true,
+				stamp: Date.now()
+			}
+		}) );
+	};
+	
+};
 
 // subscribe handlers
 store.subscribe( renderDisqus );
 store.subscribe( hideDisqus );
+store.subscribe( showImmidiatelyDisqus );

@@ -17,7 +17,7 @@ class Subscribe extends React.Component {
     render() {
         return (
         	<div className="subscribe">
-                <p className="subscribe__text">Хочешь узнать о выходе нового поста? Подпишись!</p>
+                <p className="subscribe__text">Хочешь узнать о выходе новой статьи? Подпишись!</p>
                 <form className="subscribe__form" onSubmit={ this.submitHandler }>
                     <div className="subscribe__form-group">
                         <i className="fa fa-envelope subscribe__icon" />

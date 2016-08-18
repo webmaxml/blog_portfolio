@@ -3,10 +3,11 @@ import store from '../../store';
 // actions
 import { switchWindowState } from './actions';
 
-let throttledDisqus = _.throttle( disqusHandler, 300 );
-let throttledTopLine = _.throttle( topLineHandler, 300 );
+/**
+ *	Switch top menu mode by scrolling
+ */
 
-window.addEventListener( 'scroll', throttledTopLine );
+let throttledTopLine = _.throttle( topLineHandler, 300 );
 
 function topLineHandler( event ) {
 	let menuScrollMode = store.getState().modules.windowReducer.state.menuScrollMode.value;
@@ -33,6 +34,14 @@ function topLineHandler( event ) {
 		}) );
 	}
 }
+
+window.addEventListener( 'scroll', throttledTopLine );
+
+/**
+ *	disqus handler and helpers
+ */
+
+let throttledDisqus = _.throttle( disqusHandler, 300 );
 
 function disqusHandler( event ) {
 	let keyCoord = store.getState().components.similarPosts.topCoord;
@@ -99,7 +108,7 @@ function removeScrollListener() {
 }
 
 /**
- *	Set scrollListener to similarPosts
+ *	Set scrollListener for disqus to similarPosts
  *	
  *	triggered by - coordPosted
  */

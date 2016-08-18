@@ -17,6 +17,7 @@ history.listen( location => {
 	let uri = location.pathname;
 	let query = location.query;
 	let search = location.search;
+	let hash = location.hash;
 
 	// find the current page and get page data
 	let page = _.find( pages, item => item.reg.test( uri ) )
@@ -25,7 +26,7 @@ history.listen( location => {
 		page = pages[404];
 	} 
 
-	let pageData = page.getPageData( uri, query, search );
+	let pageData = page.getPageData( uri, query, search, hash );
 
 	// write page data and switch page state
 	console.log( 'page data' );
