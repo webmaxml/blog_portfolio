@@ -1,0 +1,88 @@
+/* subscribe */
+.subscribe {
+	@extend %cnss;
+
+	padding: 20px;
+	border: 1px solid $c_additional;
+	border-radius: 3px;
+	margin-top: $base-lh;
+
+	&__form {
+		@extend %cnsc;
+	}
+
+	&__text {
+		font-family: $ff_header;
+		font-size: $fz6;
+		line-height: $base-lh;
+		color: #000;
+		text-align: center;
+	}
+
+	&__form-group {
+		@extend %rnss;
+
+		width: 100%;
+		margin-top: $base-lh;
+	}
+
+	&__input {
+		width: 100%;
+		height: $base-lh + 12;
+		padding: 5px 15px;
+		border-top: 1px solid #bcbcbc;
+		border-left: 1px solid #ddd;
+		border-right: 1px solid #ddd;
+		border-bottom: 1px solid #f4f4f4;
+		border-radius: 3px;
+
+		font-family: $ff_text;
+		font-size: $fz6;
+		line-height: $base-lh;	
+
+		box-shadow: inset 0 2px 2px -1px rgba(0, 0, 0, .2);	
+
+		transition: border linear 0.2s, box-shadow linear 0.2s;
+
+		&:focus {
+			border-color: rgba(64, 204, 255, 0.8);
+			box-shadow: inset 0 2px 2px -1px rgba(0, 0, 0, .2), 0 0 5px rgba(64, 204, 255, 0.6);
+
+			&::placeholder {
+				opacity: 0;
+			}
+		}
+	}
+
+	&__icon {
+		align-self: center;
+
+		width: 10px;
+		margin-right: 10px;
+
+		font-size: 12px;
+		color: $c_header;
+	}
+
+	&__submit {
+		padding: 0 15px;
+		border-radius: 3px;
+		margin-top: $base-lh;
+
+		font-family: $ff_header;
+		font-weight: bold;
+		font-size: $fz6;
+		line-height: $base-lh * 1.5;
+		color: #fff;
+
+		background-color: $c_accent;
+
+		&:hover {
+			background-color: darken( $c_accent, 10% );
+		}
+
+		&:active {
+			background-color: darken( $c_accent, 20% );
+		}
+	}
+}
