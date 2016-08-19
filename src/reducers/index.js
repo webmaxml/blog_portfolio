@@ -16,6 +16,7 @@ import similarPosts from '../components/similarPosts/reducer';
 import mainNav from '../components/mainNav/reducer';
 import mobileToggle from '../components/mobileToggle/reducer';
 import helmet from '../components/helmet/reducer';
+import quotes from '../components/quotesList/reducer';
 // modules
 import dataFetch from '../modules/dataFetch/reducer';
 import windowReducer from '../modules/window/reducer';
@@ -34,7 +35,8 @@ const rootReducer = combineReducers({
 		disqus,
 		similarPosts,
 		mainNav,
-		mobileToggle
+		mobileToggle,
+		quotes
 	}),
 	modules: combineReducers({
 		dataFetch,

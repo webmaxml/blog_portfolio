@@ -248,6 +248,43 @@ function similarPostsfetcher() {
 	}
 }
 
+/**
+ *	Fetch quotes data and notify on ready
+ *	
+ *	triggered by - quotes--needToFetch
+ */
+
+let prevQuotesNeedStamp = 0;
+function quotesfetcher() {
+	let currentState = store.getState();
+
+	// checking if there is need to process
+	let quotesNeed = currentState.components.quotes.state.needToFetch;
+
+	if ( quotesNeed.stamp === prevQuotesNeedStamp ) {
+		return;
+	}
+	prevQuotesNeedStamp = quotesNeed.stamp;
+
+	// performing action
+	if ( quotesNeed.value === true ) {
+		let pageData = currentState.pages.pageData;
+		let quotesApi = currentState.components.quotes.api;
+
+		getComponentData( quotesApi, pageData )
+			.then( result => store.dispatch( postComponentData({ quotes: result }) ) )
+			.then( () => {
+				console.log( 'dataFetch - quotes-ready' );
+				store.dispatch( switchFetchState({
+					quotesReady: {
+						value: true,
+						stamp: Date.now()
+					}
+				}) ) 
+			});
+	}
+}
+
 // subscribe listener
 store.subscribe( cacheCleaner );
 store.subscribe( postIndexfetcher );
@@ -256,3 +293,4 @@ store.subscribe( postsTopfetcher );
 store.subscribe( archivefetcher );
 store.subscribe( postItemfetcher );
 store.subscribe( similarPostsfetcher );
+store.subscribe( quotesfetcher );

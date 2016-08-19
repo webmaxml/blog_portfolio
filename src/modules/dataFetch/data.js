@@ -13,7 +13,8 @@ import { postsApi,
 		 dateArchiveApi,
 		 archivePageApi,
 		 searchPageApi,
-		 pageNumPostApi } from '../../entry';
+		 pageNumPostApi,
+		 quotesApi } from '../../entry';
 
 const dataFetch = {
 
@@ -88,6 +89,10 @@ const dataFetch = {
 
 	19: {
 		get: () => fetch( pageNumPostApi ).then( response => response.json() )
+	},
+
+	20: {
+		get: () => fetch( quotesApi ).then( response => response.json() )
 	}
 };
 

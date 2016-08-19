@@ -8,7 +8,8 @@ const initialState = {
 		postsTop: null,
 		archive: null,
 		postItem: null,
-		similarPosts: null
+		similarPosts: null,
+		quotes: null
 	},
 	state: {
 		postIndexReady: {
@@ -32,6 +33,10 @@ const initialState = {
 			stamp: 0
 		},
 		similarPostsReady: {
+			value: false,
+			stamp: 0
+		},
+		quotesReady: {
 			value: false,
 			stamp: 0
 		}
@@ -59,6 +64,9 @@ function dataFetch( state = initialState, action ) {
 			let similarPosts = typeof action.data.similarPosts === 'undefined' ? 
 								  	state.data.similarPosts :
 								  	action.data.similarPosts;
+			let quotes = typeof action.data.quotes === 'undefined' ? 
+								  	state.data.quotes :
+								  	action.data.quotes;
 
 			return _.extend( {}, state, {
 				data: {
@@ -67,7 +75,8 @@ function dataFetch( state = initialState, action ) {
 					postsTop,
 					archive,
 					postItem,
-					similarPosts
+					similarPosts,
+					quotes
 				}
 			} );
 		case SWITCH_FETCH_STATE:
@@ -89,6 +98,9 @@ function dataFetch( state = initialState, action ) {
 			let similarPostsReady = typeof action.newState.similarPostsReady === 'undefined' ? 
 								  	state.state.similarPostsReady :
 								  	action.newState.similarPostsReady;
+			let quotesReady = typeof action.newState.quotesReady === 'undefined' ? 
+								  	state.state.quotesReady :
+								  	action.newState.quotesReady;
 
 			return _.extend( {}, state, {
 				state: {
@@ -97,7 +109,8 @@ function dataFetch( state = initialState, action ) {
 					postsTopReady,
 					archiveReady,
 					postItemReady,
-					similarPostsReady
+					similarPostsReady,
+					quotesReady
 				}
 			} );
 		default:

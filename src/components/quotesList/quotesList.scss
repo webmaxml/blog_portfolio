@@ -16,24 +16,33 @@
 
 	&__item-footer {
 		@extend %rwcs;
+	}
 
-		@media ( min-width: 680px ) {
-			justify-content: space-between;
-		}
+	&__content {
+		position: relative;
+
+		padding: 0 20px;
 	}
 
 	// content
 
 	&__item-text {
-		position: relative;
-
-		padding: 0 20px;
-
 		font-family: $ff_logo;
 		font-size: $fz4;
 		line-height: $base-lh * 2;
 		color: darken( $c_additional, 30% );
 		text-align: center;
+
+		& a {
+			color: $c_header;
+			text-decoration: underline;
+
+			transition: .2s;
+
+			&:hover {
+				color: $c_accent;
+			}
+		}
 	}
 
 	&__author{
@@ -46,13 +55,8 @@
 		font-weight: bold;
 		font-size: $fz5;
 		line-height: $base-lh;
+		color: lighten( #000, 20% );
 		text-align: center;
-
-		@media ( min-width: 680px ) {
-			order: 2;
-
-			width: auto;
-		}
 	}
 
 	&__open-quote, &__close-quote {

@@ -39,7 +39,6 @@ class Disqus extends React.Component {
 
 	    let pageHash = store.getState().pages.pageData.hash;
 	    if ( pageHash === '#disqus_thread' ) {
-	    	console.log( '--------------------scrolling-------------------' );
 	    	window.scrollTo( 0, this.section.getBoundingClientRect().top );
 	    }
 	}
